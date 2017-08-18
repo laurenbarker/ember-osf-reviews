@@ -34,6 +34,9 @@ module.exports = function(environment) {
         },
         Reviews: {
             defaultProvider: 'osf',
+            i18n: {
+                defaultLocale: 'en'
+            },
         },
         providers: [
             // OSF must be the first provider
