@@ -1,10 +1,10 @@
-// All variable overrides
-@import 'variables';
-
 // 3rd parties
 @import 'bootstrap-custom';
 @import 'font-awesome';
 @import 'toastr';
+
+// All variable overrides
+@import 'variables';
 
 // Our 3rd parties
 @import 'osf-style';
@@ -14,6 +14,7 @@
 @import 'mixins';
 @import 'modules';
 @import 'util';
+@import 'preprint-detail';
 
 // Import all styles from pod style components
 @import 'pod-styles';
@@ -170,11 +171,11 @@ body {
 /* Override styles from ember-osf and osf to match ember-preprints */
 .footer {
     margin-top: 0;
-    text-shadow: 0 1px 0 #fff;
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
+    text-shadow: 0 1px 0 white;
+    border-top: 1px solid $color-border-gray-dark;
+    border-bottom: 1px solid $color-border-gray-dark;
     width: 100%;
-    color: #555;
+    color: $color-text-gray;
 }
 
 .footer ul, .footer li {

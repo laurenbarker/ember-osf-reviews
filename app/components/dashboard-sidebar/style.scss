@@ -3,15 +3,15 @@
 
     .sidebar-header {
         font-size: 24px;
-        color: $color-text-black;
-        background: $color-bg-light-grey;
-        border: 1px solid $color-border-light-grey;
+        color: $color-text-gray-dark;
+        background: $color-bg-gray-light;
+        border: 1px solid $color-border-gray-light;
         padding: 11px 27px;
     }
 
     .sidebar-body {
         background: white;
-        border: 1px solid $color-border-light-grey;
+        border: 1px solid $color-border-gray-light;
         padding: 5px 20px;
         font-size: 20px;
 
@@ -21,11 +21,11 @@
         }
 
         .moderation-enabled {
-            color: $color-text-black;
+            color: $color-text-gray-dark;
         }
 
         .moderation-disabled {
-            color: $color-text-light-grey;
+            color: $color-text-gray-light;
         }
 
         .provider-links {

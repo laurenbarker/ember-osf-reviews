@@ -1,0 +1,12 @@
+<p>
+    {{#each breadcrumbs as |breadcrumb|}}
+        {{#if (eq breadcrumb breadcrumbs.lastObject)}}
+            <span class="current-page">{{breadcrumb.name}}</span>
+        {{else}}
+            {{#link-to breadcrumb.path}}
+                {{breadcrumb.name}}
+            {{/link-to}}
+            <img class="separator">
+        {{/if}}
+    {{/each}}
+</p>

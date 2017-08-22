@@ -1,0 +1,78 @@
+<div id="preprint-status" class="container p-md">
+    <div class="flex-container">
+        <div class="status-explanation">
+            <span class="badge {{getClassName}}">
+                <i class="fa {{icon}} status-icon" aria-hidden="true"></i>
+                <span id="statusBadge">{{t status}}</span>
+                {{#bs-tooltip placement="right"}}
+                    {{t feedbackBaseMessage}} {{t statusExplanation}}.
+                {{/bs-tooltip}}
+            </span>
+        </div>
+        <div class="recent-activity">
+            <a href={{profileURL}}>{{creatorName}}</a> {{t recentActivityLanguage}} {{moment-format submission.dateLastTransitioned "MMMM DD, YYYY"}}
+        </div>
+        <div class="dropdown reviewer-feedback">
+            {{#bs-dropdown closeOnMenuClick=false as |dd|}}
+                {{#dd.button type="success"}}
+                    {{t labelDecisionDropdown}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                {{/dd.button}}
+                {{#dd.menu as |menu|}}
+                    <div class="feedback-header">
+                        <span id="moderator-feedback">{{t labelDecisionHeader}}</span>
+                        {{#dd.toggle aria-label="Close" id="close"}}
+                            <i class="fa fa-times"></i>
+                        {{/dd.toggle}}
+                    </div>
+                    <div class="setting-reminder p-md">
+                        <div class="p-b-sm row">
+                            <i class="fa {{settingsCommentsIcon}} fa-lg col-xs-1"></i>
+                            <span class="col-xs-11">{{t settingsComments}}</span>
+                        </div>
+                        {{#if (not reviewsCommentsPrivate)}}
+                            <div class="p-b-sm row">
+                                <i class="fa {{settingsNamesIcon}} fa-lg col-xs-1"></i>
+                                <span class="col-xs-11">{{t settingsNames}}</span>
+                            </div>
+                        {{/if}}
+                        <div class="row">
+                            <i class="fa {{settingsModerationIcon}} fa-lg col-xs-1"></i>
+                            <span class="col-xs-11">{{t settingsModeration}}</span>
+                        </div>
+                    </div>
+                    <div class="moderator-decision" aria-labelledby="moderator-feedback">
+                        <form class="{{if noComment 'no-comment'}}">
+                            <label class="decision-option ">
+                                {{radio-button value="accepted" groupValue=decision}}
+                                <span class="p-l-sm">
+                                    {{t labelAccept}}
+                                    <p>{{t acceptExplanation}}</p>
+                                </span>
+                            </label>
+                            <label class="decision-option">
+                                {{radio-button value="rejected" groupValue=decision}}
+                                <span class="p-l-sm">
+                                    {{t labelReject}}
+                                    <p>{{t rejectExplanation}}</p>
+                                </span>
+                            </label>
+                            {{textarea value=reviewerComment rows="8" placeholder=(t commentPlaceholder) class="form-control"}}
+                        </form>
+                    </div>
+                    <div class="feedback-footer">
+                        <button class="btn btn-success pull-right" id="submit-btn" disabled={{btnDisabled}} {{action "submit"}}>
+                            {{t labelDecisionBtn}}
+                        </button>
+                        {{#if (not-eq submission.reviewsState 'pending')}}
+                            {{#dd.toggle}}
+                                <button class="btn btn-default pull-right" {{action "cancel"}}>
+                                    {{t "global.cancel"}}
+                                </button>
+                            {{/dd.toggle}}
+                        {{/if}}
+                    </div>
+                {{/dd.menu}}
+            {{/bs-dropdown}}
+        </div>
+    </div>
+</div>

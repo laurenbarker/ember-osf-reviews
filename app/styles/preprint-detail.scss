@@ -1,0 +1,108 @@
+$logo-dir: 'img/provider_logos/';
+$nav-wrapper-height: 50px;
+
+.provider-osf-dark {
+    background-image: url($logo-dir + 'osf-dark-small.png');
+}
+
+.osf-nav-wrapper {
+    height: $nav-wrapper-height;
+}
+
+ul.comma-list {
+    display: inline;
+    list-style: none;
+    padding-left: 0;
+    li {
+        display: inline;
+    }
+    li:after {
+        content: ", "
+    }
+    li:last-child:after {
+        content: "";
+    }
+}
+
+.subject-preview {
+    display: inline-block;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    border: 1px solid $color-border;
+    padding: 1px 7px;
+    margin-bottom: 4px;
+}
+
+.dark-overlay-header-background {
+    background: #343333 url("img/dark-overlay.png") top center;
+}
+#view-page {
+    background-color: $color-bg;
+    font-family : 'Open Sans', Helvetica, sans-serif;
+    .osf-box-lt {
+        background-color: #f3f5f5;
+    }
+    .header-row {
+        color: white;
+        padding-top: 40px;
+    }
+    .view-authors {
+        color: white;
+        a {
+            color: #6dd1de;
+        }
+    }
+    .round-btn {
+        border-radius: 25px;
+        background-color: #4c4c4c;
+        color: white;
+    }
+    #mfr-col {
+        position: relative;
+        .expand-mfr-carrot {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #888888;
+            background: 0;
+            border: 0;
+            outline: none;
+        }
+    }
+    .abstract {
+        white-space: pre-line;
+    }
+    .abstract-truncated:after {
+        content: ' \2026';
+    }
+    .project-box {
+        div {
+            min-height: 100px;
+        }
+    }
+    .disabled {
+        pointer-events: none;
+        cursor: no-drop;
+        opacity: 0.4;
+    }
+}
+
+.content-provider-logo {
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Moderation */
+
+.preprint-status-component {
+    margin-top: -15px;
+    margin-bottom: 15px;
+    background-color: $color-bg-gray-lighter;
+    color: $color-text-gray-dark;
+    border: 1px solid $color-border;
+    position: sticky;
+    top: $nav-wrapper-height;
+    z-index: 98;
+}

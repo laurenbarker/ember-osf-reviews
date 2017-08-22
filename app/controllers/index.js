@@ -18,8 +18,8 @@ export default Ember.Controller.extend({
     }),
 
     actions: {
-        transitionToDetail(reviewable) {
-            this.transitionToRoute('preprints.provider.preprint_detail', [reviewable.get('provider'), reviewable]);
+        transitionToDetail(provider, reviewable) {
+            this.transitionToRoute('preprints.provider.preprint-detail', provider.get('id'), reviewable.get('id'));
         },
         setupProvider(provider) {
             this.transitionToRoute('preprints.provider.setup', provider.id);

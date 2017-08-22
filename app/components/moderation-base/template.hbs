@@ -2,16 +2,7 @@
     <div class="container"> {{!CONTAINER}}
         <div class="row">{{!HEADER ROW}}
             <div class="text-left p-l-lg col-md-12">
-                <p>
-                    {{#each breadcrumbs as |breadcrumb|}}
-                        {{#link-to breadcrumb.path}}
-                            {{breadcrumb.name}}
-                        {{/link-to}}
-                        {{#unless (eq breadcrumb breadcrumbs.lastObject)}}
-                            <img class="separator">
-                        {{/unless}}
-                    {{/each}}
-                </p>
+                {{reviews-breadcrumbs}}
                 {{!TITLE}}
                 <div class="provider-title"><b>{{theme.provider.name}}</b></div>
                 {{unread}}

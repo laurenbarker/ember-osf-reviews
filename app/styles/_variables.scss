@@ -1,30 +1,86 @@
-// Overrides
+/* Bootstrap Variables
+ * https://github.com/twbs/bootstrap-sass/blob/master/templates/project/_bootstrap-variables.sass
+ */
+
+// $gray-darker:            #222222
+// $gray-dark:              #333333
+// $gray:                   #555555
+// $gray-light:             #777777
+// $gray-lighter:           #eeeeee
+
+// $brand-primary:          #337ab7
+// $brand-success:          #5cb85c
+// $brand-info:             #5bc0de
+// $brand-warning:          #f0ad4e
+// $brand-danger:           #d9534f
+
+//==form states and alerts
+
+// $state-success-text:     #3c763d
+// $state-success-bg:       #dff0d8
+// $state-success-border:   darken(adjust-hue($state-success-bg, -10), 5%)
+
+// $state-info-text:        #31708f
+// $state-info-bg:          #d9edf7
+// $state-info-border:      darken(adjust-hue($state-info-bg, -10), 7%)
+
+// $state-warning-text:     #8a6d3b
+// $state-warning-bg:       #fcf8e3
+// $state-warning-border:   darken(adjust-hue($state-warning-bg, -10), 5%)
+
+// $state-danger-text:      #a94442
+// $state-danger-bg:        #f2dede
+// $state-danger-border:    darken(adjust-hue($state-danger-bg, -10), 5%)
+
+
+/* Overrides */
+
 $fa-font-path: 'fonts';
 
-// Internal variables
-$theme-color-light: #67A3BF;
-$theme-color-dark: #166596;
-$reviews-title: #D2D2D2;
-$reviews-title-hover: #D5E6ED;
+
+/* Internal variables
+ * Color variations ordered darkest to lightest within each section.
+ */
+
 $gradient-percentage: 15%;
 $nav-bar-height: 25px;
 $carousel-control-width: 10%;
 $screen-xs: 400px;
 
-$color-bg: #FCFCFC;
-$color-border: #DDD;
-$color-border-dark: #E5E5E5;
-$color-panel-bg: #EEF2F3;
-$color-action-submit: #CABC14;
-$color-action-accept: #5CB85C;
-$color-action-reject: #D9534F;
-$color-action-edit-comment: #337ab7;
+// colors
+$theme-color-dark: #166596;
+$theme-color-light: #67a3bf;
 
-$color-text-black: #333333;
-$color-text-dark-grey: #555555;
-$color-text-light-grey: #777777;
+$reviews-title: #d2d2d2;
+$reviews-title-hover: #d5e6ed;
 
-$color-bg-light-grey: #EFEFEF;
-$color-bg-cool-grey: #F3F5F7;
+$color-border-gray-dark: #e5e5e5;
+$color-border: #dddddd;
+$color-border-gray-light: #d9d9d9;
+$color-border-gray-cool: #d6dbdc;
 
-$color-border-light-grey: #D9D9D9;
+$color-panel-bg: #eef2f3;
+
+$color-action-submit: #cabc14;  // pending
+$color-action-accept: $brand-success;
+$color-action-reject: $brand-danger;
+$color-action-edit-comment: $brand-primary;
+
+$color-text-gray-dark: $gray-dark;
+$color-text-gray: $gray;
+$color-text-gray-light: $gray-light;
+
+$color-bg-blue-light: #ecf2f3;
+$color-bg-gray-light: #efefef;
+$color-bg-gray-cool: #f3f5f7;
+$color-bg-gray-lighter: $gray-lighter;
+$color-bg: #fcfcfc;
+
+$color-state-success-text: $state-success-text;
+$color-state-success-bg: $state-success-bg;
+$color-state-info-text: $state-info-text;
+$color-state-info-bg: $state-info-bg;
+$color-state-warning-text: $state-warning-text;
+$color-state-warning-bg: $state-warning-bg;
+$color-state-danger-text: $state-danger-text;
+$color-state-danger-bg: $state-danger-bg;

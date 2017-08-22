@@ -4,9 +4,11 @@ export default {
         abstract: `Abstract`,
         doi: `DOI`,
         tags: `Tags`,
+        open_science_framework: `Open Science Framework`,
         title: `Title`,
         authors: `Authors`,
         license: 'License',
+        none: `None`,
         pre_moderation: `pre-moderation`,
         post_moderation: `post-moderation`,
     },
@@ -21,7 +23,7 @@ export default {
     index: {
         feature: {
             title: `Moderate your collection`,
-            description: `At last, the ability to manage what scholarly works are displayed with your branding. 
+            description: `At last, the ability to manage what scholarly works are displayed with your branding.
             No more working on off-topic papers confusing loyal researchers.`,
             list_1: `See all submissions in one place.`,
             list_2: `Provide feedback to authors.`,
@@ -142,6 +144,96 @@ export default {
             title: `Send us your thoughts`,
             paragraph: `Help us make OSFReviews even better. Let us know your thoughts and comments about our beta version of OSFReviews.`,
             button: `Send feedback`
+        },
+    },
+    application: {
+        separator: ` | `
+    },
+    content: {
+        header: {
+            last_edited: `Last edited`
+        },
+        date_label: {
+            created_on: `Created on`,
+            submitted_on: `Submitted on`
+        },
+        share: {
+            download: `Download`,
+            downloads: `Downloads`,
+            download_file: `Download file`,
+            download_preprint: `Download {{provider.type.singular}}`
+        },
+        see_more: 'See more',
+        see_less: 'See less',
+        version: 'Version',
+        preprint_doi: `{{provider.type.singularCapitalized}} DOI`,
+        article_doi: `Peer-reviewed Publication DOI`,
+        citations: `Citations`,
+        disciplines: `Disciplines`,
+        project_button: {
+            paragraph: `The project for this paper is available on the OSF.`,
+            button: `Visit project`,
+            edit_preprint:  `Edit {{provider.type.singular}}`
+        },
+    },
+    components: {
+        'preprint-status-banner': {
+            recent_activity: {
+                pending: `submitted this {{provider.type.singular}} on`,
+                accepted: `accepted this {{provider.type.singular}} on`,
+                rejected: `rejected this {{provider.type.singular}} on`
+            },
+            message: {
+                base: `{{name}} uses {{reviewsWorkflow}}, therefore this preprint is`,
+                pending_pre: `not publicly available or searchable until approved by a moderator`,
+                pending_post: `publicly available and searchable but is subject to removal by a moderator`,
+                accepted: `publicly available and searchable`,
+                rejected: `not publicly available or searchable`,
+            },
+            pending: `pending`,
+            accepted: `accepted`,
+            rejected: `rejected`,
+            decision: {
+                make_decision: `Make decision`,
+                modify_decision: `Modify decision`,
+                header: {
+                    submit_decision: `Submit your decision`,
+                    modify_decision: `Modify your decision`,
+                },
+                moderator: `Moderator`,
+                base: `This {{provider.type.singular}} is`,
+                btn: {
+                    submit_decision: `Submit decision`,
+                    modify_decision: `Modify decision`,
+                    update_comment: `Update comment`,
+                },
+                comment_placeholder: `Explain the reasoning behind your decision (optional)`,
+                accept: {
+                    label: `Accept`,
+                    pre: 'Submission will appear in search results and be made public.',
+                    post: 'Submission will continue to appear in search results.'
+                },
+                reject: {
+                    label: `Reject`,
+                    pre: 'Submission will not appear in search results and will remain private.',
+                    post: 'Submission will be removed from search results and made private.'
+                }
+            },
+            settings: {
+                comments: {
+                    private: `Comments are not visible to contributors`,
+                    public: `Comments are visible to contributors on decision`
+                },
+                names: {
+                    anonymous: `Comments are anonymous`,
+                    named: `Commenter's name is visible to contributors`
+                },
+                moderation: {
+                    pre: `Submission appears in search results once accepted`,
+                    post: `Submission will be removed from search results and made private if rejected`
+                }
+            },
+            error: `Error submitting decision.`
         },
     }
 };

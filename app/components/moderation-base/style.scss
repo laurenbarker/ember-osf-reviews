@@ -1,25 +1,25 @@
 .dark-header {
     background:white url('img/dark-overlay.png') top center;
-    padding-top: 60px;     
-    padding-bottom: 20px;     
-    border-bottom: 1px solid #dddddd;        
-    height: 204px;      
-    color: white;      
-    h1 {      
-        font-size: 41px;       
-        font-weight: 300;     
-    }      
-    a:not(.btn) {     
-        color: white;      
-    }       
-    .btn-info {        
+    padding-top: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $color-border;
+    height: 204px;
+    color: white;
+    h1 {
+        font-size: 41px;
+        font-weight: 300;
+    }
+    a:not(.btn) {
         color: white;
-    }        
-}     
+    }
+    .btn-info {
+        color: white;
+    }
+}
 
-/* This should be a temporary adjustment */     
-@media (max-width: 768px) {        
-    .reviews-navbar {       
-        top: 50px;       
-    }     
+/* This should be a temporary adjustment */
+@media (max-width: 768px) {
+    .reviews-navbar {
+        top: 50px;
+    }
 }

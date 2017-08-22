@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 
     click(event) {
         if (!event.originalEvent.target.href) {
-            this.get('toDetail')(this.get('log.reviewable'));
+            this.get('toDetail')(this.get('log.provider'), this.get('log.reviewable'));
             return true;
         }
     },

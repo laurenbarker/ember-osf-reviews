@@ -12,7 +12,7 @@ Router.map(function() {
             this.route('setup');
             this.route('moderation', {path: '/'});
             this.route('settings');
-            this.route('preprint_detail', {path:':preprint_id'}); // TODO replace with actual route when merging
+            this.route('preprint-detail', {path:':preprint_id'});
         });
     });
     this.route('dashboard');

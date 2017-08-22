@@ -24,7 +24,7 @@
   background: white;
   padding-top: 50px;
   padding-bottom: 30px;
-  color: #333333;
+  color: $color-text-gray-dark;
   text-align: left;
   h2 {
     font-size: 24px;
@@ -105,22 +105,22 @@
 /* Not found page */
 .reviews-404 {
   padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
+  background-color: $color-bg-blue-light;
+  border-bottom: 1px solid $color-border-gray-cool;
 }
 
 /* Forbidden page */
 .reviews-403 {
   padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
+  background-color: $color-bg-blue-light;
+  border-bottom: 1px solid $color-border-gray-cool;
 }
 
 /* Gone page */
 .reviews-410 {
   padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
+  background-color: $color-bg-blue-light;
+  border-bottom: 1px solid $color-border-gray-cool;
 }
 
 #Tab .tab-content {
@@ -130,7 +130,7 @@
 }
 
 #Tab h3 {
-  color: #333333;
+  color: $color-text-gray-dark;
 }
 
 #tabTitle .nav > li > a {
@@ -143,7 +143,7 @@
 }
 
 #tabTitle .nav > li > a:hover {
-  color: #333333;
+  color: $color-text-gray-dark;
 }
 
 @media (max-width: $screen-xs){
@@ -155,12 +155,12 @@
 
 li.active > a {
   background-color: white !important;
-  color: #333333 !important;
+  color: $color-text-gray-dark !important;
 }
 
 .unread-label {
   background-color: #c7c7c7;
-  color: #333333;
+  color: $color-text-gray-dark;
   padding: 2px;
   border-radius: 5px;
   font-weight: bold;
@@ -183,8 +183,8 @@ li.active > a {
 
 .reviews-error-page {
   padding: 70px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
+  background-color: $color-bg-blue-light;
+  border-bottom: 1px solid $color-border-gray-cool;
 }
 
 .disabled {
@@ -199,7 +199,7 @@ column-offset {
 
 /* Dashboard page */
 .reviews-dashboard {
-    background: $color-bg-cool-grey;
+    background: $color-bg-gray-cool;
 }
 
 /* Dashboard header */

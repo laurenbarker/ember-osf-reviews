@@ -23,28 +23,6 @@ export default Ember.Component.extend({
             { id: 2, name: i18n.t('moderation_base.settings_tab'), route: 'preprints.provider.settings'},
         ];
     }),
-    breadcrumbs: Ember.computed('navigator.currentPath', function(){
-        // Always include the dashboard breadcrumb
-        const breadcrumbs = [{
-            name: this.get('i18n').t('dashboard.title'),
-            path: 'index',
-        }];
-        for (const r of this.get('navigator.routeContexts')) {
-            // Skip crumbs with no context
-            if (Ember.isEmpty(r.context) || !Object.keys(r.context).length) continue;
-
-            // Skip crumbs with the same context as the prior crumb
-            if (r.context === breadcrumbs[breadcrumbs.length - 1].context) continue;
-
-            // Prefer model name or title, fall back to the route name
-            r.name = (r.context.get && (r.context.get('name') || r.context.get('title'))) || r.part;
-
-            // Remove moderation or settings crumbs from the route
-            if (r.name == 'moderation' || r.name == 'settings') continue;
-            breadcrumbs.push(r);
-        }
-        return breadcrumbs;
-    }),
 
     actions: {
         toggleTab: function () {
