@@ -34,10 +34,7 @@ export default Ember.Service.extend({
 
     // The provider object
     provider: Ember.computed('id', function() {
-        const id = this.get('id');
-        const store = this.get('store');
-
-        return store.findRecord('preprint-provider', id);
+        return this.get('store').findRecord('preprint-provider', this.get('id'));
     }),
 
     // If we're using a branded provider
