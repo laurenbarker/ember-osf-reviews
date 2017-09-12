@@ -23,46 +23,6 @@ body {
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif !important;
 }
 
-.moderation-btn-filter {
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  cursor:pointer;
-  overflow: hidden;
-  outline:none;
-}
-
-.moderation-list-body {
-  padding: 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.moderation-list-heading {
-  padding-bottom: 10px;
-  height: 50px;
-  background-color: #dddddd;
-  box-shadow: 0 0 1px 1px #a9a9a9;
-  .btn {
-    font-size: 20px;
-    padding-top: 15px;
-    padding-left: 8px;
-    background: transparent;
-    border: none;
-    outline: none;
-  }
-  .btn:hover {
-    text-decoration: none;
-    outline: none;
-  }
-  .btn:focus {
-    font-weight: bold;
-  }
-}
-
-.reviews-list {
-  padding-top: 20px;
-  padding-left: 25px;
-}
-
 /* Not found page */
 .reviews-404 {
   padding: 120px 0 120px 0;
@@ -82,90 +42,6 @@ body {
   padding: 120px 0 120px 0;
   background-color: #ecf2f3;
   border-bottom: 1px solid #d6dbdc;
-}
-
-#Tab h3 {
-  color: #333333;
-}
-
-.moderation-record-state {
-  .fa-hourglass-o {
-    color: #F5A623;
-    padding-top: 16px;
-    padding-left: 10px;
-  }
-  .fa-times-circle-o {
-    color: #da3945;
-    padding-top: 16px;
-    padding-left: 10px;
-  }
-  .fa-check-circle-o {
-    color: #63c563;
-    padding-top: 16px;
-    padding-left: 10px;
-  }
-  }
-
-.btn-toolbar .fa {
-  color: #333333;
-  size: 20px;
-}
-
-.dropdown-menu-right {
-  background: #dddddd;
-
-}
-
-.dropdown-toggle {
-  text-decoration: none;
-  color: #333333;
-}
-
-.record-title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.record-body {
-  font-size: 16px;
-}
-
-.media-body {
-  a {
-    color: #333333;
-  }
-  a:link {
-    text-decoration: none;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:active {
-    text-decoration: none;
-  }
-}
-
-@media screen and (max-width: $screen-sm) {
-  .moderation-list-heading {
-   .btn {
-      font-size: 12px;
-      padding-left: 2px;
-      padding-right: 2px;
-    }
-  }
-  .record-title {
-    font-size: 12px;
-  }
-  .record-body {
-    font-size: 8px;
-  }
-}
-
-.activated {
-  font-weight: bold;
 }
 
 /* Override styles from ember-osf and osf to match ember-preprints */

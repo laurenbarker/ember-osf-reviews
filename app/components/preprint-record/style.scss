@@ -1,0 +1,17 @@
+.moderation-record-state {
+    .fa-hourglass-o {
+        color: $color-action-submit;
+        padding-top: 16px;
+        padding-left: 10px;
+    }
+    .fa-times-circle-o {
+        color: $color-action-reject;
+        padding-top: 16px;
+        padding-left: 10px;
+    }
+    .fa-check-circle-o {
+        color: $color-action-accept;
+        padding-top: 16px;
+        padding-left: 10px;
+    }
+}

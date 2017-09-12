@@ -1,14 +1,14 @@
 <table class="table table-filter">
     <tbody>
         {{#each preprintRecords as |record|}}
-            <tr data-status={{record.reviewsState}}>
-                <td class="moderation-record-state">
-                    <a class={{get iconClass type}}> </a>
-                </td>
-                <td>
-                    <div class="media">
-                        <div class="media-body" title={{record.title}}>
-                            <a href="/preprints/{{theme.id}}/{{record.id}}">
+            {{#link-to 'preprints.provider.preprint-detail' theme.id record.id}}
+                <tr data-status={{record.reviewsState}}>
+                    <td class="moderation-record-state">
+                        <i class={{get iconClass type}}></i>
+                    </td>
+                    <td>
+                        <div class="media">
+                            <div class="media-body" title={{record.title}}>
                                 <p class="record-title">{{shorten-text record.title screenWidth}}</p>
                                 <p class="record-body">
                                     {{t 'moderation_list.record.submitted_on'}} {{moment-format record.dateCreated "MMMM DD, YYYY"}} {{t 'moderation_list.record.by'}}
@@ -22,12 +22,11 @@
                                         {{/if}}
                                     {{/each}}
                                 </p>
-                            </a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            {{/link-to}}
         {{/each}}
     </tbody>
 </table>
-

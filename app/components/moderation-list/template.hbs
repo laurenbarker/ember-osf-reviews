@@ -1,19 +1,31 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 reviews-list">
-            <div class="moderation-list-heading">
+            <div class="moderation-list-heading box-shadow-md">
                 <div class="btn-toolbar">
-                    <button type="button" class="btn moderation-btn-filter" data-target="pending" onclick={{action "buttonPressed" 'pending'}}><a class="fa fa-hourglass-o"></a> {{pendingCount}} {{t 'moderation_list.pending'}}</button>
-                    <button type="button" class="btn moderation-btn-filter" data-target="accepted" onclick={{action "buttonPressed" 'accepted'}}><a class="fa fa-check-circle-o"></a> {{acceptedCount}} {{t 'moderation_list.accepted'}}</button>
-                    <button type="button" class="btn moderation-btn-filter" data-target="rejected" onclick={{action "buttonPressed" 'rejected'}}><a class="fa fa-times-circle-o"></a> {{rejectedCount}} {{t 'moderation_list.rejected'}}</button>
+                    <button type="button" class="btn moderation-btn-filter" data-target="pending" onclick={{action "buttonPressed" 'pending'}}>
+                        <i class="fa fa-hourglass-o"></i> {{pendingCount}} {{t 'moderation_list.pending'}}
+                    </button>
+                    <button type="button" class="btn moderation-btn-filter" data-target="accepted" onclick={{action "buttonPressed" 'accepted'}}>
+                        <i class="fa fa-check-circle-o"></i> {{acceptedCount}} {{t 'moderation_list.accepted'}}
+                    </button>
+                    <button type="button" class="btn moderation-btn-filter" data-target="rejected" onclick={{action "buttonPressed" 'rejected'}}>
+                        <i class="fa fa-times-circle-o"></i> {{rejectedCount}} {{t 'moderation_list.rejected'}}
+                    </button>
                     {{#bs-dropdown tagName="span" classNames="dropdown pull-right" as |dd|}}
-                        {{#dd.toggle classNames="btn dropdown-toggle"}}{{t 'moderation_list.sort'}} <span class="fa fa-caret-down"></span>{{/dd.toggle}}
+                        {{#dd.toggle classNames="btn dropdown-toggle"}}{{t 'moderation_list.sort'}}
+                            <span class="fa fa-caret-down"></span>
+                        {{/dd.toggle}}
                         {{#dd.menu classNames="dropdown-menu dropdown-menu-right" as |menu|}}
                             {{#menu.item}}
-                                <button class="btn" onclick={{action "sortSelected" '-date_created'}}><a class='{{if (eq sort '-date_created') 'fa fa-check'}}'></a> {{t 'moderation_list.newest'}}</button>
+                                <button class="btn" onclick={{action "sortSelected" '-date_created'}}>
+                                    <a class='{{if (eq sort '-date_created') 'fa fa-check'}}'></a> {{t 'moderation_list.newest'}}
+                                </button>
                             {{/menu.item}}
                             {{#menu.item}}
-                                <button class="btn" onclick={{action "sortSelected" 'date_created'}}><a class='{{if (eq sort 'date_created') 'fa fa-check'}}'></a> {{t 'moderation_list.oldest'}}</button>
+                                <button class="btn" onclick={{action "sortSelected" 'date_created'}}>
+                                    <a class='{{if (eq sort 'date_created') 'fa fa-check'}}'></a> {{t 'moderation_list.oldest'}}
+                                </button>
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
@@ -24,7 +36,7 @@
                     <i class='fa fa-spinner fa-pulse fa-3x' aria-hidden='true'></i>
                 </div>
             {{else}}
-                <div class="moderation-list-body">
+                <div class="moderation-list-body box-shadow-md">
                     <div class="table-container">
                         {{#if preprintRecords.isPending}}
                             <div class="text-center p-v-md" aria-label="Loading data">
