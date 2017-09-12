@@ -1,25 +1,57 @@
 .dark-header {
-    background:white url('img/dark-overlay.png') top center;
-    padding-top: 60px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid $color-border;
-    height: 204px;
+  background: white url('img/dark-overlay.png') top center;
+  padding-top: 15px;
+  height: 203px;
+  color: white;
+
+  a:not(.btn) {
     color: white;
-    h1 {
-        font-size: 41px;
-        font-weight: 300;
-    }
-    a:not(.btn) {
-        color: white;
-    }
-    .btn-info {
-        color: white;
-    }
+  }
+  .provider-title {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 36px;
+  }
+  .breadcrumbs {
+    padding-bottom: 25px;
+  }
+  .unread-label {
+    background-color: $color-bg-gray-light;
+    color: $color-text-gray-dark;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+}
+
+#tabTitle .nav > li > a {
+  border-radius: 0;
+  font-size: 24px;
+  padding: 15px 20px;
+}
+
+#tabTitle .nav > li > a:hover {
+  color: $color-text-gray-dark;
+}
+
+li.active > a {
+  background-color: white !important;
+  color: $color-text-gray-dark !important;
+}
+
+
+// TODO lauren: double check these
+
+@media (max-width: $screen-xs){
+  #tabTitle .nav > li > a {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
 /* This should be a temporary adjustment */
 @media (max-width: 768px) {
-    .reviews-navbar {
-        top: 50px;
-    }
+  .reviews-navbar {
+    top: 50px;
+  }
 }

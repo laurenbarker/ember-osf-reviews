@@ -1,7 +1,14 @@
 a {
-    color: white;
+  color: white;
 }
 
 .current-page {
-    font-weight: bolder;
+  font-weight: bolder;
+}
+
+.separator {
+  content: url('img/separator.png');
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
 }

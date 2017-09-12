@@ -39,18 +39,6 @@ export default {
             }
         },
     },
-    moderation_list: {
-        newest: `Newest`,
-        oldest: `Oldest`,
-        pending: `Pending`,
-        accepted: `Accepted`,
-        rejected: `Rejected`,
-        sort: `Sort`,
-        record: {
-            submitted_on: `submitted on`,
-            by: `by`
-        }
-    },
     moderation_base: {
         moderation_tab: `Moderation`,
         settings_tab: `Settings`
@@ -237,6 +225,22 @@ export default {
                 }
             },
             error: `Error submitting decision.`
+        },
+        'moderation-list': {
+            newest: `Newest`,
+            oldest: `Oldest`,
+            pending: `Pending`,
+            accepted: `Accepted`,
+            rejected: `Rejected`,
+            sort: `Sort`,
+
+            no_submissions: `No submissions.`,
+        },
+        'moderation-list-row': {
+            submission: {
+                submitted_on: `submitted on`,
+                by: `by`
+            },
         },
     }
 };

@@ -13,9 +13,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     i18n: Ember.inject.service(),
     theme: Ember.inject.service(),
-    unreadCount: Ember.computed('theme', function () {
-        return this.get('theme.provider.reviewableStatusCounts.pending');
-    }),
+
     tabs: Ember.computed('i18n.locale', function(){
         const i18n = this.get('i18n');
         return [

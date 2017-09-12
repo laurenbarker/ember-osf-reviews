@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     i18n: Ember.inject.service(),
+    classNames: ['breadcrumbs'],
 
     breadcrumbs: Ember.computed('navigator.currentPath', function(){
         // Always include the dashboard breadcrumb
@@ -11,7 +12,8 @@ export default Ember.Component.extend({
         }];
         for (const r of this.get('navigator.routeContexts')) {
             // Skip crumbs with no context
-            if (Ember.isEmpty(r.context) || !Object.keys(r.context).length) continue;
+            // Skip 'moderation'
+            if (Ember.isEmpty(r.context) || !Object.keys(r.context).length || r.part === 'moderation') continue;
 
             // Skip crumbs with the same context as the prior crumb
             if (r.context === breadcrumbs[breadcrumbs.length - 1].context) continue;

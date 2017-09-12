@@ -1,19 +1,18 @@
-<div class="dark-header"> {{!HEADER}}
-    <div class="container"> {{!CONTAINER}}
-        <div class="row">{{!HEADER ROW}}
+<div class="dark-header">
+    <div class="container">
+        <div class="row">
             <div class="text-left p-l-lg col-md-12">
                 {{reviews-breadcrumbs}}
-                {{!TITLE}}
-                <div class="provider-title"><b>{{theme.provider.name}}</b></div>
+                <h1 class="provider-title">{{theme.provider.name}}</h1>
                 {{unread}}
                 <div id="tabTitle">
-                    <ul class="nav nav-pills ">
+                    <ul class="nav nav-pills">
                         {{#each tabs as |tab|}}
                             {{#link-to tab.route tagName='li' href=false}}
                                 {{#link-to tab.route theme.provider.id}}
                                     {{tab.name}}
                                     {{#if (eq tab.id 1)}}
-                                        <small class="unread-label">{{unreadCount}}</small>
+                                        <small class="unread-label">{{pendingCount}}</small>
                                     {{/if}}
                                 {{/link-to}}
                             {{/link-to}}
@@ -23,4 +22,4 @@
             </div>
         </div>
     </div>
-</div> {{!END HEADER}}
+</div>

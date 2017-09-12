@@ -123,64 +123,6 @@
   border-bottom: 1px solid $color-border-gray-cool;
 }
 
-#Tab .tab-content {
-  color : black;
-  background-color: white;
-  padding : 5px 15px;
-}
-
-#Tab h3 {
-  color: $color-text-gray-dark;
-}
-
-#tabTitle .nav > li > a {
-  border-radius: 0;
-  font-size: 24px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-#tabTitle .nav > li > a:hover {
-  color: $color-text-gray-dark;
-}
-
-@media (max-width: $screen-xs){
-  #tabTitle .nav > li > a {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-li.active > a {
-  background-color: white !important;
-  color: $color-text-gray-dark !important;
-}
-
-.unread-label {
-  background-color: #c7c7c7;
-  color: $color-text-gray-dark;
-  padding: 2px;
-  border-radius: 5px;
-  font-weight: bold;
-  width: 24px;
-  height: 27.3px;
-}
-
-.separator {
-  content: url('img/separator.png');
-  vertical-align:middle;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.provider-title {
-  font-weight: bold;
-  font-size: 36px;
-  color: #FCFCFC;
-}
-
 .reviews-error-page {
   padding: 70px 0 120px 0;
   background-color: $color-bg-blue-light;
@@ -192,10 +134,9 @@ li.active > a {
   opacity: 0.4;
 }
 
-column-offset {
+.column-offset {
   height: 120px;
 }
-
 
 /* Dashboard page */
 .reviews-dashboard {

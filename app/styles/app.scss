@@ -23,27 +23,6 @@ body {
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif !important;
 }
 
-/* Not found page */
-.reviews-404 {
-  padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
-}
-
-/* Forbidden page */
-.reviews-403 {
-  padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
-}
-
-/* Gone page */
-.reviews-410 {
-  padding: 120px 0 120px 0;
-  background-color: #ecf2f3;
-  border-bottom: 1px solid #d6dbdc;
-}
-
 /* Override styles from ember-osf and osf to match ember-preprints */
 .footer {
     margin-top: 0;

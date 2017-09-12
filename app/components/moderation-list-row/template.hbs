@@ -1,0 +1,26 @@
+{{#link-to 'preprints.provider.preprint-detail' theme.id submission.id}}
+    <div data-status={{submission.reviewsState}} class="flex-container">
+        <i class="fa fa-lg {{get iconClass submission.reviewsState}} status-icon"></i>
+        <div title={{submission.title}} class="submission-info">
+            <div class="submission-title">{{submission.title}}</div>
+            {{#if submission.node.contributors.isPending}}
+                <div class="ball-pulse ball-dark">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            {{else}}
+                <div class="submission-body">
+                    {{t submittedOnLabel}} {{moment-format record.dateCreated "MMMM DD, YYYY"}} {{t submittedByLabel}}
+                    {{#each submission.node.contributors as |contributor index| ~}}
+                        {{#if (lt index 3)}}
+                            <li>{{contributor.users.fullName}}</li>
+                        {{else}}
+                            + {{decrement-value record.node.contributors.length 3}}
+                        {{/if}}
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+{{/link-to}}

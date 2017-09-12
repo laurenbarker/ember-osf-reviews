@@ -1,102 +1,111 @@
-.moderation-btn-filter {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-}
-
 .moderation-list-body {
-    padding: 0;
+  margin-bottom: 25px;
+  font-size: 16px;
 }
 
 .moderation-list-heading {
-    padding-bottom: 10px;
-    height: 50px;
-    background-color: $color-bg-gray-light;
-    .btn {
-        font-size: 20px;
-        padding-top: 15px;
-        padding-left: 8px;
-        background: transparent;
-        border: none;
-        outline: none;
-    }
-    .btn:hover {
-        text-decoration: none;
-        outline: none;
-    }
-    .btn:focus {
-        font-weight: bold;
-    }
-}
+  padding: 10px 20px 10px 20px;
+  background-color: $color-bg-gray-light;
+  border: 1px solid $color-border;
 
-.reviews-list {
-    padding-top: 20px;
-    padding-left: 25px;
-}
-
-#Tab h3 {
-    color: $color-text-gray-dark;
-}
-
-.btn-toolbar .fa {
-    color: $color-text-gray-dark;
-    size: 20px;
-}
-
-.dropdown-menu-right {
-    background: $color-bg-gray-light;
-}
-
-.dropdown-toggle {
-    text-decoration: none;
-    color: $color-text-gray-dark;
-}
-
-.record-title {
+  .btn {
     font-size: 20px;
+    background: transparent;
+    outline: none;
+    padding: 6px 0px;
+  }
+  .moderation-btn-filter {
+    margin: 0px;
+    margin-right: 20px;
+  }
+  .btn:hover {
+    text-decoration: none;
+    outline: none;
+  }
+  .btn:focus {
     font-weight: bold;
-}
+  }
+  .btn:active {
+    box-shadow: none;
+  }
 
-.record-body {
-    font-size: 16px;
-}
+  .icon-accepted {
+    -webkit-text-stroke: 1px $color-bg-gray-light;
+  }
+  .icon-rejected {
+    -webkit-text-stroke: 1px $color-bg-gray-light;
+  }
 
-.media-body {
-    a {
-        color: $color-text-gray-dark;
+  .active-filter {
+    font-weight: bold;
+
+    .icon-rejected {
+      -webkit-text-stroke: 0px;
     }
-    a:link {
-        text-decoration: none;
+    .icon-accepted {
+      -webkit-text-stroke: 0px;
     }
-    a:visited {
-        text-decoration: none;
+    .icon-pending {
+      -webkit-text-stroke: 1px $color-text-gray-dark;
     }
-    a:hover {
-        text-decoration: none;
-    }
-    a:active {
-        text-decoration: none;
-    }
+  }
 }
 
 @media screen and (max-width: $screen-sm) {
-    .moderation-list-heading {
-       .btn {
-            font-size: 12px;
-            padding-left: 2px;
-            padding-right: 2px;
-        }
+  .moderation-list-heading {
+    .btn {
+      font-size: 16px;
     }
-    .record-title {
-        font-size: 12px;
+    .moderation-btn-filter {
+      margin-right: 10px;
     }
-    .record-body {
-        font-size: 8px;
-    }
+  }
+  .submission-title {
+    font-size: 14px;
+  }
+  .submission-body {
+    font-size: 12px;
+  }
+  .status-icon {
+    font-size: 16px;
+  }
 }
 
-.activated {
-    font-weight: bold;
+.reviews-list {
+  padding-top: 20px;
+  padding-left: 25px;
 }
+
+.dropdown-menu-right {
+  background: $color-bg-gray-light;
+
+  .btn {
+    width: 100%;
+    text-align: left;
+  }
+  .btn:hover {
+    background-color: $color-border;
+  }
+  .selected {
+    padding-left: 5px;
+  }
+  .not-selected {
+    padding-left: 30px;
+  }
+}
+
+.dropdown-toggle {
+  text-decoration: none;
+  color: $color-text-gray-dark;
+}
+
+/* Moderation List Row */
+
+.moderation-list-row {
+  border: 1px solid $color-border;
+}
+
+.moderation-list-row:hover {
+  background-color: $color-bg-gray-light;
+}
+

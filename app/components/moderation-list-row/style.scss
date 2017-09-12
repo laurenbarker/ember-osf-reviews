@@ -1,0 +1,60 @@
+.flex-container {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.status-icon {
+  padding-left: 20px;
+}
+.pending {
+  color: $color-action-submit;
+}
+.rejected {
+  color: $color-action-reject;
+}
+.accepted {
+  color: $color-action-accept;
+}
+
+.submission-info {
+  padding: 10px 20px 10px 20px;
+  color: $color-text-gray-dark;
+  min-width: 0px;  // needed for the text-overflow on submission-title
+}
+
+.submission-title {
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.submission-body {
+  font-size: 16px;
+
+  li {
+  display: inline;
+  }
+  li:after {
+    content: ", "
+  }
+  li:last-child:after {
+    content: "";
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
