@@ -8,7 +8,15 @@
         </div>
         <div class="action-heading">
             <a href={{action.creator.links.html}}>{{action.creator.fullName}}</a>
-            {{message}}
+            {{#if action.provider.isPending}}
+                <span class="ball-pulse ball-dark" aria-label="Loading data">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </span>
+            {{else}}
+                {{message}}
+            {{/if}}
         </div>
         <div class="action-detail">
             {{#link-to 'preprints.provider.preprint-detail' action.provider action.target}}

@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
     classNames: ['action-feed'],
 
-    errorMessage: t('dashboard.error_loading'),
+    errorMessage: t('components.action-feed.error_loading'),
 
     moreActions: Ember.computed('totalPages', 'page', function() {
         return this.get('page') < this.get('totalPages');

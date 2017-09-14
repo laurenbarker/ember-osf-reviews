@@ -1,6 +1,6 @@
 {{#if actionsList.isPending}}
     <div class='loading'>
-        <div class="ball-scale ball-dark">
+        <div class="text-center p-v-md ball-scale ball-dark" aria-label="Loading data">
             <div></div>
         </div>
     </div>
@@ -10,7 +10,9 @@
     {{/each}}
     {{#if moreActions}}
         <div class='see-more'>
-            <a role='button' {{action nextPage}}>{{t 'dashboard.see_more'}}</a>
+            <a role='button' {{action nextPage}}>{{t 'components.action-feed.see_more'}}</a>
         </div>
+    {{else if (eq actionsList.length 0)}}
+        <div class="text-center">{{t 'components.review-log-feed.no_actions'}}</div>
     {{/if}}
 {{/if}}

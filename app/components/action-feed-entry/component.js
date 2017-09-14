@@ -48,7 +48,7 @@ export default Ember.Component.extend({
 
     message: Ember.computed('action.actionTrigger', 'action.provider', function() {
         const i18n = this.get('i18n');
-        return i18n.t(`dashboard.action_message.${this.get('action.actionTrigger')}`, {
+        return i18n.t(`components.action-feed-entry.action_message.${this.get('action.actionTrigger')}`, {
             providerName: this.get('action.provider.name'),
             documentType: i18n.t(`documentType.${this.get('action.provider.preprintWord')}.singular`),
         });

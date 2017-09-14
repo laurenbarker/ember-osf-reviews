@@ -17,8 +17,8 @@ export default Ember.Component.extend({
     tabs: Ember.computed('i18n.locale', function(){
         const i18n = this.get('i18n');
         return [
-            { id: 1, name: i18n.t('moderation_base.moderation_tab'), route: 'preprints.provider.moderation'},
-            { id: 2, name: i18n.t('moderation_base.settings_tab'), route: 'preprints.provider.settings'},
+            { id: 1, name: i18n.t('global.moderation'), route: 'preprints.provider.moderation'},
+            { id: 2, name: i18n.t('global.settings'), route: 'preprints.provider.settings'},
         ];
     }),
 

@@ -146,7 +146,7 @@
 /* Dashboard header */
 .reviews-dashboard-header{
     background: #214661 url('img/reviews-dashboard-bg.jpg');
-    background-size: cover;
+    background-size: cover;  // needs to be below "background"
     padding-top: 50px;
     padding-bottom: 46px;
 }

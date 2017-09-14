@@ -1,5 +1,5 @@
 <div class="sidebar-header">
-    {{t 'dashboard.sidebar.providers'}}
+    {{t 'components.dashboard-sidebar.providers'}}
 </div>
 <div class="sidebar-body">
     <ul class="fa-ul provider-list">
@@ -11,10 +11,10 @@
                 </span>
                 <ul class="provider-links">
                     {{#if provider.reviewsWorkflow}}
-                        <li>{{#link-to 'preprints.provider.moderation' provider.id}}{{t 'dashboard.sidebar.moderation'}}{{/link-to}}</li>
-                        <li>{{#link-to 'preprints.provider.settings' provider.id}}{{t 'dashboard.sidebar.settings'}}{{/link-to}}</li>
+                        <li>{{#link-to 'preprints.provider.moderation' provider.id}}{{t 'global.moderation'}}{{/link-to}}</li>
+                        <li>{{#link-to 'preprints.provider.settings' provider.id}}{{t 'global.settings'}}{{/link-to}}</li>
                     {{else}}
-                        <li>{{#link-to 'preprints.provider.setup' provider.id}}{{t 'dashboard.sidebar.set_up'}}{{/link-to}}</li>
+                        <li>{{#link-to 'preprints.provider.setup' provider.id}}{{t 'components.dashboard-sidebar.set_up'}}{{/link-to}}</li>
                     {{/if}}
                 </ul>
             </li>
