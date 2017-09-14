@@ -41,7 +41,6 @@ ul.comma-list {
   }
   .header-row {
       color: white;
-      padding-top: 40px;
   }
   .view-authors {
       color: white;
@@ -99,7 +98,5 @@ ul.comma-list {
   background-color: $color-bg-gray-lighter;
   color: $color-text-gray-dark;
   border: 1px solid $color-border;
-  position: sticky;
-  top: $nav-wrapper-height;
   z-index: 98;
 }

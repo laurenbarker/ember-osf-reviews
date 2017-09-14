@@ -20,6 +20,12 @@ export default Ember.Component.extend({
 
             // Prefer model name or title, fall back to the route name
             r.name = (r.context.get && (r.context.get('name') || r.context.get('title'))) || r.part;
+
+            // Shorten breadcrumb names longer than 4 words
+            var breadcrumbName = r.name.split(' ')
+            if (breadcrumbName.length > 4) {
+                r.name = `${breadcrumbName.slice(0,4).join(' ')}...`;
+            }
             breadcrumbs.push(r);
         }
         return breadcrumbs;

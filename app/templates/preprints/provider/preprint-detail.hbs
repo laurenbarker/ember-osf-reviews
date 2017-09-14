@@ -1,10 +1,10 @@
 <div id="view-page">
-    <div class="p-t-xl p-b-md m-b-md dark-overlay-header-background header-row">
+    <div class="p-t-sm p-b-md m-b-md dark-overlay-header-background header-row">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-11">
                     {{reviews-breadcrumbs}}
-                    <h1 id="preprintTitle" class="p-b-md">{{node.title}}</h1>
+                    <h1 id="preprintTitle" class="p-t-md p-b-md">{{node.title}}</h1>
                     <h5>{{contributor-list node}}</h5>
                     <h6 class="preprint-added-on">
                         {{t actionDateLabel}}: {{moment-format model.dateLastTransitioned "MMMM DD, YYYY"}} | {{t "content.header.last_edited"}}: {{moment-format model.dateModified "MMMM DD, YYYY"}}
