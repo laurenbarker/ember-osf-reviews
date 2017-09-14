@@ -1,53 +1,53 @@
 & {
-    clear: both;
+  clear: both;
 
-    .entry-body {
-        padding: 20px 15px;
-    }
+  .entry-body {
+    padding: 20px 15px;
+  }
 
-    :hover {
-        background: $color-bg-gray-light;
-        cursor: pointer;
-    }
+  :hover {
+    background: $color-bg-gray-light;
+    cursor: pointer;
+  }
 
-    .submit-icon {
-        color: $color-action-submit;
-    }
-    .accept-icon {
-        color: $color-action-accept;
-    }
-    .reject-icon {
-        color: $color-action-reject;
-    }
-    .edit-comment-icon {
-        color: $color-action-edit-comment;
-    }
+  .submit-icon {
+    color: $color-action-submit;
+  }
+  .accept-icon {
+    color: $color-action-accept;
+  }
+  .reject-icon {
+    color: $color-action-reject;
+  }
+  .edit-comment-icon {
+    color: $color-action-edit-comment;
+  }
 
-    .icon {
-        float: left;
-        font-size: 20px;
-    }
+  .icon {
+    float: left;
+    font-size: 20px;
+  }
 
-    .action-date {
-        color: $color-text-gray-light;
-        font-size: 16px;
-        margin-left: 30px;
-    }
+  .action-date {
+    color: $color-text-gray-light;
+    font-size: 16px;
+    margin-left: 30px;
+  }
 
-    .action-heading {
-        color: $color-text-gray-dark;
-        font-size: 18px;
-        font-weight: bold;
-        margin-left: 30px;
-        line-height: 23px;
-    }
+  .action-heading {
+    color: $color-text-gray-dark;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+    line-height: 23px;
+  }
 
-    .action-detail {
-        margin-left: 30px;
+  .action-detail {
+    margin-left: 30px;
 
-        a {
-            color: $color-text-gray;
-            font-size: 16px;
-        }
+    a {
+      color: $color-text-gray;
+      font-size: 16px;
     }
+  }
 }

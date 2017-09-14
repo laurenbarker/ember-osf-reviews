@@ -44,7 +44,7 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        loading(transition, originRoute) {
+        loading(transition) {
             let controller = this.controllerFor('preprints.provider.moderation');
             controller.set('loading', true);
             transition.promise.finally(function() {

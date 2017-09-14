@@ -39,9 +39,6 @@ li.active > a {
   color: $color-text-gray-dark !important;
 }
 
-
-// TODO lauren: double check these
-
 @media (max-width: $screen-xs){
   #tabTitle .nav > li > a {
     padding-left: 5px;

@@ -7,7 +7,8 @@
 
 /* Main header*/
 .reviews-header{
-  background:#214661 url('img/reviews-bg.jpg') top center ;
+  // Color picked from background image
+  background: #214661 url('img/reviews-bg.jpg') top center;
   padding-top: 150px;
   padding-bottom: 100px;
   border-bottom: 1px solid $color-border;
@@ -52,6 +53,7 @@
 .reviews-workflow{
   @include bottom-border;
 
+  // Color picked from background image
   background: white url('img/reviews-workflow-background.jpg') top center;
   padding-top: 30px;
   padding-bottom: 10px;
@@ -145,10 +147,11 @@
 
 /* Dashboard header */
 .reviews-dashboard-header{
-    background: #214661 url('img/reviews-dashboard-bg.jpg');
-    background-size: cover;  // needs to be below "background"
-    padding-top: 50px;
-    padding-bottom: 46px;
+  // Color picked from background image
+  background: #214661 url('img/reviews-dashboard-bg.jpg');
+  background-size: cover;  // needs to be below "background"
+  padding-top: 50px;
+  padding-bottom: 46px;
 }
 
 // Opaque toast notifications

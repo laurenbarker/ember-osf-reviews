@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 /**
  * Provides a list of pending, accepted, and rejected submissions. Provides filtering by preprint state and sorting based
  * on the preprint creation date. If number of records in each type exceeds 10, pagination is enabled. Current page for
