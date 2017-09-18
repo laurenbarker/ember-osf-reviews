@@ -110,8 +110,8 @@ export default Ember.Component.extend({
     }),
 
     init() {
-        this.get('submission.reviewLogs').then(reviewLogs => {
-            let log = reviewLogs.get('firstObject');
+        this.get('submission.actions').then(actions => {
+            let log = actions.get('firstObject');
             log.get('creator').then(user => {
                 this.set('creatorName', user.get('fullName'));
                 this.set('creatorProfile', user.get('profileURL'));

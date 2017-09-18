@@ -4,16 +4,19 @@ export default Ember.Controller.extend({
     session: Ember.inject.service(),
     currentUser: Ember.inject.service(),
 
+    queryParams: ['page'],
+    page: 1,
+
     showSetup: Ember.computed.notEmpty('providersToSetup'),
 
-    providersToSetup: Ember.computed('model.[]', function() {
-        return this.get('model').filter(provider =>
+    providersToSetup: Ember.computed('model.providers.[]', function() {
+        return this.get('model.providers').filter(provider =>
             !provider.get('reviewsWorkflow') && provider.get('permissions').includes('set_up_moderation')
         );
     }),
 
-    showDashboard: Ember.computed('model.[]', function() {
-        const providers = this.get('model');
+    showDashboard: Ember.computed('model.providers.[]', function() {
+        const providers = this.get('model.providers');
         return providers.any((p) => p.get('reviewsWorkflow'));
     }),
 
@@ -24,5 +27,8 @@ export default Ember.Controller.extend({
         setupProvider(provider) {
             this.transitionToRoute('preprints.provider.setup', provider.id);
         },
+        pageChanged() {
+            this.incrementProperty('page');
+        }
     }
 });

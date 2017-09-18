@@ -12,10 +12,14 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-4 col-sm-push-8'>
-                    {{dashboard-sidebar providers=model}}
+                    {{dashboard-sidebar providers=model.providers}}
                 </div>
                 <div class='col-sm-8 col-sm-pull-4'>
-                    {{action-feed toDetail=(action 'transitionToDetail')}}
+                    {{action-feed
+                        actionsList=model.actionsList
+                        toDetail=(action 'transitionToDetail')
+                        nextPage=(action 'pageChanged')
+                    }}
                 </div>
             </div>
         </div>

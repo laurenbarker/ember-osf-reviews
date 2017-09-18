@@ -21,38 +21,4 @@ export default Ember.Component.extend({
     moreActions: Ember.computed('totalPages', 'page', function() {
         return this.get('page') < this.get('totalPages');
     }),
-
-    init() {
-        this._super(...arguments);
-        this.actionList = [];
-        this.page = 1;
-        this.loadPage();
-    },
-
-    loadPage() {
-        const page = this.get('page');
-        this.set('loadingPage', page);
-        this.get('store').query('action', {page, embed: ['target', 'provider']}).then((response) => {
-            if (this.get('loadingPage') === page) {
-                this.setProperties({
-                    actionList: this.get('actionList').concat(response.toArray()),
-                    totalPages: response.get('meta.total'),
-                    loadingPage: null,
-                });
-            }
-        }, () => {
-            // Error
-            this.set('loadingPage', null);
-            this.get('toast').error(this.get('errorMessage'));
-        });
-    },
-
-    actions: {
-        nextPage() {
-            if (!this.get('loadingPage')) {
-                this.incrementProperty('page');
-                this.loadPage();
-            }
-        },
-    }
 });

@@ -1,14 +1,16 @@
-{{#each actionList key='id' as |action|}}
-    {{action-feed-entry action=action toDetail=toDetail}}
-{{/each}}
-{{#if loadingPage}}
+{{#if actionsList.isPending}}
     <div class='loading'>
         <div class="ball-scale ball-dark">
             <div></div>
         </div>
     </div>
-{{else if moreActions}}
-    <div class='see-more'>
-        <a role='button' {{action 'nextPage'}}>{{t 'dashboard.see_more'}}</a>
-    </div>
+{{else}}
+    {{#each actionsList key='id' as |action|}}
+        {{action-feed-entry action=action toDetail=toDetail}}
+    {{/each}}
+    {{#if moreActions}}
+        <div class='see-more'>
+            <a role='button' {{action nextPage}}>{{t 'dashboard.see_more'}}</a>
+        </div>
+    {{/if}}
 {{/if}}
