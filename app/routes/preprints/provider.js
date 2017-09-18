@@ -17,5 +17,12 @@ export default Ember.Route.extend({
     },
     afterModel(model, transition) {
         if (!model.get('reviewsWorkflow') && transition.targetName !== 'preprints.provider.setup') return this.replaceWith('preprints.provider.setup', model);
+    },
+    actions: {
+        didTransition() {
+            // TODO: make this less hacky
+            // force the provider to reload on page transitions so statusCounts update
+            this.controller.get('model').reload();
+        }
     }
 });
