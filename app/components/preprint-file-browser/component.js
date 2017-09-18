@@ -1,16 +1,5 @@
 import Ember from 'ember';
-import config from 'ember-get-config';
 import {ArrayPromiseProxy, loadRelation} from 'ember-osf/utils/load-relationship';
-
-function fileDownloadPath(file, node) {
-    if (!file || !node) {
-        return;
-    }
-    if (file.get('guid')) {
-        return `${config.OSF.url}${file.get('guid')}/?action=download`;
-    }
-    return `${config.OSF.url}project/${node.get('id')}/files/osfstorage${file.get('path')}/?action=download`;
-}
 
 const PAGE_SIZE = 6;
 
