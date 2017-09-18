@@ -109,26 +109,33 @@ export default Ember.Component.extend({
             CLASS_NAMES[this.get('submission.reviewsState')];
     }),
 
+    creatorProfile:'',
+    creatorName: '',
+
     init() {
         this.get('submission.actions').then(actions => {
-            let log = actions.get('firstObject');
-            log.get('creator').then(user => {
+            // on create, ember puts new object at the end of the array
+            // https://stackoverflow.com/questions/15210249/ember-data-insert-new-item-at-beginning-of-array-instead-of-at-the-end
+            const firstObjectModified = moment(actions.get('firstObject').get('dateModified'));
+            const lastObjectModified = moment(actions.get('lastObject').get('dateModified'));
+            const action = firstObjectModified > lastObjectModified ?
+                actions.get('firstObject') :
+                actions.get('lastObject');
+
+            action.get('creator').then(user => {
                 this.set('creatorName', user.get('fullName'));
                 this.set('creatorProfile', user.get('profileURL'));
             })
 
             if (this.get('submission.reviewsState') !== PENDING) {
-                this.set('initialReviewerComment', log.get('comment'));
-                this.set('reviewerComment', log.get('comment'));
+                this.set('initialReviewerComment', action.get('comment'));
+                this.set('reviewerComment', action.get('comment'));
                 this.set('decision', this.get('submission.reviewsState'));
             }
         });
 
         return this._super(...arguments);
     },
-
-    creatorProfile:'',
-    creatorName: '',
 
     bannerContent: Ember.computed('statusExplanation', 'workflow', function() {
         let tName = this.get('theme.isProvider') ?
@@ -251,7 +258,7 @@ export default Ember.Component.extend({
             }
 
             let comment = this.get('reviewerComment').trim();
-            this.sendAction('submitDecision', trigger, comment);
+            this.sendAction('submitDecision', trigger, comment, this.get('decision'));
         },
         cancel() {
             this.set('decision', this.get('submission.reviewsState'));

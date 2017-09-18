@@ -101,7 +101,7 @@ export default Ember.Controller.extend({
                 activeFile: fileItem
             });
         },
-        submitDecision(trigger, comment) {
+        submitDecision(trigger, comment, filter) {
             this.toggleProperty('savingAction');
 
             let action = this.store.createRecord('action', {
@@ -115,10 +115,8 @@ export default Ember.Controller.extend({
 
             return action.save()
                 .then(() => {
-                    // this.get('model.actions').insertAt(0, log);
-                    // "I have an idea; let's make arrays not work like arrays" - Ember-Data
-                    // this.get('model.actions.content').destroy();
-                    this.transitionToRoute(`preprints.provider.moderation`);
+                    this.toggleProperty('savingAction');
+                    this.transitionToRoute(`preprints.provider.moderation`, { queryParams: { status: filter}});
                 })
                 .catch(() => {
                     this.toggleProperty('savingAction');
