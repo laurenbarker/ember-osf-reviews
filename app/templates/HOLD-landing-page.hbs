@@ -1,0 +1,85 @@
+{{#if showDashboard}}
+    <div class='reviews-dashboard'>
+        <div class='reviews-dashboard-header'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='text-center m-t-lg col-xs-12'>
+                        <h1>{{t 'dashboard.title'}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-4 col-sm-push-8'>
+                    {{dashboard-sidebar providers=model.providers}}
+                </div>
+                <div class='col-sm-8 col-sm-pull-4'>
+                    {{action-feed
+                        actionsList=model.actionsList
+                        toDetail=(action 'transitionToDetail')
+                        nextPage=(action 'pageChanged')
+                    }}
+                </div>
+            </div>
+        </div>
+    </div>
+{{else}}
+    <div class="reviews-header"> {{!HEADER}}
+        <div class="container"> {{!CONTAINER}}
+            <div class="row">{{!HEADER ROW}}
+                {{!TITLE}}
+                <div class="text-center m-t-lg col-xs-12">
+                    <div class="m-b-lg reviews-brand"></div>
+                    {{#if showSetup}}
+                        {{start-moderating action=(action 'setupProvider') providers=providersToSetup}}
+                    {{/if}}
+                </div>
+            </div> {{!END ROW}}
+        </div> {{!END CONTAINER}}
+    </div> {{!END HEADER}}
+    <div class="reviews-middle"> {{!MIDDLE}}
+        <div class="container"> {{!CONTAINER}}
+            <div class="col-md-6 pull-left">
+                <div class="reviews-middle-features"></div>
+            </div>
+            <div class="col-md-6 features pull-right">
+                <h2>{{t 'index.feature.title'}}</h2>
+                <h4>
+                    {{t "index.feature.description"}}
+                </h4>
+                <ul>
+                    <li>{{t "index.feature.list_1"}}</li>
+                    <li>{{t "index.feature.list_2"}}</li>
+                    <li>{{t "index.feature.list_3"}}</li>
+                </ul>
+            </div>
+        </div> {{!END CONTAINER}}
+    </div> {{!END MIDDLE}}
+    <div class="reviews-workflow"> {{!MIDDLE}}
+        <div class="container"> {{!CONTAINER}}
+            <div class="col-md-4">
+                <h2>{{t "index.workflow.title"}}</h2>
+                <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-key"></i>{{t "index.workflow.list_1"}}</li>
+                    <li><i class="fa-li fa fa-globe"></i>{{t "index.workflow.list_2"}}</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-centered">
+                <h4>{{t "index.workflow.figure.pre_moderation"}}</h4>
+                <div class="reviews-workflow-figure2">
+                </div>
+            </div>
+            <div class="col-md-4 col-centered">
+                <div class="row column-offset hidden-xs hidden-sm"></div>
+                <div class="row center-block">
+                    <h4>{{t "index.workflow.figure.post_moderation"}}</h4>
+                    <div class="reviews-workflow-figure1">
+                    </div>
+                </div>
+            </div>
+        </div> {{!END CONTAINER}}
+    </div> {{!END MIDDLE}}
+{{/if}}
+
+{{contact-bar feedback=(or showSetup showDashboard)}}

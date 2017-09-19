@@ -41,12 +41,6 @@ export default {
             }
         },
     },
-    error_page: {
-        title: `Page not found`,
-        details: `The page you were looking for is not found on the OSF Reviews service.`,
-        report: `If this should not have occurred and the issue persists, please report it to`,
-        go_to: `Go to OSF Reviews`
-    },
     provider_settings: {
         reviewsWorkflow: {
             title: `Moderation Type`,
@@ -152,6 +146,53 @@ export default {
         },
     },
     components: {
+        'action-feed': {
+            no_actions: `No recent activity.`,
+            see_more: `See more`,
+            error_loading: `Error fetching more events.`,
+        },
+        'action-feed-entry': {
+            action_message: {
+                submit: `submitted a {{documentType}} to {{providerName}}`,
+                accept: `accepted a {{documentType}} in {{providerName}}`,
+                reject: `rejected a {{documentType}} from {{providerName}}`,
+                edit_comment: `edited the comment for a {{documentType}} in {{providerName}}`,
+            },
+        },
+        'dashboard-sidebar': {
+            providers: `Providers`,
+            set_up: `Set up moderation`,
+        },
+        'error-page': {
+            title: {
+                not_found: `Page not found`,
+                not_authenticated: `Not logged in`,
+                forbidden: `Forbidden`,
+            },
+            details: {
+                not_found: `The page you were looking for is not found on the OSF Preprints service.`,
+                not_authenticated: `You must be logged in to view this page.`,
+                forbidden: `You do not have the permissions to view this page.`,
+            },
+            report: `If this should not have occurred and the issue persists, please report it to`,
+            go_to: `Go to OSF Preprints`
+        },
+        'moderation-list': {
+            newest: `Newest`,
+            oldest: `Oldest`,
+            pending: `Pending`,
+            accepted: `Accepted`,
+            rejected: `Rejected`,
+            sort: `Sort`,
+
+            no_submissions: `No submissions.`,
+        },
+        'moderation-list-row': {
+            submission: {
+                submitted_on: `submitted on`,
+                by: `by`
+            },
+        },
         'preprint-status-banner': {
             recent_activity: {
                 pending: `submitted this {{provider.type.singular}} on`,
@@ -210,38 +251,5 @@ export default {
             },
             error: `Error submitting decision.`
         },
-        'moderation-list': {
-            newest: `Newest`,
-            oldest: `Oldest`,
-            pending: `Pending`,
-            accepted: `Accepted`,
-            rejected: `Rejected`,
-            sort: `Sort`,
-
-            no_submissions: `No submissions.`,
-        },
-        'moderation-list-row': {
-            submission: {
-                submitted_on: `submitted on`,
-                by: `by`
-            },
-        },
-        'action-feed': {
-            no_actions: `No recent activity.`,
-            see_more: `See more`,
-            error_loading: `Error fetching more events.`,
-        },
-        'action-feed-entry': {
-            action_message: {
-                submit: `submitted a {{documentType}} to {{providerName}}`,
-                accept: `accepted a {{documentType}} in {{providerName}}`,
-                reject: `rejected a {{documentType}} from {{providerName}}`,
-                edit_comment: `edited the comment for a {{documentType}} in {{providerName}}`,
-            },
-        },
-        'dashboard-sidebar': {
-            providers: `Providers`,
-            set_up: `Set up moderation`,
-        }
     }
 };
