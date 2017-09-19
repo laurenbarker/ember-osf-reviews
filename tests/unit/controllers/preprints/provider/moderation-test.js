@@ -1,8 +1,10 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:provider/moderation', 'Unit | Controller | provider/moderation', {
+moduleFor('controller:preprints/provider/moderation', 'Unit | Controller | preprints/provider/moderation', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: [
+    'service:theme',
+  ]
 });
 
 // Replace this with your real tests.

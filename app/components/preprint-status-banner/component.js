@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 const PENDING = 'pending';
 const ACCEPTED = 'accepted';

@@ -6,7 +6,7 @@ module('Unit | Helper | decrement value');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = decrementValue([42]);
+  let result = decrementValue([10, 2]);
   assert.ok(result);
 });
 
