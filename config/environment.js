@@ -31,10 +31,6 @@ module.exports = function(environment) {
         i18n: {
             defaultLocale: 'en'
         },
-        'ember-analytics': {
-            appID: 'Lm9zZi1uYXZiYXItbG9nbw==',
-            clientID: 'YW5pbWF0aW9uOiBzcGluIDExMHMgbGluZWFyIGluZmluaXRlOw==',
-        },
         PROVIDER_SETTINGS: [{
             disabled: false,
             name: 'reviewsWorkflow',

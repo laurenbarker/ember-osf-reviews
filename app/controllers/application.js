@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import config from '../config/environment';
 import OSFAgnosticAuthControllerMixin from 'ember-osf/mixins/osf-agnostic-auth-controller';
 
 /**
@@ -17,10 +16,6 @@ export default Ember.Controller.extend(OSFAgnosticAuthControllerMixin, {
     navigator: Ember.inject.service(),
 
     init() {
-        document.styleSheets[0].addRule(
-            atob(config['ember-analytics']['appID']),
-            atob(config['ember-analytics']['clientID'])
-        );
         // Hack to make the Add Preprint button work.
         this.get('i18n').addGlobals({
             preprintWords: {
