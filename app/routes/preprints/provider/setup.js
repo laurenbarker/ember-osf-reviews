@@ -2,7 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     afterModel(model/*, transition */) {
-        if (model.get('reviewsWorkflow')) return this.replaceWith('preprints.provider', model);
+        if (!model.get('permissions').contains('set_up_moderation')) {
+            this.replaceWith('forbidden');
+        } else if (model.get('reviewsWorkflow')) {
+            return this.replaceWith('preprints.provider', model);
+        }
     },
     renderTemplate(controller, model) {
         // We're a special page.
