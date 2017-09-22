@@ -19,6 +19,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+    this.route('page-not-found', {path: '/*bad_url'});
+
     this.route('preprints', function() {
         this.route('provider', {path: ':provider_id'}, function() {
             this.route('setup');
