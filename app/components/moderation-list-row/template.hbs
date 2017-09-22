@@ -16,7 +16,7 @@
                         {{#if (lt index 3)}}
                             <li>{{contributor.users.fullName}}</li>
                         {{else}}
-                            + {{decrement-value record.node.contributors.length 3}}
+                            + {{decrement-value submission.node.contributors.length 3}}
                         {{/if}}
                     {{/each}}
                 </div>
