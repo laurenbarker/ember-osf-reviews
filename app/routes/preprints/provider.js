@@ -16,12 +16,13 @@ export default Ember.Route.extend({
     beforeModel() {
         if (!this.get('session.isAuthenticated')) {
             this.replaceWith('not-authenticated');
+        } else {
+            this.get('currentUser.user').then((user) => {
+                if (!user.get('canViewReviews')) {
+                    this.replaceWith('forbidden');
+                }
+            });
         }
-        this.get('currentUser.user').then((user) => {
-            if (!user.get('canViewReviews')) {
-                this.replaceWith('forbidden');
-            }
-        });
     },
 
     model(params) {
