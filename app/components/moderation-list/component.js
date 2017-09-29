@@ -43,11 +43,11 @@ export default Ember.Component.extend({
 
     sortOptions: [
         {
-            sort: 'date_last_transitioned',
+            sort: '-date_last_transitioned',
             labelKey: 'components.moderation-list.newest',
         },
         {
-            sort: '-date_last_transitioned',
+            sort: 'date_last_transitioned',
             labelKey: 'components.moderation-list.oldest',
         },
     ],
