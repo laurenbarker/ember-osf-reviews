@@ -19,8 +19,23 @@
 // Import all styles from pod style components
 @import 'pod-styles';
 
+
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif !important;
+}
+
+body > div.ember-view {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .content {
+    flex: 1 0 auto;
+  }
 }
 
 /* Override styles from ember-osf and osf to match ember-preprints */
@@ -31,6 +46,7 @@ body {
   border-bottom: 1px solid $color-border-gray-dark;
   width: 100%;
   color: $color-text-gray;
+  flex-shrink: 0;
 }
 
 .footer ul, .footer li {

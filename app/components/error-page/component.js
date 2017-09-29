@@ -13,7 +13,7 @@ const TITLES = {
 
 
 export default Ember.Component.extend({
-    classNames: ['reviews-error-page'],
+    classNames: ['reviews-error-page', 'content'],
     supportEmail: 'support@osf.io',
 
     errorMessage: Ember.computed('error', function() {
