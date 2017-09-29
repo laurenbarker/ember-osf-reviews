@@ -184,13 +184,18 @@ export default {
             accepted: `Accepted`,
             rejected: `Rejected`,
             sort: `Sort`,
-
             no_submissions: `No submissions.`,
         },
         'moderation-list-row': {
             submission: {
                 submitted_on: `submitted on`,
-                by: `by`
+                was_accepted_on: `was accepted on`,
+                was_rejected_on: `was rejected on`,
+                submitted: `submitted`,
+                was_accepted: `was accepted`,
+                was_rejected: `was rejected`,
+                by: `by`,
+                submission_by: `submission by`,
             },
         },
         'preprint-status-banner': {

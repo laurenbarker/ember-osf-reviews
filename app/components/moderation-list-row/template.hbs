@@ -11,7 +11,11 @@
                 </div>
             {{else}}
                 <div class="submission-body">
-                    {{t submittedOnLabel}} {{moment-format record.dateCreated "MMMM DD, YYYY"}} {{t submittedByLabel}}
+                    {{#if (eq submission.reviewsState 'pending')}}
+                        {{t dateLabel}} {{relevantDate}} {{t submittedByLabel}}
+                    {{else}}
+                        {{t submittedByLabel}}
+                    {{/if}}
                     {{#each submission.node.contributors as |contributor index| ~}}
                         {{#if (lt index 3)}}
                             <li>{{contributor.users.fullName}}</li>
@@ -19,6 +23,9 @@
                             + {{decrement-value submission.node.contributors.length 3}}
                         {{/if}}
                     {{/each}}
+                    {{#if (not-eq submission.reviewsState 'pending')}}
+                        {{t dateLabel}} {{relevantDate}}
+                    {{/if}}
                 </div>
             {{/if}}
         </div>
