@@ -116,7 +116,7 @@ export default Ember.Controller.extend({
             return action.save()
                 .then(() => {
                     this.toggleProperty('savingAction');
-                    this.transitionToRoute(`preprints.provider.moderation`, { queryParams: { status: filter}});
+                    this.transitionToRoute(`preprints.provider.moderation`, { queryParams: { status: filter, page: 1, sort: 'date_last_transitioned'}});
                 })
                 .catch(() => {
                     this.toggleProperty('savingAction');

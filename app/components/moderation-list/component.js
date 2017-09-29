@@ -43,12 +43,12 @@ export default Ember.Component.extend({
 
     sortOptions: [
         {
-            sort: '-date_created',
-            labelKey: 'components.moderation-list.oldest',
+            sort: 'date_last_transitioned',
+            labelKey: 'components.moderation-list.newest',
         },
         {
-            sort: 'date_created',
-            labelKey: 'components.moderation-list.newest',
+            sort: '-date_last_transitioned',
+            labelKey: 'components.moderation-list.oldest',
         },
     ],
 });
