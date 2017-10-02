@@ -7,12 +7,26 @@ const SCROLL_RESET_DISABLED_ROUTES = ['preprints.provider.moderation', 'preprint
 const Router = Ember.Router.extend({
     location: config.locationType,
     rootURL: config.rootURL,
+
+    transitioningFrom: '',
+    transitioningTo: '',
+
+    disableResetScroll: Ember.computed('transitioningFrom', 'transitioningTo', function() {
+        return SCROLL_RESET_DISABLED_ROUTES.includes(this.get('transitioningFrom')) &&
+            SCROLL_RESET_DISABLED_ROUTES.includes(this.get('transitioningTo'));
+    }),
+
     willTransition(oldInfos, newInfos) {
         this._super(...arguments);
-        const oldRoute = Ember.Router._routePath(oldInfos);
-        const newRoute = Ember.Router._routePath(newInfos);
-        const disableResetScroll = SCROLL_RESET_DISABLED_ROUTES.includes(oldRoute) && SCROLL_RESET_DISABLED_ROUTES.includes(newRoute);
-        if (!disableResetScroll) {
+
+        this.set('transitioningFrom', Ember.Router._routePath(oldInfos));
+        this.set('transitioningTo', Ember.Router._routePath(newInfos));
+    },
+
+    didTransition() {
+        this._super(...arguments);
+
+        if (!this.get('disableResetScroll')) {
             window.scrollTo(0, 0);
         }
     }
