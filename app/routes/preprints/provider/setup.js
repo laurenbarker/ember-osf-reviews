@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     afterModel(model/*, transition */) {
         if (!model.get('permissions').contains('set_up_moderation')) {
-            this.replaceWith('forbidden');
+            this.replaceWith('index');
         } else if (model.get('reviewsWorkflow')) {
             this.replaceWith('preprints.provider', model);
         }

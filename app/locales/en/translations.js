@@ -168,11 +168,13 @@ export default {
                 not_found: `Page not found`,
                 not_authenticated: `Not logged in`,
                 forbidden: `Forbidden`,
+                not_setup: `Moderation not enabled`,
             },
             details: {
                 not_found: `The page you were looking for is not found on the OSF Preprints service.`,
                 not_authenticated: `You must be logged in to view this page.`,
                 forbidden: `You do not have the permissions to view this page.`,
+                not_setup: `An admin needs to set up moderation for this preprint provider.`,
             },
             report: `If this should not have occurred and the issue persists, please report it to`,
             go_to: `Go to OSF Preprints`

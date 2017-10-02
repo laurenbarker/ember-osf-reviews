@@ -38,6 +38,8 @@
             </div>
         </div>
     </div>
-{{else}}
+{{else if (not currentUser.user.canViewReviews)}}
     {{error-page error='forbidden'}}
+{{else}}
+    {{error-page error='not-setup'}}
 {{/if}}
