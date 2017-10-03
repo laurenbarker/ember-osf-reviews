@@ -32,6 +32,10 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-        if (!model.get('reviewsWorkflow') && transition.targetName !== 'preprints.provider.setup') return this.replaceWith('preprints.provider.setup', model);
+        if (!model.get('permissions').contains('view_submissions')) {
+            this.replaceWith('forbidden');
+        } else if (!model.get('reviewsWorkflow') && transition.targetName !== 'preprints.provider.setup') {
+            return this.replaceWith('preprints.provider.setup', model);
+        }
     },
 });
