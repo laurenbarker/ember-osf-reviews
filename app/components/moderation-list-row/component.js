@@ -32,6 +32,14 @@ export default Ember.Component.extend({
         rejected: 'fa-times-circle-o rejected'
     },
 
+    firstContributors: Ember.computed('submission.node.contributors', function() {
+        return this.get('submission.node.contributors').slice(0, 3);
+    }),
+
+    additionalContributors: Ember.computed('submission.node.contributors', function() {
+        return this.get('submission.node.contributors.content.meta.pagination.total') - 3;
+    }),
+
     gtDay: Ember.computed('submission.dateLastTransitioned', function() {
         return moment().diff(this.get('submission.dateLastTransitioned'), 'days') > 1;
     }),

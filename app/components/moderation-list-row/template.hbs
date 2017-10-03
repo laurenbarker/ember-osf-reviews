@@ -16,13 +16,12 @@
                     {{else}}
                         {{t submittedByLabel}}
                     {{/if}}
-                    {{#each submission.node.contributors as |contributor index| ~}}
-                        {{#if (lt index 3)}}
-                            <li>{{contributor.users.fullName}}</li>
-                        {{else}}
-                            + {{decrement-value submission.node.contributors.length 3}}
-                        {{/if}}
+                    {{#each firstContributors as |contributor index| ~}}
+                        <li>{{contributor.users.fullName}}</li>
                     {{/each}}
+                    {{#if (gt additionalContributors 0)}}
+                        + {{additionalContributors}}
+                    {{/if}}
                     {{#if (not-eq submission.reviewsState 'pending')}}
                         {{t dateLabel}} {{relevantDate}}
                     {{/if}}
