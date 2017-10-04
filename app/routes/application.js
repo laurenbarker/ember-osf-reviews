@@ -40,7 +40,7 @@ export default Ember.Route.extend(OSFAgnosticAuthRouteMixin, {
         if (!this.get('session.isAuthenticated')) {
             this.replaceWith('index');
         } else {
-            this.get('currentUser.user').then((user) => {
+            return this.get('currentUser.user').then((user) => {
                 if (!user.get('canViewReviews')) {
                     this.replaceWith('index');
                 }
