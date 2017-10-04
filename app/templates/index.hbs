@@ -25,8 +25,6 @@
         </div>
     </div>
     {{contact-bar feedback=showDashboard}}
-{{else if (not session.isAuthenticated)}}
-    {{error-page error='not-authenticated'}}
 {{else if providersToSetup}}
     <div class="reviews-header">
         <div class="container">

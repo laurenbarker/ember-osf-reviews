@@ -1,6 +1,10 @@
 {{new-osf-navbar hostAppName='Preprints' signupUrl=theme.signupUrl loginAction=(action 'login')}}
 {{maintenance-banner}}
-{{outlet}}
+{{#if (not session.isAuthenticated)}}
+    {{error-page error='not-authenticated'}}
+{{else}}
+    {{outlet}}
+{{/if}}
 {{osf-footer}}
 {{osf-copyright class='text-center'}}
 {{osf-mode-footer}}

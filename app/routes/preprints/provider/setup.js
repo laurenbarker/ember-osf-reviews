@@ -5,7 +5,7 @@ export default Ember.Route.extend({
         if (!model.get('permissions').contains('set_up_moderation')) {
             this.replaceWith('forbidden');
         } else if (model.get('reviewsWorkflow')) {
-            return this.replaceWith('preprints.provider', model);
+            this.replaceWith('preprints.provider', model);
         }
     },
     renderTemplate(controller, model) {

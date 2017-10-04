@@ -46,7 +46,6 @@ Router.map(function() {
     });
     this.route('dashboard');
     this.route('page-not-found');
-    this.route('not-authenticated');
     this.route('forbidden');
 });
 

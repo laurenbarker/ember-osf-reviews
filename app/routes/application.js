@@ -12,6 +12,9 @@ import OSFAgnosticAuthRouteMixin from 'ember-osf/mixins/osf-agnostic-auth-route'
  */
 export default Ember.Route.extend(OSFAgnosticAuthRouteMixin, {
     i18n: Ember.inject.service(),
+    session: Ember.inject.service(),
+    currentUser: Ember.inject.service(),
+
     afterModel: function() {
         const availableLocales = this.get('i18n.locales').toArray();
         let locale;
@@ -31,6 +34,17 @@ export default Ember.Route.extend(OSFAgnosticAuthRouteMixin, {
 
         if (locale) {
             this.set('i18n.locale', locale);
+        }
+
+        // Check permissions
+        if (!this.get('session.isAuthenticated')) {
+            this.replaceWith('index');
+        } else {
+            this.get('currentUser.user').then((user) => {
+                if (!user.get('canViewReviews')) {
+                    this.replaceWith('index');
+                }
+            });
         }
     }
 });

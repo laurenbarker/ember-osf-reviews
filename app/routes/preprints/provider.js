@@ -10,20 +10,6 @@ import Ember from 'ember';
  */
 export default Ember.Route.extend({
     theme: Ember.inject.service(),
-    session: Ember.inject.service(),
-    currentUser: Ember.inject.service(),
-
-    beforeModel() {
-        if (!this.get('session.isAuthenticated')) {
-            this.replaceWith('not-authenticated');
-        } else {
-            this.get('currentUser.user').then((user) => {
-                if (!user.get('canViewReviews')) {
-                    this.replaceWith('forbidden');
-                }
-            });
-        }
-    },
 
     model(params) {
         return this.get('theme').loadProvider(params.provider_id).catch(() => {
