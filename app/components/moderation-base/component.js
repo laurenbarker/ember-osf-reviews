@@ -18,7 +18,7 @@ export default Ember.Component.extend({
                 nameKey: 'global.moderation',
                 route: 'preprints.provider.moderation',
                 hasCount: true,
-                count: this.get('pendingCount'),
+                count: this.get('pendingCount') || 0,
             },
             {
                 nameKey: 'global.settings',

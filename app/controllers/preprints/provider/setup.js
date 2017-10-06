@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
                     this.get('i18n').t('setup.error.title').toString()
                 );
             }).then(() => {
-                return this.transitionToRoute('preprints.provider', this.get('model'));
+                return this.transitionToRoute('preprints.provider.settings', this.get('model'));
             });
         }
     }
