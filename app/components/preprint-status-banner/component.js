@@ -135,7 +135,7 @@ export default Ember.Component.extend({
                 } else {
                     this.set('initialReviewerComment', '');
                     this.set('reviewerComment', '');
-                    this.set('decision', null);
+                    this.set('decision', ACCEPTED);
                 }
                 this.set('noActions', false);
             } else {
