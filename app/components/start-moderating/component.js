@@ -11,12 +11,6 @@ export default Component.extend({
 
     selectedProvider: null,
 
-    init() {
-        this._super(...arguments);
-
-        this.providers = [];
-    },
-
     actions: {
         submit() {
             this.setupProvider(this.get('selectedProvider'));
