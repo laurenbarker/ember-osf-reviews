@@ -19,7 +19,9 @@ export default Component.extend({
 
     click(event) {
         this.set('attribute', this.get('value'));
-        event.preventDefault();
-        return false;
+        if (event.target.type !== 'radio') {
+            event.preventDefault();
+            return false;
+        }
     },
 });
