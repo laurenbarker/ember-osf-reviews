@@ -9,7 +9,11 @@ export default Route.extend({
     currentUser: service(),
 
     model(params) {
-        return this.store.findRecord('preprint', params.preprint_id, { include: ['node', 'license', 'actions'] });
+        return this.store.findRecord(
+            'preprint',
+            params.preprint_id,
+            { include: ['node', 'license', 'actions'], reload: true },
+        );
     },
 
     afterModel(model) {
