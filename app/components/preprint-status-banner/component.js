@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import moment from 'moment';
+import latestAction from 'reviews/utils/latest-action';
 
 const PENDING = 'pending';
 const ACCEPTED = 'accepted';
@@ -147,7 +147,7 @@ export default Component.extend({
     }),
 
     latestAction: computed('submission.actions.[]', function() {
-        return this._getRecentAction.bind(this.get('submission.actions'));
+        return latestAction(this.get('submission.actions'));
     }),
 
     noComment: computed('reviewerComment', function() {
@@ -247,15 +247,7 @@ export default Component.extend({
     },
 
     _getRecentAction(actions) {
-        if (!actions.length) {
-            return null;
-        }
-
-        // on create, Ember puts the new object at the end of the array
-        // https://stackoverflow.com/questions/15210249/ember-data-insert-new-item-at-beginning-of-array-instead-of-at-the-end
-        const first = actions.get('firstObject');
-        const last = actions.get('lastObject');
-        return moment(first.get('dateModified')) > moment(last.get('dateModified')) ? first : last;
+        return latestAction(actions);
     },
 
     _handleActions(action) {
