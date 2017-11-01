@@ -27,6 +27,9 @@ export default Store.extend({
             if (url) {
                 $.ajax(url, {
                     data: queryParams,
+                    headers: {
+                        ACCEPT: 'application/vnd.api+json; version=2.5',
+                    },
                     xhrFields: {
                         withCredentials: true,
                     },
