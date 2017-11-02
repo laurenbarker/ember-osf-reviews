@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix Loading indicator on Reviews dashboard which was not displaying when user clicks on see more link button. 
 - Add loading indicator for preprints titles on the Reviews dashboard.
 
+## [0.1.1] - 2017-11-02
+### Fixed
+* Show most recent data after moderator makes a decision and looks at it immediately.
+* Fix timezone issue on moderation list page.
+
 ## [0.1.0] - 2017-10-26
 ### Added
 MVP release of Reviews!
