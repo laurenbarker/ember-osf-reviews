@@ -223,7 +223,7 @@ export default Component.extend({
 
     init() {
         this.get('submission.actions')
-            .then(this._getRecentAction.bind(this))
+            .then(latestAction)
             .then(this._handleActions.bind(this));
         return this._super(...arguments);
     },
@@ -244,10 +244,6 @@ export default Component.extend({
             this.set('decision', this.get('submission.reviewsState'));
             this.set('reviewerComment', this.get('initialReviewerComment'));
         },
-    },
-
-    _getRecentAction(actions) {
-        return latestAction(actions);
     },
 
     _handleActions(action) {
