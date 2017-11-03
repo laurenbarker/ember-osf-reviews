@@ -3403,14 +3403,6 @@ ember-moment@^7.4.1:
     ember-getowner-polyfill "^2.0.1"
     ember-macro-helpers "^0.15.1"
 
-ember-parachute@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/ember-parachute/-/ember-parachute-0.3.5.tgz#207830d5d071ac70c824ef1d68a668f1f0022de2"
-  dependencies:
-    ember-assign-polyfill "^2.0.1"
-    ember-cli-babel "^6.0.0"
-    ember-getowner-polyfill "^2.0.1"
-
 ember-popper@^0.6.4:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/ember-popper/-/ember-popper-0.6.6.tgz#857c521fae024eab06ccafe0bad3f02ecf1aa4a6"

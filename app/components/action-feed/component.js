@@ -2,6 +2,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { translationMacro as t } from 'ember-i18n';
+import { task } from 'ember-concurrency';
 
 /**
  * A feed of recent actions for all providers the user has access to
@@ -22,43 +23,41 @@ export default Component.extend({
 
     errorMessage: t('components.action-feed.error_loading'),
 
+    dummyActionList: computed(function() {
+        return new Array(10);
+    }),
+
     moreActions: computed('totalPages', 'page', function() {
         return this.get('page') < this.get('totalPages');
     }),
 
     init() {
         this._super(...arguments);
-        this.set('listLoading', true);
-        this.set('actionsList', []);
-        this.loadPage();
-    },
-
-    loadPage() {
-        const page = this.get('page');
-        this.get('currentUser.user')
-            .then(user => this.get('store').queryHasMany(user, 'actions', { page }))
-            .then(this._setPageProperties.bind(this))
-            .catch(this._handleLoadError.bind(this));
-    },
-
-    _handleLoadError() {
-        this.set('listLoading', false);
-        this.set('loadingMore', false);
-        this.get('toast').error(this.get('errorMessage'));
-    },
-
-    _setPageProperties(response) {
-        this.get('actionsList').pushObjects(response.toArray());
         this.setProperties({
-            totalPages: Math.ceil(response.get('links.meta.total') / response.get('links.meta.per_page')),
-            listLoading: false,
+            actionsList: [],
             loadingMore: false,
         });
+        this.get('loadActions').perform();
     },
+
+    loadActions: task(function* () {
+        const page = this.get('page');
+        try {
+            const results = yield this.get('currentUser.user')
+                .then(user => this.get('store').queryHasMany(user, 'actions', { page }));
+            this.get('actionsList').pushObjects(results.toArray());
+            this.setProperties({
+                totalPages: Math.ceil(results.get('meta.total') / results.get('meta.per_page')),
+                loadingMore: false,
+            });
+        } catch (e) {
+            this.get('toast').error(this.get('errorMessage'));
+        }
+    }),
 
     nextPage() {
         this.incrementProperty('page');
         this.set('loadingMore', true);
-        this.loadPage();
+        this.get('loadActions').perform();
     },
 });

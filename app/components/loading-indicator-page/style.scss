@@ -1,0 +1,13 @@
+.vertical-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;  // height needs to be defined
+
+  .aligner-item--top {
+    align-self: flex-start;
+  }
+  .aligner-item--bottom {
+    align-self: flex-end;
+  }
+}

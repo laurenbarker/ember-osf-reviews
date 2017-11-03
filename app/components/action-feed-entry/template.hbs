@@ -1,27 +1,23 @@
-<div class="entry-body">
-    <div class="icon {{iconClass}}">
-        <i class="fa {{icon}}"></i>
-    </div>
-    <div class="action-body">
-        <div class="action-date">
-            {{moment-format action.dateCreated 'MMMM D, Y'}}
+{{#if (or action.provider.isPending action.target.isPending)}}
+    {{action-feed-entry-skeleton}}
+{{else}}
+    <div class="p-b-lg">
+        <div class="icon {{iconClass}}">
+            <i class="fa {{icon}}"></i>
         </div>
-        <div class="action-heading">
-            {{action.creator.fullName}}
-            {{#if action.provider.isPending}}
-                {{loading-indicator classes='ball-dark'}}
-            {{else}}
+        <div class="action-body">
+            <div class="action-date">
+                {{moment-format action.dateCreated 'MMMM D, Y'}}
+            </div>
+            <div class="action-heading">
+                {{action.creator.fullName}}
                 {{message}}
-            {{/if}}
-        </div>
-        <div class="action-detail">
-            {{#if action.target.isPending}}
-                {{loading-indicator classes='ball-dark'}}
-            {{else}}
+            </div>
+            <div class="action-detail">
                 {{#link-to 'preprints.provider.preprint-detail' action.provider action.target}}
                     {{action.target.title}}
                 {{/link-to}}
-            {{/if}}
+            </div>
         </div>
     </div>
-</div>
+{{/if}}

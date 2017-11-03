@@ -14,19 +14,12 @@ export default Controller.extend({
     },
     data: [],
 
-    init() {
-        this._super(...arguments);
-        this.get('fetchData').perform();
-    },
-
-    fetchData: task(function* () {
-        yield timeout(1000);
-        const results = yield this.get('store')
-            .query(this.get('modelName'), this.get('query'));
-        this.set('data', results);
-    }).restartable(),
-
     showSetup: notEmpty('providersToSetup'),
+
+    showDashboard: computed('data.[]', 'fetchData.isRunning', function() {
+        const providers = this.get('data');
+        return providers.any(p => p.get('reviewsWorkflow'));
+    }),
 
     providersToSetup: computed('data.[]', 'fetchData.isRunning', function() {
         return this.get('data').filter(provider =>
@@ -38,11 +31,6 @@ export default Controller.extend({
             provider.get('reviewsWorkflow') || provider.get('permissions').includes('set_up_moderation'));
     }),
 
-    showDashboard: computed('data.[]', 'fetchData.isRunning', function() {
-        const providers = this.get('data');
-        return providers.any(p => p.get('reviewsWorkflow'));
-    }),
-
     actions: {
         transitionToDetail(provider, reviewable) {
             this.transitionToRoute('preprints.provider.preprint-detail', provider.get('id'), reviewable.get('id'));
@@ -51,4 +39,16 @@ export default Controller.extend({
             this.transitionToRoute('preprints.provider.setup', provider.id);
         },
     },
+
+    init() {
+        this._super(...arguments);
+        this.get('fetchData').perform();
+    },
+
+    fetchData: task(function* () {
+        yield timeout(1000);
+        const results = yield this.get('store')
+            .query(this.get('modelName'), this.get('query'));
+        this.set('data', results);
+    }).restartable(),
 });

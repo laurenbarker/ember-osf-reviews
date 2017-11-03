@@ -1,18 +1,12 @@
 {{#if fetchData.isRunning}}
-    <div class='container'>
-        <div class='row'>
-            <div class="ball-scale ball-dark text-center">
-                <div></div>
-            </div>
-        </div>
-    </div>
+    {{loading-indicator-page}}
 {{else}}
     {{#if showDashboard}}
-        <div class='reviews-dashboard'>
+        <div class='reviews-dashboard content'>
             <div class='reviews-dashboard-header'>
                 <div class='container'>
                     <div class='row'>
-                        <div class='text-center m-t-lg col-xs-12'>
+                        <div class='text-center m-t-xl col-xs-12'>
                             <h1>{{t 'dashboard.title'}}</h1>
                         </div>
                     </div>
@@ -20,10 +14,10 @@
             </div>
             <div class='container'>
                 <div class='row'>
-                    <div class='col-sm-4 col-sm-push-8'>
+                    <div class='col-md-4 col-md-push-8'>
                         {{dashboard-sidebar providers=sidebarProviders}}
                     </div>
-                    <div class='col-sm-8 col-sm-pull-4'>
+                    <div class='col-md-8 col-md-pull-4'>
                         {{action-feed
                             toDetail=(action 'transitionToDetail')
                         }}
@@ -48,7 +42,6 @@
     {{else if (not currentUser.user.canViewReviews)}}
         {{error-page error='forbidden'}}
     {{else}}
-        {{log data}}
         {{error-page error='not-setup'}}
     {{/if}}
 {{/if}}
