@@ -2,20 +2,3 @@
   pointer-events: none;
   opacity: 0.4;
 }
-
-/* skeleton screens */
-
-// Variables
-$ember-content-placeholders-primary-color: #ccc;
-$ember-content-placeholders-secondary-color: #eee;
-$ember-content-placeholders-border-radius: 6px;
-$ember-content-placeholders-line-height: 15px;
-$ember-content-placeholders-spacing: 10px;
-
-.ember-content-placeholders__icon {
-    @include ember-content-placeholders;
-    width: 20px;
-    height: 20px;
-    background: $ember-content-placeholders-primary-color;
-    display: inline-block;
-}

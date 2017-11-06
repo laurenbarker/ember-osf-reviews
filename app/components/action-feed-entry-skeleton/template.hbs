@@ -1,5 +1,7 @@
 <div class="p-b-lg">
-    <div class="icon--skeleton ember-content-placeholders__icon ember-content-placeholders-is-animated"></div>
+    {{#content-placeholders as |placeholder|}}
+        <div class="icon--skeleton">{{placeholder.icon}}</div>
+    {{/content-placeholders}}
     <div class="action-body--skeleton">
         {{#content-placeholders as |placeholder|}}
             <div class="action-heading--skeleton">{{placeholder.text lines=1}}</div>
