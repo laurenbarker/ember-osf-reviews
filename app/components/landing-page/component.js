@@ -1,18 +1,14 @@
 import { computed } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import Controller from '@ember/controller';
-import { task, timeout } from 'ember-concurrency';
+import Component from '@ember/component';
+import { task } from 'ember-concurrency';
 
-export default Controller.extend({
+
+export default Component.extend({
+    store: service(),
     session: service(),
     currentUser: service(),
-
-    modelName: 'preprint-provider',
-    query: {
-        'filter[permissions]': 'view_actions,set_up_moderation',
-    },
-    data: [],
 
     showSetup: notEmpty('providersToSetup'),
 
@@ -31,6 +27,17 @@ export default Controller.extend({
             provider.get('reviewsWorkflow') || provider.get('permissions').includes('set_up_moderation'));
     }),
 
+    init() {
+        this._super(...arguments);
+        this.setProperties({
+            data: [],
+            query: {
+                'filter[permissions]': 'view_actions,set_up_moderation',
+            },
+        });
+        this.get('fetchData').perform();
+    },
+
     actions: {
         transitionToDetail(provider, reviewable) {
             this.transitionToRoute('preprints.provider.preprint-detail', provider.get('id'), reviewable.get('id'));
@@ -40,14 +47,9 @@ export default Controller.extend({
         },
     },
 
-    init() {
-        this._super(...arguments);
-        this.get('fetchData').perform();
-    },
-
     fetchData: task(function* () {
         const results = yield this.get('store')
-            .query(this.get('modelName'), this.get('query'));
+            .query('preprint-provider', this.get('query'));
         this.set('data', results);
-    }).restartable(),
+    }),
 });

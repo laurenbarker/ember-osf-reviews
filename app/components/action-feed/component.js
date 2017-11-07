@@ -47,7 +47,7 @@ export default Component.extend({
             const user = yield this.get('currentUser.user');
             const actions = yield this.get('store').queryHasMany(user, 'actions', {
                 page,
-                embed: 'target'
+                embed: 'target',
             });
             this.get('actionsList').pushObjects(actions.toArray());
             this.set(
