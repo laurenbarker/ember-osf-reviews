@@ -14,27 +14,5 @@
     border: 1px solid $color-border-gray-light;
     padding: 5px 20px;
     font-size: 20px;
-
-    ul.provider-list > li {
-      margin-top: 15px;
-      padding-bottom: 10px;
-    }
-
-    .moderation-enabled {
-      color: $color-text-gray-dark;
-    }
-
-    .moderation-disabled {
-      color: $color-text-gray-light;
-    }
-
-    .provider-links {
-      list-style-type: none;
-      padding-left: 14px;
-    }
-
-    .provider-name {
-      font-weight: bold;
-    }
   }
 }

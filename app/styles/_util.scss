@@ -2,3 +2,11 @@
   pointer-events: none;
   opacity: 0.4;
 }
+
+.unread-label {
+    background-color: $color-bg-gray-light;
+    color: $color-text-gray-dark;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+  }

@@ -1,0 +1,43 @@
+{{#if fetchData.isRunning}}
+    <li class="provider-list-item">
+        {{#content-placeholders as |placeholder|}}
+            <span>
+                <i class="fa-li icon--skeleton">{{placeholder.icon}}</i>
+                {{placeholder.heading subtitle=false}}
+            </span>
+            <div class="provider-links">
+                <div class="provider-links--skeleton">{{placeholder.text lines=2}}</div>
+            </div>
+        {{/content-placeholders}}
+    </li>
+{{else}}
+    <li class="provider-list-item {{if provider.reviewsWorkflow "moderation-enabled" "moderation-disabled"}}">
+        <span class="provider-name">
+            <i class="fa-li fa {{get iconMap provider.preprintWord}} icon"></i>
+            {{provider.name}}
+        </span>
+        <ul class="provider-links">
+            {{#if provider.reviewsWorkflow}}
+                <li>
+                    {{#link-to 'preprints.provider.moderation' provider.id}}
+                        {{t 'global.moderation'}}
+                    {{/link-to}}
+                    {{#link-to 'preprints.provider.moderation' provider.id class="no-underline"}}
+                        <small class="unread-label">{{pendingCount}}</small>
+                    {{/link-to}}
+                </li>
+                <li>
+                    {{#link-to 'preprints.provider.settings' provider.id}}
+                        {{t 'global.settings'}}
+                    {{/link-to}}
+                </li>
+            {{else}}
+                <li>
+                    {{#link-to 'preprints.provider.setup' provider.id}}
+                        {{t 'components.dashboardSidebar.setUp'}}
+                    {{/link-to}}
+                </li>
+            {{/if}}
+        </ul>
+    </li>
+{{/if}}

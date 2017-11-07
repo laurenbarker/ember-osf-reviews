@@ -19,7 +19,7 @@
   "devDependencies": {
     "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf#feature/reviews#2017-10-26",
     "@centerforopenscience/eslint-config": "^2.0.0",
-    "@cos-forks/ember-content-placeholders": "https://github.com/cos-forks/ember-content-placeholders#576ab0d5d86c97719ba8d2678da03f686bb10b2b",
+    "@cos-forks/ember-content-placeholders": "https://github.com/cos-forks/ember-content-placeholders#c85cdbeb4b9c206c3f76a92422db76815b2c95bc",
     "broccoli-asset-rev": "^2.4.5",
     "coveralls": "^3.0.0",
     "ember-bootstrap": "^1.0.0-rc.1",
