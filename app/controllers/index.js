@@ -46,7 +46,6 @@ export default Controller.extend({
     },
 
     fetchData: task(function* () {
-        yield timeout(1000);
         const results = yield this.get('store')
             .query(this.get('modelName'), this.get('query'));
         this.set('data', results);

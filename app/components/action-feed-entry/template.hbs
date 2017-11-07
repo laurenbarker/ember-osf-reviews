@@ -1,7 +1,7 @@
-{{#if (or action.provider.isPending action.target.isPending)}}
+{{#if action.provider.isPending}}
     {{action-feed-entry-skeleton}}
 {{else}}
-    <div class="p-b-lg">
+    <div class="m-b-xs p-sm">
         <div class="icon {{iconClass}}">
             <i class="fa {{icon}}"></i>
         </div>

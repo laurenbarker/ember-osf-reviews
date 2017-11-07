@@ -19,7 +19,7 @@ export default Component.extend({
     toast: service(),
     currentUser: service(),
     classNames: ['action-feed'],
-    page: 1,
+    page: 0,
 
     errorMessage: t('components.action-feed.error_loading'),
 
@@ -41,23 +41,21 @@ export default Component.extend({
     },
 
     loadActions: task(function* () {
+        this.incrementProperty('page');
         const page = this.get('page');
         try {
-            const results = yield this.get('currentUser.user')
-                .then(user => this.get('store').queryHasMany(user, 'actions', { page }));
-            this.get('actionsList').pushObjects(results.toArray());
-            this.setProperties({
-                totalPages: Math.ceil(results.get('meta.total') / results.get('meta.per_page')),
-                loadingMore: false,
+            const user = yield this.get('currentUser.user');
+            const actions = yield this.get('store').queryHasMany(user, 'actions', {
+                page,
+                embed: 'target'
             });
+            this.get('actionsList').pushObjects(actions.toArray());
+            this.set(
+                'totalPages',
+                Math.ceil(actions.get('meta.total') / actions.get('meta.per_page')),
+            );
         } catch (e) {
             this.get('toast').error(this.get('errorMessage'));
         }
-    }),
-
-    nextPage() {
-        this.incrementProperty('page');
-        this.set('loadingMore', true);
-        this.get('loadActions').perform();
-    },
+    }).drop(),
 });

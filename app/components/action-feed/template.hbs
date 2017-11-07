@@ -1,20 +1,14 @@
-{{#if (and loadActions.isRunning (not loadingMore))}}
+{{#each actionsList key='id' as |action|}}
+    {{action-feed-entry action=action toDetail=toDetail}}
+{{else if loadActions.isIdle}}
+    <div class="text-center">{{t 'components.action-feed.no_actions'}}</div>
+{{/each}}
+{{#if loadActions.isRunning}}
     {{#each dummyActionList}}
         {{action-feed-entry-skeleton}}
     {{/each}}
-{{else}}
-    {{#each actionsList key='id' as |action|}}
-        {{action-feed-entry action=action toDetail=toDetail}}
-    {{else}}
-        <div class="text-center">{{t 'components.action-feed.no_actions'}}</div>
-    {{/each}}
-    {{#if loadingMore}}
-        {{#each dummyActionList}}
-            {{action-feed-entry-skeleton}}
-        {{/each}}
-    {{else if (and moreActions (not loadActions.isRunning))}}
-        <div class='see-more'>
-            <a role='button' {{action nextPage}}>{{t 'components.action-feed.see_more'}}</a>
-        </div>
-    {{/if}}
+{{else if moreActions}}
+    <div class='see-more'>
+        <a role='button' onclick={{perform loadActions}}>{{t 'components.action-feed.see_more'}}</a>
+    </div>
 {{/if}}
