@@ -1,0 +1,15 @@
+{{#if fetchData.isIdle}}
+    <ul class="provider-links">
+        {{#if provider.reviewsWorkflow}}
+            <li>
+                {{#link-to 'preprints.provider.moderation' provider.id}}
+                    {{t 'global.moderation'}}
+                    <small class="unread-label">-</small>
+                {{/link-to}}
+            </li>
+            <li>{{#link-to 'preprints.provider.settings' provider.id}}{{t 'global.settings'}}{{/link-to}}</li>
+        {{else}}
+            <li>{{#link-to 'preprints.provider.setup' provider.id}}{{t 'components.dashboard-sidebar.set_up'}}{{/link-to}}</li>
+        {{/if}}
+    </ul>
+{{/if}}

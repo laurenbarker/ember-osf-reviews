@@ -6,17 +6,18 @@
         {{#each providers as |provider|}}
             <li class="{{if provider.reviewsWorkflow "moderation-enabled" "moderation-disabled"}}">
                 <span class="provider-name">
-                    <i class="fa-li fa {{get iconMap provider.preprintWord}}"></i>
+                    <i class="fa-li fa {{get iconMap provider.preprintWord}} icon"></i>
                     {{provider.name}}
                 </span>
-                <ul class="provider-links">
+                {{provider-links provider=provider}}
+                {{!-- <ul class="provider-links">
                     {{#if provider.reviewsWorkflow}}
                         <li>{{#link-to 'preprints.provider.moderation' provider.id}}{{t 'global.moderation'}}{{/link-to}}</li>
                         <li>{{#link-to 'preprints.provider.settings' provider.id}}{{t 'global.settings'}}{{/link-to}}</li>
                     {{else}}
                         <li>{{#link-to 'preprints.provider.setup' provider.id}}{{t 'components.dashboard-sidebar.set_up'}}{{/link-to}}</li>
                     {{/if}}
-                </ul>
+                </ul> --}}
             </li>
         {{/each}}
     </ul>
