@@ -17,9 +17,9 @@ test('it renders action-feed-entry', function(assert) {
     }));
     this.set('toDetail', () => {});
     this.render(hbs`{{action-feed-entry action=action toDetail=toDetail}}`);
-    assert.ok(this.$('.entry-body').length);
+    assert.ok(this.$('.action-body').length);
     assert.equal(
-        this.$('.entry-body').text().replace(/\s+/g, ' ').trim(),
+        this.$('.action-body').text().replace(/\s+/g, ' ').trim(),
         'October 28, 2017 Po submitted a preprint to viperXiv Using machine learning for better bambo taste',
     );
 });
