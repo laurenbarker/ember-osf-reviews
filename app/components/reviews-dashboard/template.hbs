@@ -1,0 +1,23 @@
+<div class='reviews-dashboard content'>
+    <div class='reviews-dashboard-header'>
+        <div class='container'>
+            <div class='row'>
+                <div class='text-center m-t-xl col-xs-12'>
+                    <h1>{{t 'dashboard.title'}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-4 col-md-push-8'>
+                {{dashboard-sidebar providers=providers}}
+            </div>
+            <div class='col-md-8 col-md-pull-4'>
+                {{action-feed
+                    toDetail=(action transitionToDetail)
+                }}
+            </div>
+        </div>
+    </div>
+</div>

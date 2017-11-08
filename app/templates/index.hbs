@@ -1,1 +1,22 @@
-{{landing-page}}
+{{#if (not currentUser.user.canViewReviews)}}
+    {{error-page error='forbidden'}}
+{{else}}
+    {{#load-providers as |loader|}}
+        {{#if loader.isRunning}}
+            {{loading-indicator-page}}
+        {{else}}
+            {{#if loader.showDashboard}}
+                {{reviews-dashboard
+                    transitionToDetail=(action 'transitionToDetail')
+                    providers=loader.sidebarProviders}}
+                {{contact-bar feedback=showDashboard}}
+            {{else if loader.providersToSetup}}
+                {{landing-page
+                    setupProvider=(action 'setupProvider')
+                    providersToSetup=loader.providersToSetup}}
+            {{else}}
+                {{error-page error='not-setup'}}
+            {{/if}}
+        {{/if}}
+    {{/load-providers}}
+{{/if}}
