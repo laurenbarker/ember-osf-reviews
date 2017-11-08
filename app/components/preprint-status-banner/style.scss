@@ -78,6 +78,10 @@
         margin-top: 0px;
         z-index: 98;  // prevent dropdown from scrolling over navbar
 
+        .dropdown-toggle {
+          box-shadow: none;
+        }
+
         .setting-reminder {
           font-size: 1.4em;
         }
