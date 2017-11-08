@@ -33,10 +33,7 @@ export default Component.extend({
 
     init() {
         this._super(...arguments);
-        this.setProperties({
-            actionsList: [],
-            loadingMore: false,
-        });
+        this.set('actionsList', []);
         this.get('loadActions').perform();
     },
 
