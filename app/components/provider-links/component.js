@@ -1,10 +1,10 @@
 import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import Component from '@ember/component';
-import { task } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
     store: service(),
-    theme: service(),
 
     tagName: 'ul',
     classNames: ['fa-ul'],
@@ -21,10 +21,12 @@ export default Component.extend({
     },
 
     fetchData: task(function* () {
-        const provider = yield this.get('theme').loadProvider(this.get('provider.id'));
-        const results = yield this.get('store').queryHasMany(provider, 'preprints', {
-            'meta[reviews_state_counts]': true,
+        const results = yield this.get('store').findRecord('preprint-provider', this.get('provider.id'), {
+            adapterOptions: {
+                query: { related_counts: true },
+            },
+            reload: true,
         });
-        this.set('pendingCount', results.meta.reviews_state_counts.pending);
+        this.set('pendingCount', results.get('reviewableStatusCounts.pending'));
     }),
 });
