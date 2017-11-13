@@ -1,13 +1,11 @@
 import { inject as service } from '@ember/service';
-import { isEmpty } from '@ember/utils';
 import Component from '@ember/component';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default Component.extend({
     store: service(),
 
-    tagName: 'ul',
-    classNames: ['fa-ul'],
+    tagName: 'li',
 
     init() {
         this._super(...arguments);

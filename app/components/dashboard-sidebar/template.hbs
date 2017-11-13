@@ -2,7 +2,9 @@
     {{t 'components.dashboardSidebar.providers'}}
 </div>
 <div class="sidebar-body">
-    {{#each providers as |provider|}}
-        {{provider-links provider=provider}}
-    {{/each}}
+    <ul class="fa-ul">
+        {{#each providers as |provider|}}
+            {{provider-links provider=provider}}
+        {{/each}}
+    </ul>
 </div>
