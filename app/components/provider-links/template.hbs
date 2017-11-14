@@ -17,7 +17,7 @@
         {{#if provider.reviewsWorkflow}}
             <li>
                 {{#link-to 'preprints.provider.moderation' provider.id}}
-                    {{t 'global.moderation'}}
+                    {{t 'global.moderation'~}}
                 {{/link-to}}
                 {{#link-to 'preprints.provider.moderation' provider.id class="no-underline"}}
                     <small class="unread-label">{{pendingCount}}</small>
