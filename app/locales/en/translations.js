@@ -188,7 +188,7 @@ export default {
         errorPage: {
             title: {
                 notFound: 'Page not found',
-                notAauthenticated: 'Not logged in',
+                notAuthenticated: 'Not logged in',
                 forbidden: 'Forbidden',
                 notSetup: 'Moderation not enabled',
             },
