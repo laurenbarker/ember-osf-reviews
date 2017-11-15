@@ -1,12 +1,12 @@
 {{moderation-list
-    statusChanged=(action "statusChanged")
-    pageChanged=(action "pageChanged")
-    sortChanged=(action "sortChanged")
-    submissions=model.submissions
+    statusChanged=(action 'statusChanged')
+    pageChanged=(action 'pageChanged')
+    sortChanged=(action 'sortChanged')
+    submissions=results.submissions
     page=page
     sort=sort
     status=status
-    loading=loading
-    totalPages=model.totalPages
-    statusCounts=model.statusCounts
+    loading=fetchData.isRunning
+    totalPages=results.totalPages
+    statusCounts=results.statusCounts
 }}

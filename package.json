@@ -49,6 +49,7 @@
     "ember-i18n": "5.0.2",
     "ember-load-initializers": "^1.0.0",
     "ember-moment": "^7.4.1",
+    "ember-parachute": "^0.3.5",
     "ember-radio-button": "^1.1.1",
     "ember-resolver": "^4.0.0",
     "ember-source": "2.15.2",

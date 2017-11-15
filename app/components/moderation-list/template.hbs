@@ -29,7 +29,7 @@
                     {{/bs-dropdown}}
                 </div>
                 {{#if loading}}
-                    {{loading-indicator classes='ball-dark text-center m-b-lg p-v-md'}}
+                    {{moderation-list-row-skeleton}}
                 {{else}}
                     <div class="moderation-list-body">
                         {{#if (eq submissions.length 0)}}
