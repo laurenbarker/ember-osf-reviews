@@ -51,6 +51,7 @@ export default Controller.extend(Analytics, moderationQueryParams.Mixin, {
 
     setup({ queryParams }) {
         this.get('fetchData').perform(queryParams);
+        this.set('results', { statusCounts: this.get('theme.provider.reviewableStatusCounts') });
     },
 
     queryParamsDidChange({ shouldRefresh, queryParams }) {

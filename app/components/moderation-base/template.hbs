@@ -1,23 +1,21 @@
 <div class="dark-header">
     <div class="container">
-        <div class="row">
-            <div class="text-left p-l-lg col-md-12">
-                {{reviews-breadcrumbs}}
-                <h1 class="provider-title">{{provider.name}}</h1>
-                <div id="tabTitle">
-                    <ul class="nav nav-pills">
-                        {{#each tabs as |tab|}}
-                            {{#link-to tab.route tagName='li' href=false}}
-                                {{#link-to tab.route provider.id}}
-                                    {{t tab.nameKey}}
-                                    {{#if tab.hasCount}}
-                                        <small class="unread-label">{{tab.count}}</small>
-                                    {{/if}}
-                                {{/link-to}}
+        <div class="flex-container text-left">
+            {{reviews-breadcrumbs}}
+            <h1 class="provider-title">{{providerName}}</h1>
+            <div id="tabTitle">
+                <ul class="nav nav-pills">
+                    {{#each tabs as |tab|}}
+                        {{#link-to tab.route tagName='li' href=false}}
+                            {{#link-to tab.route provider.id}}
+                                {{t tab.nameKey}}
+                                {{#if tab.hasCount}}
+                                    <small class="unread-label">{{tab.count}}</small>
+                                {{/if}}
                             {{/link-to}}
-                        {{/each}}
-                    </ul>
-                </div>
+                        {{/link-to}}
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>

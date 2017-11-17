@@ -1,11 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:preprints/provider/moderation', 'Unit | Route | preprints/provider/moderation', {
+moduleFor('route:preprints/provider/settings', 'Unit | Route | preprints/provider/settings', {
     // Specify the other units that are required for this test.
     needs: [
-        'service:theme',
         'service:metrics',
-
     ],
 });
 

@@ -1,8 +1,7 @@
 {{#if (or moderatorLoading submission.node.isPending submission.node.contributors.isPending)}}
     {{moderation-list-row-skeleton}}
 {{else}}
-    {{#link-to 'preprints.provider.preprint-detail' theme.id submission.id
-        disabled=(or moderatorLoading submission.node.isPending submission.node.contributors.isPending)}}
+    {{#link-to 'preprints.provider.preprint-detail' theme.id submission.id}}
         <div data-status={{submission.reviewsState}} class="flex-container">
             <i class="fa fa-lg {{get iconClass submission.reviewsState}} status-icon"></i>
             <div title={{submission.title}} class="submission-info">

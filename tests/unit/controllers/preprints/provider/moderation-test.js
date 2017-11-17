@@ -27,7 +27,6 @@ test('Initial properties', function (assert) {
         page: 1,
         status: 'pending',
         sort: '-date_last_transitioned',
-        loading: true,
     };
 
     const propKeys = Object.keys(expected);
@@ -40,12 +39,10 @@ test('statusChanged action', function (assert) {
     const ctrl = this.subject();
     ctrl.set('page', 2);
     ctrl.set('status', 'reject');
-    ctrl.set('loading', false);
 
     ctrl.send('statusChanged', 'accept');
 
     assert.strictEqual(ctrl.get('status'), 'accept');
-    assert.strictEqual(ctrl.get('loading'), true);
     assert.strictEqual(ctrl.get('page'), 1);
 });
 
@@ -53,12 +50,10 @@ test('pageChanged action', function (assert) {
     const ctrl = this.subject();
     ctrl.set('page', 2);
     ctrl.set('status', 'reject');
-    ctrl.set('loading', false);
 
     ctrl.send('pageChanged', 1);
 
     assert.strictEqual(ctrl.get('status'), 'reject');
-    assert.strictEqual(ctrl.get('loading'), true);
     assert.strictEqual(ctrl.get('page'), 1);
 
     assert.ok(ctrl.get('metrics.props'));
@@ -68,11 +63,9 @@ test('sortChanged action', function (assert) {
     const ctrl = this.subject();
     ctrl.set('page', 2);
     ctrl.set('status', 'reject');
-    ctrl.set('loading', false);
 
     ctrl.send('sortChanged', 1);
 
     assert.strictEqual(ctrl.get('status'), 'reject');
-    assert.strictEqual(ctrl.get('loading'), true);
     assert.strictEqual(ctrl.get('page'), 1);
 });
