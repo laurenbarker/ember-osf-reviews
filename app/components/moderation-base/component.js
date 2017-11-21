@@ -31,8 +31,7 @@ export default Component.extend({
         ];
     }),
 
-    init() {
-        this._super(...arguments);
+    didReceiveAttrs() {
         this.pendingCount = this.get('theme.provider.reviewableStatusCounts.pending');
         this.providerName = this.get('theme.provider.name');
         this.get('fetchData').perform();

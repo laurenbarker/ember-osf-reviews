@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 import QueryParams from 'ember-parachute';
@@ -26,8 +25,6 @@ export const moderationQueryParams = new QueryParams({
 export default Controller.extend(Analytics, moderationQueryParams.Mixin, {
     store: service(),
     theme: service(),
-
-    queryParamsChanged: computed.or('queryParamsState.{page,sort,status}.changed'),
 
     actions: {
         statusChanged(status) {

@@ -28,10 +28,10 @@
                         {{/dd.menu}}
                     {{/bs-dropdown}}
                 </div>
-                {{#if loading}}
-                    {{moderation-list-row-skeleton}}
-                {{else}}
-                    <div class="moderation-list-body">
+                <div class="moderation-list-body">
+                    {{#if loading}}
+                        {{moderation-list-row-skeleton}}
+                    {{else}}
                         {{#if (eq submissions.length 0)}}
                             <div class="text-center p-v-md moderation-list-row">
                                 {{t 'components.moderationList.noSubmissions'}}
@@ -48,8 +48,8 @@
                                 }}
                             </div>
                         {{/if}}
-                    </div>
-                {{/if}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
