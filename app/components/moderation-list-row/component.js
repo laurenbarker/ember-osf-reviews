@@ -1,7 +1,10 @@
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+
 import moment from 'moment';
+import { task } from 'ember-concurrency';
+
 import latestAction from 'reviews/utils/latest-action';
 
 const PENDING = 'pending';
@@ -34,16 +37,12 @@ export default Component.extend({
 
     latestActionCreator: computed.alias('latestAction.creator.fullName'),
 
-    moderatorLoading: computed('noActions', 'latestActionCreator', function () {
-        return !(this.get('noActions') || this.get('latestActionCreator'));
-    }),
-
     latestAction: computed('submission.actions.[]', function() {
         return latestAction(this.get('submission.actions'));
     }),
 
-    noActions: computed('submission.actions.{length,isPending}', function () {
-        return !this.get('submission.actions.length') || this.get('submission.actions.isPending');
+    noActions: computed('submission.actions.length', function () {
+        return !this.get('submission.actions.length');
     }),
 
     firstContributors: computed('submission.node.contributors', function() {
@@ -73,13 +72,18 @@ export default Component.extend({
         return i18n.t(labels, { timeDate: this.get('relevantDate'), moderatorName: this.get('latestActionCreator') });
     }),
 
-    init() {
-        this._super(...arguments);
-
+    didReceiveAttrs() {
         this.iconClass = {
             accepted: 'fa-check-circle-o accepted',
             pending: 'fa-hourglass-o pending',
             rejected: 'fa-times-circle-o rejected',
         };
+        this.get('fetchData').perform();
     },
+
+    fetchData: task(function* () {
+        const node = yield this.get('submission.node');
+        yield node.get('contributors');
+        yield this.get('submission.actions');
+    }),
 });

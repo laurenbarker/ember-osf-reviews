@@ -1,4 +1,4 @@
-{{#if (or moderatorLoading submission.node.isPending submission.node.contributors.isPending)}}
+{{#if fetchData.isRunning}}
     {{moderation-list-row-skeleton}}
 {{else}}
     {{#link-to 'preprints.provider.preprint-detail' theme.id submission.id}}
