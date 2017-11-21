@@ -37,12 +37,10 @@ export default Component.extend({
 
     latestActionCreator: computed.alias('latestAction.creator.fullName'),
 
+    noActions: computed.not('submission.actions.length'),
+
     latestAction: computed('submission.actions.[]', function() {
         return latestAction(this.get('submission.actions'));
-    }),
-
-    noActions: computed('submission.actions.length', function () {
-        return !this.get('submission.actions.length');
     }),
 
     firstContributors: computed('submission.node.contributors', function() {

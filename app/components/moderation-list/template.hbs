@@ -7,7 +7,7 @@
                         <button class="btn moderation-btn-filter {{if (eq status statusButton.status) 'active-filter'}}"
                                 {{action statusChanged statusButton.status}}>
                             <i class="fa {{statusButton.iconClass}}"></i>
-                            <span class="status-count">{{get statusCounts statusButton.status}}</span>
+                            <span class="status-count">{{get theme.reviewableStatusCounts statusButton.status}}</span>
                             {{t statusButton.labelKey}}
                         </button>
                     {{/each}}

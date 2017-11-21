@@ -16,13 +16,13 @@ export default Component.extend({
     theme: service(),
     store: service(),
 
-    tabs: computed('pendingCount', function() {
+    tabs: computed('theme.reviewableStatusCounts.pending', function() {
         return [
             {
                 nameKey: 'global.moderation',
                 route: 'preprints.provider.moderation',
                 hasCount: true,
-                count: this.get('pendingCount'),
+                count: this.get('theme.reviewableStatusCounts.pending'),
             },
             {
                 nameKey: 'global.settings',
@@ -32,8 +32,7 @@ export default Component.extend({
     }),
 
     didReceiveAttrs() {
-        this.pendingCount = this.get('theme.provider.reviewableStatusCounts.pending');
-        this.providerName = this.get('theme.provider.name');
+        this.set('providerName', this.get('theme.provider.name'));
         this.get('fetchData').perform();
     },
 
@@ -48,7 +47,10 @@ export default Component.extend({
                     reload: true,
                 },
             );
-            this.set('pendingCount', response.get('reviewableStatusCounts.pending'));
+            this.get('theme').set(
+                'reviewableStatusCounts',
+                response.get('reviewableStatusCounts'),
+            );
         } catch (e) {
             this.transitionToRoute('page-not-found');
         }

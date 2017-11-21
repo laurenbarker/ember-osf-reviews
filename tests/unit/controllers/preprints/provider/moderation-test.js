@@ -69,3 +69,26 @@ test('sortChanged action', function (assert) {
     assert.strictEqual(ctrl.get('status'), 'reject');
     assert.strictEqual(ctrl.get('page'), 1);
 });
+
+test('Reset properties', function (assert) {
+    const ctrl = this.subject();
+
+    const expected = {
+        page: 1,
+        status: 'pending',
+        sort: '-date_last_transitioned',
+    };
+
+    ctrl.setProperties({
+        page: 2,
+        status: 'accepted',
+        sort: 'date_last_transitioned',
+    });
+
+    ctrl.reset(true);
+
+    const propKeys = Object.keys(expected);
+    const actual = ctrl.getProperties(propKeys);
+
+    assert.ok(propKeys.every(key => expected[key] === actual[key]));
+});

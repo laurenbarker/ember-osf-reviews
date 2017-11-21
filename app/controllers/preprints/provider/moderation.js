@@ -48,7 +48,6 @@ export default Controller.extend(Analytics, moderationQueryParams.Mixin, {
 
     setup({ queryParams }) {
         this.get('fetchData').perform(queryParams);
-        this.set('results', { statusCounts: this.get('theme.provider.reviewableStatusCounts') });
     },
 
     queryParamsDidChange({ shouldRefresh, queryParams }) {
@@ -64,10 +63,7 @@ export default Controller.extend(Analytics, moderationQueryParams.Mixin, {
     },
 
     fetchData: task(function* (queryParams) {
-        const provider = yield this.get('store').findRecord(
-            'preprint-provider',
-            this.get('theme.id'),
-        );
+        const provider = this.get('theme.provider');
         const response = yield this.get('store').queryHasMany(provider, 'preprints', {
             filter: {
                 reviews_state: queryParams.status,
@@ -77,10 +73,10 @@ export default Controller.extend(Analytics, moderationQueryParams.Mixin, {
             sort: queryParams.sort,
             page: queryParams.page,
         });
+        this.get('theme').set('reviewableStatusCounts', response.meta.reviews_state_counts);
         this.set('results', {
             submissions: response.toArray(),
             totalPages: Math.ceil(response.meta.total / response.meta.per_page),
-            statusCounts: response.meta.reviews_state_counts,
         });
     }),
 });

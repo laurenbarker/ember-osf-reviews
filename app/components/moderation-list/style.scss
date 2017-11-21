@@ -1,30 +1,34 @@
 .moderation-list-body {
-  margin-bottom: 25px;
   font-size: 16px;
+  margin-bottom: 25px;
 }
 
 .moderation-list-heading {
-  padding: 10px 20px 10px 20px;
   background-color: $color-bg-gray-light;
   border: 1px solid $color-border;
+  padding: 10px 20px;
 
   .btn {
-    font-size: 20px;
     background: transparent;
+    font-size: 20px;
     outline: none;
     padding: 6px 0;
   }
+
   .moderation-btn-filter {
     margin: 0;
     margin-right: 20px;
   }
+
   .btn:hover {
-    text-decoration: none;
     outline: none;
+    text-decoration: none;
   }
+
   .btn:focus {
     font-weight: bold;
   }
+
   .btn:active {
     box-shadow: none;
   }
@@ -32,6 +36,7 @@
   .icon-accepted {
     -webkit-text-stroke: 1px $color-bg-gray-light;
   }
+
   .icon-rejected {
     -webkit-text-stroke: 1px $color-bg-gray-light;
   }
@@ -40,11 +45,13 @@
     font-weight: bold;
 
     .icon-rejected {
-      -webkit-text-stroke: 0px;
+      -webkit-text-stroke: 0;
     }
+
     .icon-accepted {
-      -webkit-text-stroke: 0px;
+      -webkit-text-stroke: 0;
     }
+
     .icon-pending {
       -webkit-text-stroke: 1px $color-text-gray-dark;
     }
@@ -54,19 +61,24 @@
 @media screen and (max-width: $screen-small-tablet) {
   .moderation-list-heading {
     padding-left: 20px;
+
     .btn {
       font-size: 16px;
     }
+
     .moderation-btn-filter {
       margin-right: 1px;
     }
   }
+
   .submission-title {
     font-size: 14px;
   }
+
   .submission-body {
     font-size: 12px;
   }
+
   .status-icon {
     font-size: 16px;
   }
@@ -85,12 +97,14 @@
     .btn {
       display: block;
     }
+
     .dropdown-toggle {
       margin-top: -2.3em;
     }
   }
+
   .dropdown-menu-right {
-    margin-top: -0.7em;
+    margin-top: -.7em;
   }
 }
 
@@ -102,26 +116,29 @@
   background: $color-bg-gray-light;
 
   .btn {
-    width: 100%;
     text-align: left;
+    width: 100%;
   }
+
   .btn:hover {
     background-color: $color-border;
   }
+
   .selected {
     padding-left: 5px;
   }
+
   .not-selected {
     padding-left: 30px;
   }
 }
 
 .dropdown-toggle {
-  text-decoration: none;
   color: $color-text-gray-dark;
+  text-decoration: none;
 }
 
-/* Moderation List Row */
+// Moderation List Row
 
 .moderation-list-row {
   border: 1px solid $color-border;
@@ -130,4 +147,3 @@
 .moderation-list-row:hover {
   background-color: $color-bg-gray-light;
 }
-
