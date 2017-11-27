@@ -21,8 +21,8 @@
   color: $color-state-success-text;
 
   .status-icon {
-    -webkit-text-stroke: 0px;
     font-size: 16px;
+    -webkit-text-stroke: 0;
   }
 }
 
@@ -31,138 +31,143 @@
   color: $color-state-danger-text;
 
   .status-icon {
-    -webkit-text-stroke: 0px;
     font-size: 16px;
+    -webkit-text-stroke: 0;
   }
 }
 
-#preprint-status {
-  .flex-container {
-    font-size: 16px;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    justify-content: space-between;
+.flex-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+  font-size: 16px;
+  justify-content: space-between;
+}
 
-    #statusBadge {
-      font-size: 16px;
+.status-badge {
+  cursor: default;
+  display: inline-block;  // required for the text-transform
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.status-badge::first-letter {
+  text-transform: uppercase;
+}
+
+.status-explanation {
+  padding-right: 15px;
+}
+
+.recent-activity {
+  padding-right: 10px;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.reviewer-feedback {
+  padding-right: 15px;
+
+  .button-loading-indicator {
+    margin-right: 8px;
+  }
+
+  .dropdown-menu {
+    background-color: $color-bg-gray-lighter;
+    border: 1px solid $color-border;
+    color: $color-text-gray-dark;
+    font-size: 62.5%;
+    left: auto;
+    margin-top: 0;
+    right: 0;
+    width: 445px;
+    z-index: 98;  // prevent dropdown from scrolling over navbar
+
+    .dropdown-toggle {
+      box-shadow: none;
+    }
+  }
+
+  .setting-reminder {
+    font-size: 1.4em;
+  }
+
+  .feedback-header {
+    border-bottom: 1px solid $color-border;
+    font-size: 2em;
+    padding: 5px 15px 8px;
+
+    a {
+      color: $color-text-gray-light;
+      float: right;
+    }
+  }
+
+  .feedback-footer {
+    border-top: 1px solid $color-border;
+
+    button {
+      margin: 10px 10px 5px;
+    }
+  }
+
+  .comment-length-error {
+    color: $state-danger-text;
+  }
+}
+
+.moderator-decision {
+  background-color: $color-white;
+  font-size: 1.4em;
+  padding: 30px 15px 15px;
+
+  textarea {
+    resize: none;
+  }
+
+  .no-comment textarea {
+    background-color: $color-bg-gray-lighter;
+  }
+
+  .decision-option {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    input {
+      vertical-align: top;
+      width: 14px;  // prevents flex from making radio buttons smaller
+    }
+
+    p {
       font-weight: normal;
-      cursor: default;
-      display: inline-block;  // required for the text-transform
-    }
-    #statusBadge::first-letter {
-      text-transform: uppercase;
-    }
-    .status-explanation {
-      padding-right: 15px;
-    }
-    .recent-activity {
-      padding-right: 10px;
-      a {
-        cursor: pointer;
-      }
-    }
-    .reviewer-feedback {
-      padding-right: 15px;
-
-      .button-loading-indicator {
-        margin-right: 8px;
-      }
-      .dropdown-menu {
-        font-size:62.5%;
-        background-color: $color-bg-gray-lighter;
-        color: $color-text-gray-dark;
-        border: 1px solid $color-border;
-        width: 445px;
-        left: auto;
-        right: 0px;
-        margin-top: 0px;
-        z-index: 98;  // prevent dropdown from scrolling over navbar
-
-        .dropdown-toggle {
-          box-shadow: none;
-        }
-
-        .setting-reminder {
-          font-size: 1.4em;
-        }
-
-        .feedback-header {
-          font-size: 2.0em;
-          border-bottom: 1px solid $color-border;
-          padding: 5px 15px 8px 15px;
-
-          a {
-            color: grey;
-            float: right;
-          }
-        }
-
-        .moderator-decision {
-          font-size: 1.4em;
-          background-color: white;
-          padding: 30px 15px 15px 15px;
-
-          textarea {
-            resize: none;
-          }
-
-          .no-comment {
-            textarea {
-              background-color: $color-bg-gray-lighter;
-            }
-          }
-
-          .decision-option {
-            display: inline-flex;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-
-            input {
-              vertical-align: top;
-              width: 14px;  // prevents flex from making radio buttons smaller
-            }
-            p {
-              font-weight: normal;
-            }
-          }
-        }
-
-        .feedback-footer {
-          border-top: 1px solid $color-border;
-
-          button {
-            margin: 10px 10px 5px 10px;
-          }
-        }
-
-        .comment-length-error {
-          color: $state-danger-text;
-        }
-      }
     }
   }
 }
+
 @media (max-width: $screen-medium-small) {
-  #preprint-status {
-    .flex-container {
-      flex-wrap: wrap;
-      .status-explanation {
-        order: 1;
-      }
-      .reviewer-feedback {
-        order: 2;
-        padding: 0;
-      }
-      .recent-activity {
-        order: 3;
-        text-align: center;
-        margin-top: 10px;
-      }
+  .flex-container {
+    flex-wrap: wrap;
+
+    .status-explanation {
+      order: 1;
+    }
+
+    .reviewer-feedback {
+      order: 2;
+      padding: 0;
+    }
+
+    .recent-activity {
+      margin-top: 10px;
+      order: 3;
+      text-align: center;
     }
   }
+
   .dropdown-menu {
     max-width: 300px;
   }
 }
-

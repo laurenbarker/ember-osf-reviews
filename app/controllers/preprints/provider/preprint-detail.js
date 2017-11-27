@@ -2,6 +2,10 @@ import { computed } from '@ember/object';
 import { alias, bool } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
+
+import { task, waitForQueue } from 'ember-concurrency';
+import $ from 'jquery';
+
 import permissions from 'ember-osf/const/permissions';
 
 
@@ -20,10 +24,9 @@ const PRE_MODERATION = 'pre-moderation';
  * @class Moderation Detail Controller
  */
 export default Controller.extend({
-    currentUser: service(),
     i18n: service(),
-    theme: service(),
     toast: service(),
+    store: service(),
 
     queryParams: { chosenFile: 'file' },
 
@@ -37,29 +40,33 @@ export default Controller.extend({
     hasTags: bool('node.tags.length'),
     expandedAbstract: navigator.userAgent.includes('Prerender'),
 
-    node: alias('model.node'),
+    node: alias('preprint.node'),
+
+    dummyMetaData: computed(function() {
+        return new Array(7);
+    }),
 
     // The currently selected file (defaults to primary)
-    activeFile: computed('model', {
+    activeFile: computed('preprint', {
         get() {
-            return this.getWithDefault('_activeFile', this.get('model.primaryFile'));
+            return this.getWithDefault('_activeFile', this.get('preprint.primaryFile'));
         },
         set(key, value) {
             return this.set('_activeFile', value);
         },
     }),
 
-    fileDownloadURL: computed('model', function() {
+    fileDownloadURL: computed('preprint', function() {
         const { location: { origin } } = window;
         return [
             origin,
-            this.get('model.id'),
+            this.get('preprint.id'),
             'download',
         ].filter(part => !!part).join('/');
     }),
 
-    actionDateLabel: computed('model.provider.reviewsWorkflow', function() {
-        return this.get('model.provider.reviewsWorkflow') === PRE_MODERATION ?
+    actionDateLabel: computed('preprint.provider.reviewsWorkflow', function() {
+        return this.get('preprint.provider.reviewsWorkflow') === PRE_MODERATION ?
             DATE_LABEL.submitted :
             DATE_LABEL.created;
     }),
@@ -108,7 +115,7 @@ export default Controller.extend({
 
             const action = this.store.createRecord('action', {
                 actionTrigger: trigger,
-                target: this.get('model'),
+                target: this.get('preprint'),
             });
 
             if (comment) {
@@ -133,4 +140,23 @@ export default Controller.extend({
     _notifySubmitFailure() {
         this.get('toast').error(this.get('i18n').t('components.preprintStatusBanner.error'));
     },
+
+    fetchData: task(function* (preprintId) {
+        const response = yield this.get('store').findRecord(
+            'preprint',
+            preprintId,
+            { include: ['node', 'license', 'actions'] },
+        );
+        if (!response.get('node.public')) {
+            this.transitionTo('page-not-found');
+        }
+        this.set('preprint', response);
+        this.get('loadMathJax').perform();
+    }),
+
+    loadMathJax: task(function* () {
+        if (!MathJax) return;
+        yield waitForQueue('afterRender');
+        yield MathJax.Hub.Queue(['Typeset', MathJax.Hub, [$('.abstract')[0], $('#preprintTitle')[0]]]);
+    }),
 });

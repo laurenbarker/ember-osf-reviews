@@ -4,11 +4,145 @@ section.preprint-license {
   }
 
   pre {
-    border: none;
+    border: 0;
     font-size: 75%;
     max-height: 300px;
     text-align: justify;
     white-space: pre-wrap;
     width: 100%;
+  }
+}
+
+.provider-osf-dark {
+  background-image: url($logo-dir + 'osf-dark-small.png');
+}
+
+.osf-nav-wrapper {
+  height: $nav-wrapper-height;
+}
+
+ul.comma-list {
+  display: inline;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline;
+  }
+
+  li::after {
+    content: ', ';
+  }
+
+  li:last-child::after {
+    content: '';
+  }
+}
+
+.subject-preview {
+  background-color: $color-bg-gray-cool;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 1px 7px;
+}
+
+.dark-overlay-header-background {
+  background: $color-bg-dark-overlay url('img/dark-overlay.png') top center;
+  color: $color-white;
+  min-height: 191px;
+}
+
+.view-authors {
+  color: $color-white;
+
+  a {
+    color: $color-text-cyan;
+  }
+}
+
+.view-page {
+  background-color: $color-bg;
+  padding-top: 15px;
+
+  .osf-box-lt {
+    background-color: $color-bg-gray-cool;
+  }
+
+  .round-btn {
+    background-color: $color-bg-dark;
+    border-radius: 25px;
+    color: $color-white;
+  }
+
+  .ember-content-placeholders-img {
+    height: 41px;
+  }
+
+  #mfr-col {
+    position: relative;
+
+    .expand-mfr-carrot {
+      background: 0;
+      border: 0;
+      color: $color-text-gray-light;
+      outline: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .social-media {
+    padding: 0;
+  }
+
+  .abstract {
+    white-space: pre-line;
+  }
+
+  .abstract-truncated::after {
+    content: ' \2026';
+  }
+
+  .project-box {
+    div {
+      min-height: 100px;
+    }
+  }
+
+  .disabled {
+    cursor: no-drop;
+    opacity: .4;
+    pointer-events: none;
+  }
+}
+
+.content-provider-logo {
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+// Moderation
+
+.preprint-status-component {
+  background-color: $color-bg-gray-lighter;
+  border: 1px solid $color-border;
+  color: $color-text-gray-dark;
+  margin-top: -15px;
+  z-index: 98;
+}
+
+.preprint-status-component--skeleton {
+  min-height: 63px;
+}
+
+@media (max-width: $screen-md) {
+  .share-row {
+    visibility: hidden;
   }
 }

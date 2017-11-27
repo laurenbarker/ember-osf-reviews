@@ -2,7 +2,7 @@
 @import 'bootstrap-custom';
 @import 'font-awesome';
 @import 'toastr';
-@import "ember-content-placeholders";
+@import 'ember-content-placeholders';
 
 // All variable overrides
 @import 'variables';
@@ -15,7 +15,6 @@
 @import 'mixins';
 @import 'modules';
 @import 'util';
-@import 'preprint-detail';
 
 // Import all styles from pod style components
 @import 'pod-styles';
@@ -23,10 +22,6 @@
 
 html {
   height: 100%;
-}
-
-body {
-  font-family: 'Helvetica Neue', 'Helvetica', sans-serif !important;
 }
 
 body > div.ember-view {
@@ -39,19 +34,20 @@ body > div.ember-view {
   }
 }
 
-/* Override styles from ember-osf and osf to match ember-preprints */
+// Override styles from ember-osf and osf to match ember-preprints
 .footer {
-  margin-top: 0;
-  text-shadow: 0 1px 0 white;
-  border-top: 1px solid $color-border-gray-dark;
   border-bottom: 1px solid $color-border-gray-dark;
-  width: 100%;
+  border-top: 1px solid $color-border-gray-dark;
   color: $color-text-gray;
   flex-shrink: 0;
+  margin-top: 0;
+  text-shadow: 0 1px 0 $color-white;
+  width: 100%;
 }
 
-.footer ul, .footer li {
-  padding: 0;
-  margin: 0;
+.footer ul,
+.footer li {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

@@ -1,32 +1,16 @@
 import { isArray } from '@ember/array';
-import $ from 'jquery';
-import { scheduleOnce } from '@ember/runloop';
-import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
+
 export default Route.extend({
-    theme: service(),
-    currentUser: service(),
 
     model(params) {
-        return this.store.findRecord(
-            'preprint',
-            params.preprint_id,
-            { include: ['node', 'license', 'actions'] },
-        );
+        return params.preprint_id;
     },
 
-    afterModel(model) {
-        return model.get('node').then(this._checkNodePublic.bind(this));
-    },
-
-    setupController() {
-        scheduleOnce('afterRender', this, function() {
-            if (!MathJax) return;
-            MathJax.Hub.Queue(['Typeset', MathJax.Hub, [$('.abstract')[0], $('#preprintTitle')[0]]]);
-        });
-
-        return this._super(...arguments);
+    setupController(controller, model) {
+        this._super(...arguments);
+        controller.get('fetchData').perform(model);
     },
 
     renderTemplate(controller, model) {
@@ -45,11 +29,5 @@ export default Route.extend({
                 return this.intermediateTransitionTo('page-not-found');
             }
         },
-    },
-
-    _checkNodePublic(node) {
-        if (!node.get('public')) {
-            this.transitionTo('page-not-found');
-        }
     },
 });
