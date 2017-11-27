@@ -1,4 +1,5 @@
 import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 
@@ -15,6 +16,8 @@ export default Component.extend({
     theme: service(),
     store: service(),
 
+    providerName: alias('theme.provider.name'),
+
     tabs: computed('theme.reviewableStatusCounts.pending', function() {
         return [
             {
@@ -29,8 +32,4 @@ export default Component.extend({
             },
         ];
     }),
-
-    didReceiveAttrs() {
-        this.set('providerName', this.get('theme.provider.name'));
-    },
 });
