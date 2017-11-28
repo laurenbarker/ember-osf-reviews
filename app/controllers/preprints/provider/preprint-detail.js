@@ -145,7 +145,7 @@ export default Controller.extend({
         const response = yield this.get('store').findRecord(
             'preprint',
             preprintId,
-            { include: ['node', 'license', 'actions'] },
+            { include: ['node', 'license', 'actions', 'contributors'] },
         );
         if (!response.get('node.public')) {
             this.transitionTo('page-not-found');

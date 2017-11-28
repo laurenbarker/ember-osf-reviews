@@ -1,5 +1,7 @@
-{{#if contributors.isPending}}
-    {{loading-indicator}}
+{{#if fetchData.isRunning}}
+    {{#content-placeholders as |placeholder|}}
+        {{placeholder.text lines=2}}
+    {{/content-placeholders}}
 {{else}}
     {{#each bibliographicContributors as |contributor| ~}}
         <li>
@@ -7,7 +9,7 @@
                 {{contributor.unregisteredContributor}}
             {{else}}
                 <a href={{contributor.users.profileURL}}>
-                    {{contributor.users.givenName}} {{contributor.users.familyName}}
+                    {{contributor.users.givenName}} {{contributor.users.familyName~}}
                 </a>
             {{/if}}
         </li>

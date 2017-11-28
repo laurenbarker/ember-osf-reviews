@@ -7,7 +7,7 @@
                     {{#if fetchData.isIdle}}
                         {{reviews-breadcrumbs}}
                         <h1 id="preprintTitle" class="p-t-md p-b-md">{{node.title}}</h1>
-                        <h5>{{contributor-list node}}</h5>
+                        <h5>{{contributor-list node=node contributors=preprint.contributors}}</h5>
                         <h6 class="preprint-added-on">
                             {{t actionDateLabel}}: {{moment-format preprint.dateLastTransitioned "MMMM DD, YYYY"}} | {{t "content.header.lastEdited"}}: {{moment-format preprint.dateModified "MMMM DD, YYYY"}}
                         </h6>
