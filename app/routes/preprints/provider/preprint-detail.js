@@ -5,12 +5,12 @@ import Route from '@ember/routing/route';
 export default Route.extend({
 
     model(params) {
-        return params.preprint_id;
+        return { preprintId: params.preprint_id };
     },
 
     setupController(controller, model) {
         this._super(...arguments);
-        controller.get('fetchData').perform(model);
+        controller.get('fetchData').perform(model.preprintId);
     },
 
     renderTemplate(controller, model) {

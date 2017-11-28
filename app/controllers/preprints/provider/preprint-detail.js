@@ -152,6 +152,9 @@ export default Controller.extend({
         }
         this.set('preprint', response);
         this.get('loadMathJax').perform();
+
+        // required for breadcrumbs
+        this.set('model.breadcrumbTitle', response.get('title'));
     }),
 
     loadMathJax: task(function* () {

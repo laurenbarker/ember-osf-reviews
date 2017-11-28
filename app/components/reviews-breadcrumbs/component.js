@@ -22,7 +22,7 @@ export default Component.extend({
             if (r.context === breadcrumbs[breadcrumbs.length - 1].context) continue;
 
             // Prefer model name or title, fall back to the route name
-            set(r, 'name', (r.context.get && (r.context.get('name') || r.context.get('title'))) || r.part);
+            set(r, 'name', r.context.breadcrumbTitle || (r.context.get && r.context.get('name')) || r.part);
 
             // Shorten breadcrumb names longer than 4 words
             const breadcrumbName = r.name.split(' ');
