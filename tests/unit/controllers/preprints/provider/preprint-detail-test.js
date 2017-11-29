@@ -57,9 +57,9 @@ test('isAdmin computed property', function (assert) {
             description: 'test description',
         });
 
-        const model = this.store.createRecord('preprint', { node });
+        const preprint = this.store.createRecord('preprint', { node });
 
-        ctrl.setProperties({ model });
+        ctrl.setProperties({ preprint });
         ctrl.set('node.currentUserPermissions', ['admin']);
 
         assert.strictEqual(ctrl.get('isAdmin'), true);
@@ -82,13 +82,13 @@ test('actionDateLabel computed property', function (assert) {
             reviewsWorkflow: 'pre-moderation',
         });
 
-        const model = this.store.createRecord('preprint', { node, provider });
+        const preprint = this.store.createRecord('preprint', { node, provider });
 
-        ctrl.setProperties({ model });
+        ctrl.setProperties({ preprint });
 
         assert.strictEqual(ctrl.get('actionDateLabel'), 'content.dateLabel.submittedOn');
 
-        ctrl.set('model.provider.reviewsWorkflow', 'post-moderation');
+        ctrl.set('preprint.provider.reviewsWorkflow', 'post-moderation');
 
         assert.strictEqual(ctrl.get('actionDateLabel'), 'content.dateLabel.createdOn');
     });
@@ -104,8 +104,8 @@ test('hasShortenedDescription computed property', function (assert) {
             description: 'test description',
         });
 
-        const model = this.store.createRecord('preprint', { node });
-        ctrl.setProperties({ model });
+        const preprint = this.store.createRecord('preprint', { node });
+        ctrl.setProperties({ preprint });
         ctrl.set('node.description', 'test description');
 
         assert.strictEqual(
@@ -131,8 +131,8 @@ test('useShortenedDescription computed property', function (assert) {
             description: 'test description',
         });
 
-        const model = this.store.createRecord('preprint', { node });
-        ctrl.setProperties({ model });
+        const preprint = this.store.createRecord('preprint', { node });
+        ctrl.setProperties({ preprint });
         ctrl.set('node.description', 'test description');
         ctrl.set('expandedAbstract', false);
 
@@ -163,8 +163,8 @@ test('description computed property', function (assert) {
             description: input,
         });
 
-        const model = this.store.createRecord('preprint', { node });
-        ctrl.setProperties({ model });
+        const preprint = this.store.createRecord('preprint', { node });
+        ctrl.setProperties({ preprint });
 
         assert.strictEqual(
             ctrl.get('description'),
@@ -238,9 +238,9 @@ test('activeFile action', function (assert) {
             description: 'test description',
         });
 
-        const model = this.store.createRecord('preprint', { node, primaryFile });
+        const preprint = this.store.createRecord('preprint', { node, primaryFile });
 
-        ctrl.setProperties({ model });
+        ctrl.setProperties({ preprint });
 
         assert.strictEqual(ctrl.get('activeFile'), null);
 
@@ -297,10 +297,10 @@ test('fileDownloadURL computed property', function (assert) {
             description: 'test description',
         });
 
-        const model = this.store.createRecord('preprint', { node });
+        const preprint = this.store.createRecord('preprint', { node });
 
-        ctrl.setProperties({ model });
-        ctrl.set('model.id', '6gtu');
+        ctrl.setProperties({ preprint });
+        ctrl.set('preprint.id', '6gtu');
 
         assert.strictEqual(ctrl.get('fileDownloadURL'), 'http://localhost:4201/6gtu/download');
     });

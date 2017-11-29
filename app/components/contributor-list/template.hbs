@@ -3,7 +3,7 @@
         {{placeholder.text lines=2}}
     {{/content-placeholders}}
 {{else}}
-    {{#each bibliographicContributors as |contributor| ~}}
+    {{#each bibliographicContributors as |contributor|}}
         <li>
             {{#if contributor.unregisteredContributor}}
                 {{contributor.unregisteredContributor}}
