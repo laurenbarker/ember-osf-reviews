@@ -10,14 +10,12 @@ export default Component.extend({
 
     tagName: 'ul',
     node: null,
-    page: 1,
 
-    bibliographicContributors: filterBy('contributors', 'bibliographic', true),
+    bibliographicContributors: filterBy('contributorsList', 'bibliographic', true),
 
-    init() {
-        this._super(...arguments);
+    didReceiveAttrs() {
         this.set('contributorsList', this.get('contributors') || []);
-        if (!this.get('contributors.length') || this.get('contributors.content.meta.total') > this.get('contributors.content.meta.per_page')) {
+        if (!this.get('contributors.length') || this.get('contributors.content.meta.total') > this.get('contributors.length')) {
             this.get('fetchData').perform();
         }
     },
@@ -26,16 +24,15 @@ export default Component.extend({
         const node = this.get('node.content');
         const query = {
             'page[size]': 100,
-            page: this.get('page'),
+            page: 1,
         };
 
         let response = yield this.get('loadContributors').perform(node, query);
 
         while (response.links.next) {
-            query.page = this.incrementProperty('page');
+            query.page++;
             response = yield this.get('loadContributors').perform(node, query);
         }
-        this.set('contributors', this.get('contributorsList'));
     }),
 
     loadContributors: task(function* (node, query) {

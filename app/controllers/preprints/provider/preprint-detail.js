@@ -147,8 +147,10 @@ export default Controller.extend({
             preprintId,
             { include: ['node', 'license', 'actions', 'contributors'] },
         );
-        if (!response.get('node.public')) {
-            this.transitionTo('page-not-found');
+        const node = yield response.get('node');
+        if (!node.get('public')) {
+            this.transitionToRoute('page-not-found');
+            return;
         }
         this.set('preprint', response);
         this.get('loadMathJax').perform();
