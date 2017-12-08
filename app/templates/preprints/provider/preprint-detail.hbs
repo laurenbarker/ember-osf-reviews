@@ -43,21 +43,6 @@
                     </button>
                 </div>
 
-                <div class="p-t-md pull-right">
-                    <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                        <i class="fa fa-2x fa-twitter-square"></i>
-                    </a>
-                    <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                        <i class="fa fa-2x fa-facebook-square"></i>
-                    </a>
-                    <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                        <i class="fa fa-2x fa-linkedin-square"></i>
-                    </a>
-                    <a class="text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                        <i class="fa fa-2x fa-envelope"></i>
-                    </a>
-                </div>
-
                 <div class="col-md-5 {{if fullScreenMFR 'hidden' ''}}">
                     {{#if fetchData.isRunning}}
                         {{#content-placeholders as |placeholder|}}
@@ -78,23 +63,21 @@
                                 {{t "content.share.downloads"}}: {{preprint.primaryFile.extra.downloads}}
                             </div>
                         </div>
-                        <section class="p-t-xs">
-                            <h4 class="p-v-md f-w-md"><strong>Share</strong></h4>
-                            <div class="social-media p-t-md">
-                                <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                                    <i class="fa fa-2x fa-twitter-square"></i>
-                                </a>
-                                <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                                    <i class="fa fa-2x fa-facebook-square"></i>
-                                </a>
-                                <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                                    <i class="fa fa-2x fa-linkedin-square"></i>
-                                </a>
-                                <a class="text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
-                                    <i class="fa fa-2x fa-envelope"></i>
-                                </a>
-                            </div>
-                        </section>
+
+                        <div class="p-t-md pull-right">
+                            <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
+                                <i class="fa fa-2x fa-twitter-square"></i>
+                            </a>
+                            <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
+                                <i class="fa fa-2x fa-facebook-square"></i>
+                            </a>
+                            <a class="m-r-xs text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
+                                <i class="fa fa-2x fa-linkedin-square"></i>
+                            </a>
+                            <a class="text-smaller disabled" href='' onclick="return false;" aria-hidden="true">
+                                <i class="fa fa-2x fa-envelope"></i>
+                            </a>
+                        </div>
 
                         <div class="p-t-xs">
                             <h4 class="p-v-md f-w-md"><strong>{{t "global.abstract"}}</strong></h4>
