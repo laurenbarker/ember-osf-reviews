@@ -8,7 +8,7 @@ import hbs from 'htmlbars-inline-precompile';
 const storeStub = EmberService.extend({
     init() {
         this._super(...arguments);
-        this.actionList = [EmberObject.create({ // Records to be returned by queryHasMany
+        this.actionList = [EmberObject.create({ // Records to be returned by query
             dateCreated: '2017-10-28T14:57:35.949534Z',
             creator: { fullName: 'Po' },
             provider: { name: 'viperXiv', preprintWord: 'preprint' },
@@ -22,7 +22,7 @@ const storeStub = EmberService.extend({
             target: { title: 'the archive of all vipers' },
         })];
     },
-    queryHasMany () {
+    query() {
         return this.get('noActions') ? [] : this.get('actionList');
     },
 });
