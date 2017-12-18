@@ -12,7 +12,7 @@ export default Route.extend({
         return this.store.findRecord(
             'preprint',
             params.preprint_id,
-            { include: ['node', 'license', 'actions'] },
+            { include: ['node', 'license', 'review_actions'] },
         );
     },
 

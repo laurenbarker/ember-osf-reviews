@@ -106,7 +106,7 @@ export default Controller.extend({
         submitDecision(trigger, comment, filter) {
             this.toggleProperty('savingAction');
 
-            const action = this.store.createRecord('action', {
+            const action = this.store.createRecord('review-action', {
                 actionTrigger: trigger,
                 target: this.get('model'),
             });

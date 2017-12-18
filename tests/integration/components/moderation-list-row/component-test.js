@@ -7,10 +7,10 @@ moduleForComponent('moderation-list-row', 'Integration | Component | moderation-
 });
 
 
-test('it renders moderation-list-row accepted with actions', function(assert) {
+test('it renders moderation-list-row accepted with reviewActions', function(assert) {
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [
+        reviewActions: [
             EmberObject.create({
                 fromState: 'pending',
                 toState: 'accepted',
@@ -35,10 +35,10 @@ test('it renders moderation-list-row accepted with actions', function(assert) {
     assert.equal(this.$('[data-status=accepted]').text().trim(), 'accepted on October 27, 2017 by Kung-fu Panda');
 });
 
-test('it renders moderation-list-row accepted without actions', function(assert) {
+test('it renders moderation-list-row accepted without reviewActions', function(assert) {
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [],
+        reviewActions: [],
         reviewsState: 'accepted',
         node: EmberObject.create({ contributors: ['Tigerss', 'Crane'] }),
     });
@@ -46,10 +46,10 @@ test('it renders moderation-list-row accepted without actions', function(assert)
     assert.equal(this.$('[data-status=accepted]').text().trim(), 'accepted automatically on October 27, 2017');
 });
 
-test('it renders moderation-list-row rejected with actions', function(assert) {
+test('it renders moderation-list-row rejected with reviewActions', function(assert) {
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [
+        reviewActions: [
             EmberObject.create({
                 fromState: 'pending',
                 toState: 'rejected',
@@ -70,10 +70,10 @@ test('it renders moderation-list-row rejected with actions', function(assert) {
     assert.equal(this.$('[data-status=rejected]').text().trim(), 'rejected on October 27, 2017 by Master Shifu');
 });
 
-test('it renders moderation-list-row pending with actions', function(assert) {
+test('it renders moderation-list-row pending with reviewActions', function(assert) {
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [
+        reviewActions: [
             EmberObject.create({
                 fromState: 'initial',
                 toState: 'pending',
@@ -90,10 +90,10 @@ test('it renders moderation-list-row pending with actions', function(assert) {
     assert.equal(this.$('[data-status=pending]').text().replace(/\n/g, ' ').trim(), 'submitted on October 27, 2017 by Mr. Ping Mantis');
 });
 
-test('it renders moderation-list-row pending with actions and more than three contributors', function(assert) {
+test('it renders moderation-list-row pending with reviewActions and more than three contributors', function(assert) {
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [
+        reviewActions: [
             EmberObject.create({
                 fromState: 'initial',
                 toState: 'pending',

@@ -40,15 +40,14 @@ export default Component.extend({
         this.incrementProperty('page');
         const page = this.get('page');
         try {
-            const user = yield this.get('currentUser.user');
-            const actions = yield this.get('store').queryHasMany(user, 'reviewActions', {
+            const actions = yield this.get('store').query('review-action', {
                 page,
-                embed: 'target',
+                embed: ['target'],
             });
             this.get('actionsList').pushObjects(actions.toArray());
             this.set(
                 'totalPages',
-                Math.ceil(actions.get('meta.total') / actions.get('meta.per_page')),
+                Math.ceil(actions.get('meta.pagination.total') / actions.get('meta.pagination.per_page')),
             );
         } catch (e) {
             this.get('toast')

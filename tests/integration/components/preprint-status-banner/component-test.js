@@ -12,7 +12,7 @@ test('it renders preprint-status-banner', function(assert) {
     this.set('savingAction', false);
     this.set('submission', {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: new Promise(function(resolve) { resolve([]); }),
+        reviewActions: new Promise(function(resolve) { resolve([]); }),
         reviewsState: 'accepted',
         provider: { reviewsWorkflow: 'pre-moderation' },
         node: { contributors: [{ users: { fullName: 'Mr. Ping' } }, { users: { fullName: 'Mantis' } }] },

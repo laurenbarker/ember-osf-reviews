@@ -37,10 +37,10 @@ export default Component.extend({
 
     latestActionCreator: computed.alias('latestAction.creator.fullName'),
 
-    noActions: computed.not('submission.actions.length'),
+    noActions: computed.not('submission.reviewActions.length'),
 
-    latestAction: computed('submission.actions.[]', function() {
-        return latestAction(this.get('submission.actions'));
+    latestAction: computed('submission.reviewActions.[]', function() {
+        return latestAction(this.get('submission.reviewActions'));
     }),
 
     firstContributors: computed('submission.node.contributors', function() {
@@ -82,6 +82,6 @@ export default Component.extend({
     fetchData: task(function* () {
         const node = yield this.get('submission.node');
         yield node.get('contributors');
-        yield this.get('submission.actions');
+        yield this.get('submission.reviewActions');
     }),
 });

@@ -10,7 +10,7 @@ moduleForComponent('preprint-status-banner', 'Unit | Component | preprint status
     // needs: ['component:foo', 'helper:bar'],
     unit: true,
     needs: [
-        'model:action',
+        'model:review-action',
         'model:node',
         'model:user',
         'model:preprint',
@@ -128,19 +128,19 @@ test('latestAction computed property', function(assert) {
             reviewsWorkflow: 'pre-moderation',
         });
 
-        const actions = [
-            this.store.createRecord('action', {
+        const reviewActions = [
+            this.store.createRecord('review-action', {
                 fromState: 'rejected', toState: 'accepted', dateModified: '2017-10-29T14:57:35.949534Z', creator: { fullName: 'Kung-fu Panda' },
             }),
-            this.store.createRecord('action', {
+            this.store.createRecord('review-action', {
                 fromState: 'pending', toState: 'rejected', dateModified: '2017-10-27T14:57:35.949534Z', creator: { fullName: 'Po' },
             }),
-            this.store.createRecord('action', {
+            this.store.createRecord('review-action', {
                 fromState: 'initial', toState: 'pending', dateModified: '2017-10-25T14:57:35.949534Z', creator: { fullName: 'Viper' },
             }),
         ];
 
-        const submission = this.store.createRecord('preprint', { node, provider, actions });
+        const submission = this.store.createRecord('preprint', { node, provider, reviewActions });
         component.setProperties({ submission });
 
         assert.strictEqual(component.get('latestAction.dateModified'), '2017-10-29T14:57:35.949534Z');
@@ -241,7 +241,7 @@ test('_handleActions  action', function(assert) {
             description: 'test description',
         });
 
-        const action = this.store.createRecord('action', {
+        const action = this.store.createRecord('review-action', {
             fromState: 'rejected',
             toState: 'accepted',
             dateModified: '2017-10-29T14:57:35.949534Z',

@@ -54,7 +54,7 @@ test('moderation-list full page submissions', function(assert) {
 
     const submission = {
         dateLastTransitioned: '2017-10-27T19:14:27.816946Z',
-        actions: [
+        reviewActions: [
             EmberObject.create({
                 fromState: 'initial',
                 toState: 'pending',

@@ -4,7 +4,7 @@ import test from 'ember-sinon-qunit/test-support/test';
 
 moduleFor('controller:preprints/provider/preprint-detail', 'Unit | Controller | preprints/provider/preprint-detail', {
     needs: [
-        'model:action',
+        'model:review-action',
         'model:file',
         'model:file-version',
         'model:comment',

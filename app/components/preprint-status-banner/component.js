@@ -159,8 +159,8 @@ export default Component.extend({
             CLASS_NAMES[this.get('submission.reviewsState')];
     }),
 
-    latestAction: computed('submission.actions.[]', function() {
-        return latestAction(this.get('submission.actions'));
+    latestAction: computed('submission.reviewActions.[]', function() {
+        return latestAction(this.get('submission.reviewActions'));
     }),
 
     noComment: computed('reviewerComment', function() {
@@ -235,7 +235,7 @@ export default Component.extend({
     }),
 
     didInsertElement() {
-        this.get('submission.actions')
+        this.get('submission.reviewActions')
             .then(latestAction)
             .then(this._handleActions.bind(this));
         return this._super(...arguments);
