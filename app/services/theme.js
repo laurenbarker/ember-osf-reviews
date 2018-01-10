@@ -38,7 +38,7 @@ export default Service.extend({
                 baseURL += `${this.get('provider.id')}/`;
             }
         } else {
-            baseURL = this.get('domain');
+            baseURL = this.get('domain').replace(/\/?$/, '/');
         }
         return baseURL;
     }),
