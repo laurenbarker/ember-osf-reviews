@@ -167,8 +167,8 @@
         {{/modal.header}}
         {{#modal.body}}<div class="warning-body">{{t 'content.warning.body'}}</div>{{/modal.body}}
         {{#modal.footer}}
-            {{#bs-button onClick=(action modal.close) type="info"}}{{t 'content.warning.footer.stay'}}{{/bs-button}}
-            {{#bs-button onClick=(action 'leavePage')}}{{t 'content.warning.footer.leave'}}{{/bs-button}}
+            {{#bs-button onClick=(action modal.close)}}{{t 'content.warning.footer.stay'}}{{/bs-button}}
+            {{#bs-button onClick=(action 'leavePage') type="primary"}}{{t 'content.warning.footer.leave'}}{{/bs-button}}
         {{/modal.footer}}
     {{/bs-modal}}
 </div>
