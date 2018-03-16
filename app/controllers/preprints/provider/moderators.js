@@ -47,7 +47,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             },
         ]);
         this.get('fetchData').perform(queryParams);
-        this.get('fetchAdmin').perform(queryParams);
+        this.get('fetchAdmin').perform();
     },
 
     queryParamsDidChange({ shouldRefresh, queryParams }) {
@@ -62,18 +62,56 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         }
     },
 
-    saveModerator: task(function* (fullName, permissionGroup) {
+    deleteModerator: task(function* (id) {
+        try {
+            const moderatorInstance = yield this.get('store').findRecord('moderator', id, {
+                // must include provider because ember data doesn't line the url structure
+                adapterOptions: {
+                    provider: this.get('theme.provider.id'),
+                },
+            });
+            yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
+        } catch (e) {
+            this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
+        } finally {
+            this.set('editingModerator', false);
+        }
+    }),
+
+    updateModerator: task(function* (id, permissionGroup) {
+        try {
+            const moderatorInstance = yield this.get('store').findRecord('moderator', id, {
+                // must include provider because ember data doesn't line the url structure
+                adapterOptions: {
+                    provider: this.get('theme.provider.id'),
+                },
+            });
+            moderatorInstance.set('permissionGroup', permissionGroup);
+            yield moderatorInstance.save({ adapterOptions: { provider: this.get('theme.provider.id') } });
+            return true;
+        } catch (e) {
+            this.get('toast').error(this.get('i18n').t('moderators.updateModeratorError'));
+            return false;
+        } finally {
+            this.set('editingModerator', false);
+        }
+    }),
+
+    addModerator: task(function* (id, permissionGroup) {
         try {
             const moderatorInstance = yield this.get('store').createRecord('moderator', {
-                fullName,
+                id,
                 permissionGroup,
+                // must include provider because ember data doesn't line the url structure
+                provider: this.get('theme.provider.id'),
             });
 
             yield moderatorInstance.save();
             this.get('results.moderators').pushObject(moderatorInstance);
         } catch (e) {
-            this.get('toast').error(this.get('i18n').t('components.preprintStatusBanner.error'));
+            this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
         } finally {
+            yield this.get('fetchAdmin').perform();
             this.setProperties({
                 editingModerator: false,
                 addingNewModerator: false,
@@ -92,6 +130,8 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
 
         if (admin.meta.total <= 1) {
             this.set('disableAdminDeletion', true);
+        } else {
+            this.set('disableAdminDeletion', false);
         }
     }),
 

@@ -1,6 +1,8 @@
 export default {
     global: {
         cancel: 'Cancel',
+        remove: 'Remove',
+        save: 'Save',
         abstract: 'Abstract',
         doi: 'DOI',
         tags: 'Tags',
@@ -65,6 +67,14 @@ export default {
                 postModeration: 'Post-moderation',
             },
         },
+    },
+    moderators: {
+        addNewMod: 'Add new moderator',
+        getStartedIntro: 'Get started by',
+        getStartedAction: 'adding a new moderator!',
+        deleteModeratorError: 'Error removing moderator.',
+        updateModeratorError: 'Error saving moderator',
+        addModeratorError: 'Error adding moderator',
     },
     providerSettings: {
         reviewsWorkflow: {
@@ -244,6 +254,13 @@ export default {
             daily: 'Daily',
             never: 'Never',
             errorUpdating: 'Error updating notification settings.',
+        },
+        moderatorListAdd: {
+            inviteText: 'invite by email',
+        },
+        moderatorList: {
+            editDisabledMessage: 'Can only edit one moderator at a time',
+            adminDisabledMessage: 'Must have one admin',
         },
         preprintStatusBanner: {
             recentActivity: {

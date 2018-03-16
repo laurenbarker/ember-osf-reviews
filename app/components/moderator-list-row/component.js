@@ -9,15 +9,16 @@ export default Component.extend({
     i18n: service(),
     store: service(),
 
-    showConfirmation: false,
-
-    role: computed('moderator.permissionGroup', 'roleOptions', function() {
+    removeConfirmation: false,
+    editConfirmation: false,
+    roleLabel: 'Role',
+    role: computed('moderator.permissionGroup', function() {
         for (const value of this.get('roleOptions')) {
             if (value.role === this.get('moderator.permissionGroup')) {
-                return value.label;
+                this.set('roleLabel', value.label);
             }
         }
-        return 'Role';
+        return this.get('moderator.permissionGroup');
     }),
 
     disableRemove: computed('role', 'disableAdminDeletion', 'editingModerator', function() {
@@ -30,21 +31,43 @@ export default Component.extend({
 
     actions: {
         roleChanged(role) {
-            this.set('role', role);
+            this.setProperties({
+                editingModerator: true,
+                editConfirmation: true,
+            });
+            this._setRole(role);
         },
         removeModerator() {
             this.setProperties({
                 editingModerator: true,
-                showConfirmation: true,
+                removeConfirmation: true,
             });
         },
         cancel() {
+            this._setRole(this.get('moderator.permissionGroup'));
             this.setProperties({
                 editingModerator: false,
-                showConfirmation: false,
+                removeConfirmation: false,
+                editConfirmation: false,
             });
         },
     },
+
+    _setRole(role) {
+        this.set('role', role);
+        for (const value of this.get('roleOptions')) {
+            if (value.role === role) {
+                this.set('roleLabel', value.label);
+            }
+        }
+    },
+
+    editModerator: task(function* (moderatorId, permissionGroup) {
+        const saved = yield this.get('updateModerator').perform(moderatorId, permissionGroup);
+        if (saved) {
+            this.set('editConfirmation', false);
+        }
+    }),
 
     fetchData: task(function* () {
         const moderatorId = this.get('moderator.id');

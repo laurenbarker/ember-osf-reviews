@@ -1,10 +1,12 @@
-<div class="row-container p-h-md p-v-sm">
+<div class="moderators-row-container p-h-md p-v-sm">
     <div class="moderator-name">
         {{#if fetchData.isRunning}}
-            {{#content-placeholders as |placeholder|}}
-                {{placeholder.img height=30}}
-            {{/content-placeholders}}
-            <span class="name">{{moderator.fullname}}</span>
+            <div class="name--skeleton">
+                {{#content-placeholders as |placeholder|}}
+                    <div class="gravatar--skeleton">{{placeholder.img}}</div>
+                    <div class="m-l-sm">{{placeholder.text lines=1}}</div>
+                {{/content-placeholders}}
+            </div>
         {{else}}
             <img src={{user.links.profile_image}} height=40 width=40>
             <span class="name p-l-sm">
@@ -13,30 +15,41 @@
         {{/if}}
     </div>
     {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
-        {{#dd.button classNames="btn btn-default dropdown-button" disabled=(and disableAdminDeletion (eq role 'Admin'))}}
-            {{role}}
+        {{#dd.button classNames="btn btn-default dropdown-button" disabled=(and disableAdminDeletion (eq role 'admin'))}}
+            {{roleLabel}}
             <span class="fa fa-caret-down p-l-xs"></span>
         {{/dd.button}}
         {{#dd.menu classNames="dropdown-menu-right moderator-dropdown-menu" as |menu|}}
             {{#each roleOptions as |roleOption|}}
                 {{#menu.item}}
-                    <button class="btn" {{action 'roleChanged' roleOption.label}}>
+                    <button class="btn" {{action 'roleChanged' roleOption.role}}>
                         {{roleOption.label}}
-                        <i class='{{if (eq role roleOption.label) 'fa fa-check selected' 'not-selected'}}'></i>
+                        <i class='{{if (eq role roleOption.role) 'fa fa-check selected' 'not-selected'}}'></i>
                     </button>
                 {{/menu.item}}
             {{/each}}
         {{/dd.menu}}
     {{/bs-dropdown}}
     <div class="row-controls">
-        {{#if showConfirmation}}
-            <button class="btn btn-default" {{action 'cancel'}}>Cancel</button>
-            <button class="btn btn-danger m-l-xs">Remove</button>
+        {{#if removeConfirmation}}
+            <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
+            <button class="btn btn-danger m-l-xs" onclick={{perform deleteModerator moderator.id}}>
+                {{t 'global.remove'}}
+            </button>
+        {{else if editConfirmation}}
+            <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
+            <button class="btn btn-success m-l-xs" onclick={{perform editModerator moderator.id role}}>
+                {{t 'global.save'}}
+            </button>
         {{else}}
             {{#if (and editingModerator disableRemove)}}
-                {{#bs-tooltip placement='left'}}Can only edit one moderator at a time{{/bs-tooltip}}
+                {{#bs-tooltip placement='left'}}
+                    {{t 'components.moderatorList.editDisabledMessage'}}
+                {{/bs-tooltip}}
             {{else if (and disableAdminDeletion disableRemove)}}
-                {{#bs-tooltip placement='left'}}Must have one admin{{/bs-tooltip}}
+                {{#bs-tooltip placement='left'}}
+                    {{t 'components.moderatorList.adminDisabledMessage'}}
+                {{/bs-tooltip}}
             {{/if}}
             <a role="button" class="remove-button {{if disableRemove 'disabled'}}" {{action 'removeModerator'}}>
                 <i class="fa fa-times fa-lg "></i>
@@ -44,4 +57,4 @@
         {{/if}}
     </div>
 </div>
-<div class="row-border"></div>
+<div class="moderators-row-border"></div>

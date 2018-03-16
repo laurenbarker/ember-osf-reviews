@@ -12,29 +12,27 @@ export default Component.extend({
     store: service(),
 
     selectedUser: '',
+    roleLabel: 'Role',
+    role: '',
 
-    role: computed('moderator.permissionGroup', 'roleOptions', function() {
-        for (const value of this.get('roleOptions')) {
-            if (value.role === this.get('moderator.permissionGroup')) {
-                return value.label;
-            }
-        }
-        return 'Role';
-    }),
-
-    disableSave: computed('role', 'user', function() {
-        return this.get('role') === 'Role' || !this.get('selectedUser');
+    disableSave: computed('role', 'selectedUser', function() {
+        return !this.get('role') || !this.get('selectedUser');
     }),
 
     actions: {
         roleChanged(role) {
             this.set('role', role);
+            for (const value of this.get('roleOptions')) {
+                if (value.role === role) {
+                    this.set('roleLabel', value.label);
+                }
+            }
         },
         cancel() {
             this.setProperties({
                 editingModerator: false,
                 addingNewModerator: false,
-                role: 'Role',
+                role: '',
                 selectedUser: '',
             });
         },

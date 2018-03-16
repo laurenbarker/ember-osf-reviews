@@ -1,4 +1,4 @@
-<div class="row-container p-h-md p-v-sm">
+<div class="moderators-row-container p-h-md p-v-sm">
     <div class="moderator-name">
         {{#if fetchData.isRunning}}
             {{#content-placeholders as |placeholder|}}
@@ -8,7 +8,6 @@
             {{#power-select
                 options=users
                 search=(perform searchUsers)
-                searchField='fullName'
                 placeholder='Search by name'
                 selected=selectedUser
                 onchange=(action (mut selectedUser)) as |user|}}
@@ -18,7 +17,7 @@
             <span class="p-l-xs">or</span>
             {{#bs-dropdown classNames="pull-right invite-dropdown" as |dd|}}
                 {{#dd.toggle classNames="btn btn-default dropdown-link"}}
-                    invite by email
+                    {{t 'components.moderatorListAdd.inviteText'}}
                 {{/dd.toggle}}
                 {{#dd.menu classNames="dropdown-menu-right" as |menu|}}
                     Placeholder
@@ -28,23 +27,25 @@
     </div>
     {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
         {{#dd.button classNames="btn btn-default dropdown-button"}}
-            {{role}}
+            {{roleLabel}}
             <span class="fa fa-caret-down p-l-xs"></span>
         {{/dd.button}}
         {{#dd.menu classNames="dropdown-menu-right moderator-dropdown-menu" as |menu|}}
             {{#each roleOptions as |roleOption|}}
                 {{#menu.item}}
-                    <button class="btn" {{action 'roleChanged' roleOption.label}}>
+                    <button class="btn" {{action 'roleChanged' roleOption.role}}>
                         {{roleOption.label}}
-                        <i class='{{if (eq role roleOption.label) 'fa fa-check selected' 'not-selected'}}'></i>
+                        <i class='{{if (eq role roleOption.role) 'fa fa-check selected' 'not-selected'}}'></i>
                     </button>
                 {{/menu.item}}
             {{/each}}
         {{/dd.menu}}
     {{/bs-dropdown}}
     <div class="row-controls">
-        <button class="btn btn-default" {{action 'cancel'}}>Cancel</button>
-        <button class="btn btn-success m-l-xs" disabled={{disableSave}} onclick={{perform saveModerator}}>Save</button>
+        <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
+        <button class="btn btn-success m-l-xs" disabled={{disableSave}} onclick={{perform addModerator selectedUser.id role}}>
+            {{t 'global.save'}}
+        </button>
     </div>
 </div>
-<div class="row-border"></div>
+<div class="moderators-row-border"></div>
