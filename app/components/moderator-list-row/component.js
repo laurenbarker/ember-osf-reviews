@@ -22,7 +22,7 @@ export default Component.extend({
     }),
 
     disableRemove: computed('role', 'disableAdminDeletion', 'editingModerator', function() {
-        return (this.get('role') === 'Admin' && this.get('disableAdminDeletion')) || this.get('editingModerator');
+        return (this.get('role') === 'admin' && this.get('disableAdminDeletion')) || this.get('editingModerator');
     }),
 
     didReceiveAttrs() {

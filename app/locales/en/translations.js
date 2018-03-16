@@ -3,6 +3,7 @@ export default {
         cancel: 'Cancel',
         remove: 'Remove',
         save: 'Save',
+        add: 'Add',
         abstract: 'Abstract',
         doi: 'DOI',
         tags: 'Tags',
@@ -324,6 +325,11 @@ export default {
                 },
             },
             error: 'Error submitting decision.',
+        },
+        unregisteredContributorForm: {
+            fullNameLabel: 'Full name',
+            emailLabel: 'Email',
+            notifyMessage: 'We will notify the user that they have been added as a moderator.',
         },
     },
 };

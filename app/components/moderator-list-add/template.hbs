@@ -5,24 +5,62 @@
                 {{placeholder.text lines=1}}
             {{/content-placeholders}}
         {{else}}
-            {{#power-select
-                options=users
-                search=(perform searchUsers)
-                placeholder='Search by name'
-                selected=selectedUser
-                onchange=(action (mut selectedUser)) as |user|}}
+            {{#if (not selectedUnregisteredUser)}}
+                {{#power-select
+                    options=users
+                    search=(perform searchUsers)
+                    placeholder='Search by name'
+                    selected=selectedUser
+                    onchange=(action (mut selectedUser)) as |user|}}
                     <img class="m-xs" src="{{user.links.profile_image}}" height=25 width=25 alt="{{user.fullName}} gravatar">
                     <span>{{user.fullName}}</span>
-            {{/power-select}}
-            <span class="p-l-xs">or</span>
-            {{#bs-dropdown classNames="pull-right invite-dropdown" as |dd|}}
-                {{#dd.toggle classNames="btn btn-default dropdown-link"}}
-                    {{t 'components.moderatorListAdd.inviteText'}}
-                {{/dd.toggle}}
-                {{#dd.menu classNames="dropdown-menu-right" as |menu|}}
-                    Placeholder
-                {{/dd.menu}}
-            {{/bs-dropdown}}
+                {{/power-select}}
+            {{else}}
+                <i>{{selectedUnregisteredUser}}</i>
+            {{/if}}
+            {{#if showInviteForm}}
+                <span class="p-l-xs">or</span>
+                {{#bs-dropdown classNames="pull-right invite-dropdown" closeOnMenuClick=false as |dd|}}
+                    {{#dd.toggle id="toggle-form" classNames="btn btn-default dropdown-link"}}
+                        {{t 'components.moderatorListAdd.inviteText'}}
+                    {{/dd.toggle}}
+                    {{#dd.menu classNames="dropdown-menu-right unregistered-dropdown" tagName="div" as |menu|}}
+                        {{#menu.item classNames="unregistered-form" tagName="form"}}
+                            <div>
+                                <label>{{t "components.unregisteredContributorForm.fullNameLabel"}}</label>
+                                <form>
+                                    {{validated-input
+                                        model=this
+                                        valuePath='fullName'
+                                        placeholder=(t "components.unregisteredContributorForm.fullNameLabel")
+                                        value=fullName}}
+                                </form>
+                            </div>
+                            <div>
+                                <label>{{t "components.unregisteredContributorForm.emailLabel"}}</label>
+                                <form>
+                                    {{validated-input
+                                        model=this
+                                        valuePath='email'
+                                        placeholder=(t "components.unregisteredContributorForm.emailLabel")
+                                        value=email}}
+                                </form>
+                            </div>
+                            <p class="text-muted">
+                                {{t "components.unregisteredContributorForm.notifyMessage"}}
+                            </p>
+                            <div class="pull-right p-t-xs p-b-sm">
+                                <button type="button" class="btn btn-default btn-small" {{action 'resetInviteForm'}}>
+                                    {{t "global.cancel"}}
+                                </button>
+                                <button type="submit" class="btn btn-success btn-small m-l-xs" {{action 'selectUnregistered'}} disabled={{not isFormValid}}>
+                                    {{t "global.add"}}
+                                </button>
+                            </div>
+                        {{/menu.item}}
+                    {{/dd.menu}}
+                {{/bs-dropdown}}
+            {{/if}}
         {{/if}}
     </div>
     {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}

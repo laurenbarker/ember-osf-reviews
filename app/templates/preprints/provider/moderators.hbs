@@ -7,7 +7,7 @@
         </button>
     </div>
     <div class="moderators-row-border"></div>
-    {{#if (or fetchData.isRunning fetchAdmin.isRunning)}}
+    {{#if (or fetchData.isRunning)}}
         <div class="moderators-row-container moderators-row--skeleton p-h-md p-v-sm">
             <div class="name--skeleton">
                 {{#content-placeholders as |placeholder|}}
@@ -51,5 +51,13 @@
                 addModerator=addModerator
             }}
         {{/if}}
+        <div class="pull-right text-right">
+            {{pagination-pager
+                count=results.totalPages
+                current=page
+                change=(action 'pageChanged')
+            }}
+        </div>
     {{/if}}
+    <div class="p-b-lg"></div>
 </div>

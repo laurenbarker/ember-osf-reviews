@@ -32,6 +32,9 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
                 editingModerator: true,
                 addingNewModerator: true,
             });
+            if (this.get('page') !== this.get('results.totalPages')) {
+                this.set('page', this.get('results.totalPages'));
+            }
         },
     },
 
@@ -74,6 +77,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
         } finally {
+            yield this.get('fetchAdmin').perform();
             this.set('editingModerator', false);
         }
     }),
@@ -93,6 +97,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             this.get('toast').error(this.get('i18n').t('moderators.updateModeratorError'));
             return false;
         } finally {
+            yield this.get('fetchAdmin').perform();
             this.set('editingModerator', false);
         }
     }),
@@ -120,6 +125,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     }),
 
     fetchAdmin: task(function* () {
+        this.set('disableAdminDeletion', true);
         const provider = this.get('theme.provider');
         const admin = yield this.get('store').query('moderator', {
             provider: provider.id,
@@ -128,9 +134,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             },
         });
 
-        if (admin.meta.total <= 1) {
-            this.set('disableAdminDeletion', true);
-        } else {
+        if (admin.meta.total > 1) {
             this.set('disableAdminDeletion', false);
         }
     }),
