@@ -108,14 +108,25 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         }
     }),
 
-    addModerator: task(function* (id, permissionGroup) {
+    addModerator: task(function* (id, permissionGroup, fullName) {
         try {
-            const moderatorInstance = yield this.get('store').createRecord('moderator', {
-                id,
-                permissionGroup,
-                // must include provider because ember data doesn't like the url structure
-                provider: this.get('theme.provider.id'),
-            });
+            let moderatorInstance = {};
+            if (fullName) {
+                moderatorInstance = yield this.get('store').createRecord('moderator', {
+                    permissionGroup,
+                    fullName,
+                    email: id,
+                    // must include provider because ember data doesn't like the url structure
+                    provider: this.get('theme.provider.id'),
+                });
+            } else {
+                moderatorInstance = yield this.get('store').createRecord('moderator', {
+                    id,
+                    permissionGroup,
+                    // must include provider because ember data doesn't like the url structure
+                    provider: this.get('theme.provider.id'),
+                });
+            }
 
             yield moderatorInstance.save();
             yield this.get('fetchAdmin').perform();

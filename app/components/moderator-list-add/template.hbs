@@ -16,12 +16,12 @@
                     <span>{{user.fullName}}</span>
                 {{/power-select}}
             {{else}}
-                <i>{{selectedUnregisteredUser}}</i>
+                <i>{{unregisteredUserName}}</i>
             {{/if}}
             {{#if showInviteForm}}
                 <span class="p-l-xs">or</span>
                 {{#bs-dropdown classNames="pull-right invite-dropdown" closeOnMenuClick=false as |dd|}}
-                    {{#dd.toggle id="toggle-form" classNames="btn btn-default dropdown-link"}}
+                    {{#dd.toggle id="toggle-form" classNames="btn dropdown-link"}}
                         {{t 'components.moderatorListAdd.inviteText'}}
                     {{/dd.toggle}}
                     {{#dd.menu classNames="dropdown-menu-right unregistered-dropdown" tagName="div" as |menu|}}
@@ -33,7 +33,7 @@
                                         model=this
                                         valuePath='fullName'
                                         placeholder=(t "components.unregisteredContributorForm.fullNameLabel")
-                                        value=fullName}}
+                                        value=unregisteredUserName}}
                                 </form>
                             </div>
                             <div>
@@ -43,7 +43,7 @@
                                         model=this
                                         valuePath='email'
                                         placeholder=(t "components.unregisteredContributorForm.emailLabel")
-                                        value=email}}
+                                        value=unregisteredUserEmail}}
                                 </form>
                             </div>
                             <p class="text-muted">
@@ -83,7 +83,7 @@
         <button class="btn btn-default" {{action 'cancel'}} disabled={{addModerator.isRunning}}>
             {{t 'global.cancel'}}
         </button>
-        <button class="btn btn-success m-l-xs" disabled={{disableSave}} onclick={{perform addModerator selectedUser.id role}}>
+        <button class="btn btn-success m-l-xs" disabled={{disableSave}} onclick={{perform addModerator selectedUserId role unregisteredUserName}}>
             {{#if addModerator.isRunning}}
                 {{loading-btn-indicator}}
             {{else}}

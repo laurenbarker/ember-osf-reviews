@@ -38,16 +38,20 @@ export default Component.extend(Validations, {
     store: service(),
 
     selectedUser: '',
-    selectedUnregisteredUser: '',
+    unregisteredUserName: '',
+    unregisteredUserEmail: '',
+    selectedUnregisteredUser: false,
     roleLabel: 'Role',
     role: '',
-    fullName: null,
-    email: null,
 
     isFormValid: computed.alias('validations.isValid'),
 
-    disableSave: computed('role', 'selectedUser', function() {
-        return !this.get('role') || !this.get('selectedUser');
+    selectedUserId: computed('selectedUser', 'unregisteredUserEmail', function() {
+        return this.get('selectedUser.id') || this.get('unregisteredUserEmail');
+    }),
+
+    disableSave: computed('role', 'selectedUser', 'unregisteredUserName', function() {
+        return !this.get('role') || (!this.get('selectedUser') && !this.get('unregisteredUserName'));
     }),
 
     showInviteForm: computed('selectedUser', 'selectedUnregisteredUser', function() {
@@ -74,14 +78,14 @@ export default Component.extend(Validations, {
         resetInviteForm() {
             this.$('#toggle-form').click();
             this.setProperties({
-                fullName: '',
-                email: '',
+                unregisteredUserName: '',
+                unregisteredUserEmail: '',
             });
         },
         selectUnregistered() {
             if (this.get('isFormValid')) {
                 this.$('#toggle-form').click();
-                this.set('selectedUnregisteredUser', this.get('fullName'));
+                this.set('selectedUnregisteredUser', true);
             }
         },
     },
