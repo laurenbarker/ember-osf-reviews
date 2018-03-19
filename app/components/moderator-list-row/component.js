@@ -37,7 +37,7 @@ export default Component.extend({
             });
             this._setRole(role);
         },
-        removeModerator() {
+        removeInitiated() {
             this.setProperties({
                 editingModerator: true,
                 removeConfirmation: true,
@@ -61,6 +61,13 @@ export default Component.extend({
             }
         }
     },
+
+    removeModerator: task(function* (moderatorId) {
+        const removed = yield this.get('deleteModerator').perform(moderatorId);
+        if (removed) {
+            this.set('removeConfirmation', false);
+        }
+    }),
 
     editModerator: task(function* (moderatorId, permissionGroup) {
         const saved = yield this.get('updateModerator').perform(moderatorId, permissionGroup);

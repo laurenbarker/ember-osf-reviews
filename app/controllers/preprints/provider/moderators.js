@@ -67,17 +67,23 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
 
     deleteModerator: task(function* (id) {
         try {
-            const moderatorInstance = yield this.get('store').findRecord('moderator', id, {
-                // must include provider because ember data doesn't line the url structure
-                adapterOptions: {
-                    provider: this.get('theme.provider.id'),
-                },
+            // queryRecord doesn't play nice with the API
+            // findRecord with delete won't accept a payload
+            const response = yield this.get('store').query('moderator', {
+                provider: this.get('theme.provider.id'),
+                filter: { id },
             });
+            const moderatorInstance = response.get('firstObject');
+            moderatorInstance.provider = this.get('theme.provider.id');
+
             yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
+            yield this.get('fetchAdmin').perform();
+            this.get('results.moderators').popObject(moderatorInstance);
+            return true;
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
+            return false;
         } finally {
-            yield this.get('fetchAdmin').perform();
             this.set('editingModerator', false);
         }
     }),
@@ -85,19 +91,19 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     updateModerator: task(function* (id, permissionGroup) {
         try {
             const moderatorInstance = yield this.get('store').findRecord('moderator', id, {
-                // must include provider because ember data doesn't line the url structure
+                // must include provider because ember data doesn't like the url structure
                 adapterOptions: {
                     provider: this.get('theme.provider.id'),
                 },
             });
             moderatorInstance.set('permissionGroup', permissionGroup);
             yield moderatorInstance.save({ adapterOptions: { provider: this.get('theme.provider.id') } });
+            yield this.get('fetchAdmin').perform();
             return true;
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.updateModeratorError'));
             return false;
         } finally {
-            yield this.get('fetchAdmin').perform();
             this.set('editingModerator', false);
         }
     }),
@@ -107,16 +113,16 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             const moderatorInstance = yield this.get('store').createRecord('moderator', {
                 id,
                 permissionGroup,
-                // must include provider because ember data doesn't line the url structure
+                // must include provider because ember data doesn't like the url structure
                 provider: this.get('theme.provider.id'),
             });
 
             yield moderatorInstance.save();
+            yield this.get('fetchAdmin').perform();
             this.get('results.moderators').pushObject(moderatorInstance);
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
         } finally {
-            yield this.get('fetchAdmin').perform();
             this.setProperties({
                 editingModerator: false,
                 addingNewModerator: false,

@@ -80,9 +80,15 @@
         {{/dd.menu}}
     {{/bs-dropdown}}
     <div class="row-controls">
-        <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
+        <button class="btn btn-default" {{action 'cancel'}} disabled={{addModerator.isRunning}}>
+            {{t 'global.cancel'}}
+        </button>
         <button class="btn btn-success m-l-xs" disabled={{disableSave}} onclick={{perform addModerator selectedUser.id role}}>
-            {{t 'global.save'}}
+            {{#if addModerator.isRunning}}
+                {{loading-btn-indicator}}
+            {{else}}
+                {{t 'global.save'}}
+            {{/if}}
         </button>
     </div>
 </div>

@@ -7,7 +7,7 @@
         </button>
     </div>
     <div class="moderators-row-border"></div>
-    {{#if (or fetchData.isRunning)}}
+    {{#if fetchData.isRunning}}
         <div class="moderators-row-container moderators-row--skeleton p-h-md p-v-sm">
             <div class="name--skeleton">
                 {{#content-placeholders as |placeholder|}}

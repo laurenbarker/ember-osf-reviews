@@ -32,14 +32,26 @@
     {{/bs-dropdown}}
     <div class="row-controls">
         {{#if removeConfirmation}}
-            <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
-            <button class="btn btn-danger m-l-xs" onclick={{perform deleteModerator moderator.id}}>
-                {{t 'global.remove'}}
+            <button class="btn btn-default" {{action 'cancel'}} disabled={{removeModerator.isRunning}}>
+                {{t 'global.cancel'}}
+            </button>
+            <button class="btn btn-danger m-l-xs" onclick={{perform removeModerator moderator.id}} disabled={{removeModerator.isRunning}}>
+                {{#if removeModerator.isRunning}}
+                    {{loading-btn-indicator}}
+                {{else}}
+                    {{t 'global.remove'}}
+                {{/if}}
             </button>
         {{else if editConfirmation}}
-            <button class="btn btn-default" {{action 'cancel'}}>{{t 'global.cancel'}}</button>
-            <button class="btn btn-success m-l-xs" onclick={{perform editModerator moderator.id role}}>
-                {{t 'global.save'}}
+            <button class="btn btn-default" {{action 'cancel'}} disabled={{editModerator.isRunning}}>
+                {{t 'global.cancel'}}
+            </button>
+            <button class="btn btn-success m-l-xs" onclick={{perform editModerator moderator.id role}} disabled={{editModerator.isRunning}}>
+                {{#if editModerator.isRunning}}
+                    {{loading-btn-indicator}}
+                {{else}}
+                    {{t 'global.save'}}
+                {{/if}}
             </button>
         {{else}}
             {{#if (and editingModerator disableRemove)}}
@@ -51,7 +63,7 @@
                     {{t 'components.moderatorList.adminDisabledMessage'}}
                 {{/bs-tooltip}}
             {{/if}}
-            <a role="button" class="remove-button {{if disableRemove 'disabled'}}" {{action 'removeModerator'}}>
+            <a role="button" class="remove-button {{if disableRemove 'disabled'}}" {{action 'removeInitiated'}}>
                 <i class="fa fa-times fa-lg "></i>
             </a>
         {{/if}}
