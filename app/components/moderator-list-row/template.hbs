@@ -1,0 +1,47 @@
+<div class="row-container p-h-md p-v-sm">
+    <div class="moderator-name">
+        {{#if fetchData.isRunning}}
+            {{#content-placeholders as |placeholder|}}
+                {{placeholder.img height=30}}
+            {{/content-placeholders}}
+            <span class="name">{{moderator.fullname}}</span>
+        {{else}}
+            <img src={{user.links.profile_image}} height=40 width=40>
+            <span class="name p-l-sm">
+                <a href="{{user.links.html}}">{{moderator.fullName}}</a>
+            </span>
+        {{/if}}
+    </div>
+    {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
+        {{#dd.button classNames="btn btn-default dropdown-button" disabled=(and disableAdminDeletion (eq role 'Admin'))}}
+            {{role}}
+            <span class="fa fa-caret-down p-l-xs"></span>
+        {{/dd.button}}
+        {{#dd.menu classNames="dropdown-menu-right moderator-dropdown-menu" as |menu|}}
+            {{#each roleOptions as |roleOption|}}
+                {{#menu.item}}
+                    <button class="btn" {{action 'roleChanged' roleOption.label}}>
+                        {{roleOption.label}}
+                        <i class='{{if (eq role roleOption.label) 'fa fa-check selected' 'not-selected'}}'></i>
+                    </button>
+                {{/menu.item}}
+            {{/each}}
+        {{/dd.menu}}
+    {{/bs-dropdown}}
+    <div class="row-controls">
+        {{#if showConfirmation}}
+            <button class="btn btn-default" {{action 'cancel'}}>Cancel</button>
+            <button class="btn btn-danger m-l-xs">Remove</button>
+        {{else}}
+            {{#if (and editingModerator disableRemove)}}
+                {{#bs-tooltip placement='left'}}Can only edit one moderator at a time{{/bs-tooltip}}
+            {{else if (and disableAdminDeletion disableRemove)}}
+                {{#bs-tooltip placement='left'}}Must have one admin{{/bs-tooltip}}
+            {{/if}}
+            <a role="button" class="remove-button {{if disableRemove 'disabled'}}" {{action 'removeModerator'}}>
+                <i class="fa fa-times fa-lg "></i>
+            </a>
+        {{/if}}
+    </div>
+</div>
+<div class="row-border"></div>

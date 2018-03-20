@@ -1,0 +1,25 @@
+.row-container {
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  justify-items: start;
+  width: 100%;
+}
+
+.role-dropdown {
+
+  .dropdown-button {
+    min-width: 115px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.row-controls {
+  justify-self: end;
+
+  .remove-button {
+    color: #343333;
+  }
+}

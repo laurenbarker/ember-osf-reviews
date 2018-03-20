@@ -54,6 +54,7 @@
     "ember-moment": "^7.4.1",
     "ember-onbeforeunload": "^1.1.2",
     "ember-parachute": "^0.3.5",
+    "ember-power-select": "^1.10.4",
     "ember-radio-button": "^1.1.1",
     "ember-resolver": "^4.0.0",
     "ember-source": "2.16.2",

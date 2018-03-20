@@ -21,10 +21,14 @@ export default Component.extend({
     tabs: computed('theme.reviewableStatusCounts.pending', function() {
         return [
             {
-                nameKey: 'global.moderation',
+                nameKey: 'global.submissions',
                 route: 'preprints.provider.moderation',
                 hasCount: true,
                 count: this.get('theme.reviewableStatusCounts.pending'),
+            },
+            {
+                nameKey: 'global.moderators',
+                route: 'preprints.provider.moderators',
             },
             {
                 nameKey: 'global.notifications',

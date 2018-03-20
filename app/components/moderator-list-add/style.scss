@@ -1,0 +1,42 @@
+.row-container {
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  justify-items: start;
+  width: 100%;
+  min-height: 60px;
+}
+
+.moderator-name {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+
+  .ember-power-select-trigger {
+    min-width: 200px;
+    background-color: transparent;
+  }
+}
+
+.dropdown-link {
+  color: $brand-primary;
+  border: none;
+  background-color: transparent;
+  padding: 2px 5px;
+}
+
+.role-dropdown {
+  .dropdown-button {
+    min-width: 115px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .invite-dropdown {
+    background-color: $color-white;
+  }
+}
+
+.row-controls {
+  justify-self: end;
+}

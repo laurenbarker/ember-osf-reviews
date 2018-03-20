@@ -1,0 +1,34 @@
+.moderators-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+
+  .page-title {
+	font-size: 24px;
+  }
+}
+
+.row-border {
+  width: 100%;
+  height: 1px;
+  background-color: $color-border-gray-light;
+}
+
+.no-moderators-message {
+	text-align: center;
+}
+
+.moderator-dropdown-menu {
+  background-color: $color-bg-default;
+
+  button {
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    width: 100%;
+  }
+
+  li:hover {
+    background-color: $color-border-gray-light;
+  }
+}

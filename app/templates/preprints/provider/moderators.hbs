@@ -1,0 +1,39 @@
+<div class="content container">
+    <div class="moderators-header m-t-lg">
+        <div class="page-title">{{theme.provider.name}} {{t "global.moderators"}}</div>
+        <button class="btn btn-default add-moderator-button" {{action 'newModerator'}}>
+            <i class="fa fa-plus p-r-xs"></i>
+            Add new moderator
+        </button>
+    </div>
+    <div class="row-border"></div>
+    {{#if (or fetchData.isRunning fetchAdmin.isRunning)}}
+        <div class="row-container p-h-md p-v-sm">
+            {{#content-placeholders as |placeholder|}}
+                {{placeholder.text lines=1}}
+            {{/content-placeholders}}
+        </div>
+        <div class="row-border"></div>
+    {{else if (not results.moderators)}}
+        <p class="m-b-md m-t-md no-moderators-message">
+            Get started by <a>adding a new moderator</a>!
+        </p>
+        <div class="row-border"></div>
+    {{else}}
+        {{#each results.moderators as |moderator|}}
+            {{moderator-list-row
+                moderator=moderator
+                disableAdminDeletion=disableAdminDeletion
+                editingModerator=editingModerator
+                roleOptions=roleOptions
+            }}
+        {{/each}}
+        {{#if addingNewModerator}}
+            {{moderator-list-add
+                roleOptions=roleOptions
+                addingNewModerator=addingNewModerator
+                saveModerator=(perform saveModerator)
+            }}
+        {{/if}}
+    {{/if}}
+</div>
