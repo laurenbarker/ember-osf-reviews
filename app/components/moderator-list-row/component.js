@@ -25,6 +25,10 @@ export default Component.extend({
         return (this.get('role') === 'admin' && this.get('disableAdminDeletion')) || this.get('editingModerator');
     }),
 
+    disableRoleSelect: computed('disableRemove', 'editConfirmation', function() {
+        return this.get('disableRemove') && !this.get('editConfirmation');
+    }),
+
     didReceiveAttrs() {
         this.get('fetchData').perform();
     },

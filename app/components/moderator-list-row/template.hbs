@@ -15,7 +15,7 @@
         {{/if}}
     </div>
     {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
-        {{#dd.button classNames="btn btn-default dropdown-button" disabled=(and disableAdminDeletion (eq role 'admin'))}}
+        {{#dd.button classNames="btn btn-default dropdown-button" disabled=disableRoleSelect}}
             {{roleLabel}}
             <span class="fa fa-caret-down p-l-xs"></span>
         {{/dd.button}}
