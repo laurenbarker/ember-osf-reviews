@@ -39,6 +39,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     },
 
     setup({ queryParams }) {
+        this.set('moderatorIds', []);
         this.set('roleOptions', [
             {
                 role: 'admin',
@@ -51,6 +52,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         ]);
         this.get('fetchData').perform(queryParams);
         this.get('fetchAdmin').perform();
+        this.get('loadModerators').perform();
     },
 
     queryParamsDidChange({ shouldRefresh, queryParams }) {
@@ -64,6 +66,17 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             this.resetQueryParams();
         }
     },
+
+    loadModerators: task(function* () {
+        const moderators = yield this.get('store').query('moderator', {
+            page: {
+                size: 100,
+            },
+            provider: this.get('theme.provider.id'),
+        });
+        const moderatorIds = moderators.map(moderator => moderator.id);
+        this.set('moderatorIds', moderatorIds);
+    }),
 
     deleteModerator: task(function* (id) {
         try {

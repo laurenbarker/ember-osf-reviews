@@ -258,6 +258,7 @@ export default {
         },
         moderatorListAdd: {
             inviteText: 'invite by email',
+            userSearchError: 'Error searching users.',
         },
         moderatorList: {
             editDisabledMessage: 'Can only edit one moderator at a time',

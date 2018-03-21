@@ -7,12 +7,13 @@
         {{else}}
             {{#if (not selectedUnregisteredUser)}}
                 {{#power-select
+                    disabled=loadingModerators
                     options=users
                     search=(perform searchUsers)
                     placeholder='Search by name'
                     selected=selectedUser
                     onchange=(action (mut selectedUser)) as |user|}}
-                    <img class="m-xs" src="{{user.links.profile_image}}" height=25 width=25 alt="{{user.fullName}} gravatar">
+                    <img class="m-xs" src="{{user.profileImage}}" height=25 width=25 alt="{{user.fullName}} gravatar">
                     <span>{{user.fullName}}</span>
                 {{/power-select}}
             {{else}}

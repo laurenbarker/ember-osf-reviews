@@ -5,6 +5,8 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { validator, buildValidations } from 'ember-cp-validations';
 
+import config from '../../config/environment';
+
 
 const DEBOUNCE_MS = 250;
 
@@ -36,6 +38,7 @@ const Validations = buildValidations({
 export default Component.extend(Validations, {
     i18n: service(),
     store: service(),
+    theme: service(),
 
     selectedUser: '',
     unregisteredUserName: '',
@@ -92,16 +95,41 @@ export default Component.extend(Validations, {
 
     searchUsers: task(function* (query) {
         yield timeout(DEBOUNCE_MS);
+
         try {
-            const users = yield this.get('store').query('user', {
-                filter: {
-                    'full_name,given_name,middle_names,family_name': query,
+            // Hack to disable search results for users who are already moderators
+            // ember-data doesn't like when you manipulate the output
+            // ember-power-select expects disabled=true on disabled results
+            const users = yield $.ajax({
+                type: 'GET',
+                url: `${config.OSF.apiUrl}/${config.OSF.apiNamespace}/users`,
+                headers: {
+                    ACCEPT: 'application/vnd.api+json; version=2.6',
                 },
-                size: 20,
+                data: {
+                    filter: {
+                        'full_name,given_name,middle_names,family_name': query,
+                    },
+                    page: {
+                        size: 15,
+                    },
+                },
             });
-            return users;
+
+            const usersFullNames = users.data.map((user) => {
+                const userData = {
+                    fullName: user.attributes.full_name,
+                    profileImage: user.links.profile_image,
+                };
+                if (this.get('moderatorIds').indexOf(user.id) > -1) {
+                    userData.disabled = true;
+                }
+                return userData;
+            });
+
+            return usersFullNames;
         } catch (e) {
-            this.get('toast').error(this.get('i18n').t('submit.search_contributors_error'));
+            this.get('toast').error(this.get('i18n').t('components.moderatorListAdd.userSearchError'));
         }
     }).restartable(),
 });
