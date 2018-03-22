@@ -120,6 +120,7 @@ export default Component.extend(Validations, {
                 const userData = {
                     fullName: user.attributes.full_name,
                     profileImage: user.links.profile_image,
+                    id: user.id,
                 };
                 if (this.get('moderatorIds').indexOf(user.id) > -1) {
                     userData.disabled = true;

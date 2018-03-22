@@ -18,10 +18,12 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     store: service(),
     theme: service(),
     i18n: service(),
+    currentUser: service(),
 
     disableAdminDeletion: false,
     editingModerator: false,
     addingNewContrib: false,
+    isAdmin: false,
 
     actions: {
         pageChanged(page) {
@@ -50,8 +52,8 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
                 label: 'Moderator',
             },
         ]);
-        this.get('fetchData').perform(queryParams);
         this.get('fetchAdmin').perform();
+        this.get('fetchData').perform(queryParams);
         this.get('loadModerators').perform();
     },
 
@@ -147,6 +149,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
         } finally {
+            this.get('loadModerators').perform();
             this.setProperties({
                 editingModerator: false,
                 addingNewModerator: false,
@@ -157,14 +160,22 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     fetchAdmin: task(function* () {
         this.set('disableAdminDeletion', true);
         const provider = this.get('theme.provider');
-        const admin = yield this.get('store').query('moderator', {
+        const admins = yield this.get('store').query('moderator', {
             provider: provider.id,
             filter: {
                 permission_group: 'admin',
             },
         });
 
-        if (admin.meta.total > 1) {
+        const adminIds = admins.content.map(admin => admin.id);
+
+        if (adminIds.indexOf(this.get('currentUser.user.id')) > -1) {
+            this.set('isAdmin', true);
+        } else {
+            this.set('isAdmin', false);
+        }
+
+        if (admins.meta.total > 1) {
             this.set('disableAdminDeletion', false);
         }
     }),

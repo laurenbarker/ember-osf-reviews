@@ -76,6 +76,8 @@ export default {
         deleteModeratorError: 'Error removing moderator.',
         updateModeratorError: 'Error saving moderator',
         addModeratorError: 'Error adding moderator',
+        name: 'Name',
+        permissions: 'Permissions',
     },
     providerSettings: {
         reviewsWorkflow: {

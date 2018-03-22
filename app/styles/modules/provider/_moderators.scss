@@ -1,10 +1,14 @@
 .moderators-header {
-  display: flex;
-  justify-content: space-between;
   padding-bottom: 15px;
 
-  .page-title {
-	  font-size: 24px;
+  .add-moderator-button {
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
+
+  .row-header {
+	  font-size: 18px;
+    align-self: flex-end;
   }
 }
 

@@ -1,10 +1,13 @@
 <div class="content container">
-    <div class="moderators-header m-t-lg">
-        <div class="page-title">{{theme.provider.name}} {{t 'global.moderators'}}</div>
-        <button class="btn btn-default add-moderator-button" {{action 'newModerator'}} disabled={{editingModerator}}>
-            <i class="fa fa-plus p-r-xs"></i>
-            {{t 'moderators.addNewMod'}}
-        </button>
+    <div class="moderators-header moderators-row-container m-t-md">
+        <div class="row-header p-l-md">{{t 'moderators.name'}}</div>
+        {{#if isAdmin}}
+            <div class="row-header">{{t 'moderators.permissions'}}</div>
+            <button class="btn btn-default add-moderator-button m-r-md" {{action 'newModerator'}} disabled={{editingModerator}}>
+                <i class="fa fa-plus p-r-xs"></i>
+                {{t 'moderators.addNewMod'}}
+            </button>
+        {{/if}}
     </div>
     <div class="moderators-row-border"></div>
     {{#if fetchData.isRunning}}
@@ -15,16 +18,18 @@
                     <div class="m-l-sm">{{placeholder.text lines=1}}</div>
                 {{/content-placeholders}}
             </div>
-            <div>
-                {{#content-placeholders as |placeholder|}}
-                    <div class="dropdown--skeleton">{{placeholder.img}}</div>
-                {{/content-placeholders}}
-            </div>
-            <div class="remove-icon--skeleton">
-                {{#content-placeholders as |placeholder|}}
-                    {{placeholder.icon}}
-                {{/content-placeholders}}
-            </div>
+            {{#if isAdmin}}
+                <div>
+                    {{#content-placeholders as |placeholder|}}
+                        <div class="dropdown--skeleton">{{placeholder.img}}</div>
+                    {{/content-placeholders}}
+                </div>
+                <div class="remove-icon--skeleton">
+                    {{#content-placeholders as |placeholder|}}
+                        {{placeholder.icon}}
+                    {{/content-placeholders}}
+                </div>
+            {{/if}}
         </div>
         <div class="moderators-row-border"></div>
     {{else if (not results.moderators)}}
@@ -36,6 +41,7 @@
         {{#each results.moderators as |moderator|}}
             {{moderator-list-row
                 moderator=moderator
+                isAdmin=isAdmin
                 disableAdminDeletion=disableAdminDeletion
                 editingModerator=editingModerator
                 updateModerator=updateModerator
