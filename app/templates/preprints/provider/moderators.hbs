@@ -1,7 +1,7 @@
 <div class="content container">
     <div class="moderators-header m-t-lg">
         <div class="page-title">{{theme.provider.name}} {{t 'global.moderators'}}</div>
-        <button class="btn btn-default add-moderator-button" {{action 'newModerator'}}>
+        <button class="btn btn-default add-moderator-button" {{action 'newModerator'}} disabled={{editingModerator}}>
             <i class="fa fa-plus p-r-xs"></i>
             {{t 'moderators.addNewMod'}}
         </button>
