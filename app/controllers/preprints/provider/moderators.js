@@ -160,7 +160,6 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             yield moderatorInstance.save();
 
             const allModerators = yield this.get('store').peekAll('moderator');
-            // debugger;
             if (allModerators.get('length') % 10 === 1) {
                 yield this.get('fetchData').perform(this.get('queryParams'));
             } else {

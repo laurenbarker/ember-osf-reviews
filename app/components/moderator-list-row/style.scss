@@ -9,10 +9,10 @@
 }
 
 .row-controls {
-  justify-self: end;
+  justify-self: flex-end;
 
   .remove-button {
-    color: #343333;
+    color: $color-text-gray-dark;
   }
 }
 
