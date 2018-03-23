@@ -92,8 +92,20 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             moderatorInstance.provider = this.get('theme.provider.id');
 
             yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
+
+            const allModerators = yield this.get('store').peekAll('moderator');
+
+            if (allModerators.get('length') % 10 === 0) {
+                if (this.get('page') !== 1) {
+                    this.decrementProperty('page');
+                } else {
+                    yield this.get('fetchData').perform(this.get('queryParams'));
+                }
+            } else {
+                this.get('results.moderators').popObject(moderatorInstance);
+            }
+
             yield this.get('fetchAdmin').perform();
-            this.get('results.moderators').popObject(moderatorInstance);
             return true;
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
@@ -112,8 +124,10 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
                 },
             });
             moderatorInstance.set('permissionGroup', permissionGroup);
+
             yield moderatorInstance.save({ adapterOptions: { provider: this.get('theme.provider.id') } });
             yield this.get('fetchAdmin').perform();
+
             return true;
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.updateModeratorError'));
@@ -144,8 +158,16 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             }
 
             yield moderatorInstance.save();
+
+            const allModerators = yield this.get('store').peekAll('moderator');
+            // debugger;
+            if (allModerators.get('length') % 10 === 1) {
+                yield this.get('fetchData').perform(this.get('queryParams'));
+            } else {
+                this.get('results.moderators').pushObject(moderatorInstance);
+            }
+
             yield this.get('fetchAdmin').perform();
-            this.get('results.moderators').pushObject(moderatorInstance);
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
         } finally {

@@ -37,8 +37,8 @@
                 <button class="btn btn-default" {{action 'cancel'}} disabled={{removeModerator.isRunning}}>
                     {{t 'global.cancel'}}
                 </button>
-                <button class="btn btn-danger m-l-xs" onclick={{perform removeModerator moderator.id}} disabled={{removeModerator.isRunning}}>
-                    {{#if removeModerator.isRunning}}
+                <button class="btn btn-danger m-l-xs" onclick={{perform deleteModerator moderator.id}} disabled={{deleteModerator.isRunning}}>
+                    {{#if deleteModerator.isRunning}}
                         {{loading-btn-indicator}}
                     {{else}}
                         {{t 'global.remove'}}
