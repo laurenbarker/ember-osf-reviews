@@ -2,6 +2,7 @@
   width: 100%;
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
 
   .ember-power-select-trigger {
     min-width: 200px;
@@ -38,7 +39,10 @@
 }
 
 .row-controls {
-  justify-self: end;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-self: flex-end;
 }
 
 .unregistered-dropdown {

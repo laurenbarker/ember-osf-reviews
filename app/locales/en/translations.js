@@ -70,7 +70,7 @@ export default {
         },
     },
     moderators: {
-        addNewMod: 'Add new moderator',
+        addNewMod: 'Add',
         getStartedIntro: 'Get started by',
         getStartedAction: 'adding a new moderator!',
         deleteModeratorError: 'Error removing moderator.',

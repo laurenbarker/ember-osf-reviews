@@ -8,10 +8,11 @@
                 {{/content-placeholders}}
             </div>
         {{else}}
-            <img src={{user.links.profile_image}} height=40 width=40 alt="gravatar {{moderator.fullName}}">
-            <span class="name p-l-sm">
+            <img class="hidden-xs" src={{user.links.profile_image}} height=40 width=40 alt="gravatar {{moderator.fullName}}">
+            <img class="visible-xs" src="{{user.links.profile_image}}" height=25 width=25 alt="{{moderator.fullName}} gravatar">
+            <div class="name p-l-sm">
                 <a href="{{user.links.html}}">{{moderator.fullName}}</a>
-            </span>
+            </div>
         {{/if}}
     </div>
     {{#if isAdmin}}
