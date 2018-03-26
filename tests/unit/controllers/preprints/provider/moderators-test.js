@@ -24,7 +24,7 @@ test('Initial properties', function (assert) {
     assert.ok(propKeys.every(key => expected[key] === actual[key]));
 });
 
-test('pageChange action', function (assert) {
+test('pageChanged action', function (assert) {
     const ctrl = this.subject();
     ctrl.set('page', 2);
 
