@@ -78,6 +78,8 @@ export default {
         addModeratorError: 'Error adding moderator',
         name: 'Name',
         permissions: 'Permissions',
+        admin: 'Admin',
+        moderator: 'Moderator',
     },
     providerSettings: {
         reviewsWorkflow: {

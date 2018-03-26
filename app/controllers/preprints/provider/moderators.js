@@ -45,11 +45,11 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         this.set('roleOptions', [
             {
                 role: 'admin',
-                label: 'Admin',
+                label: this.get('i18n').t('moderators.admin'),
             },
             {
                 role: 'moderator',
-                label: 'Moderator',
+                label: this.get('i18n').t('moderators.moderator'),
             },
         ]);
         this.get('fetchAdmin').perform();
@@ -80,20 +80,11 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         this.set('moderatorIds', moderatorIds);
     }),
 
-    deleteModerator: task(function* (id) {
+    deleteModerator: task(function* (moderatorInstance) {
         try {
-            // queryRecord doesn't play nice with the API
-            // findRecord with delete won't accept a payload
-            const response = yield this.get('store').query('moderator', {
-                provider: this.get('theme.provider.id'),
-                filter: { id },
-            });
-            const moderatorInstance = response.get('firstObject');
-            moderatorInstance.provider = this.get('theme.provider.id');
-
             yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
 
-            const allModerators = yield this.get('store').peekAll('moderator');
+            const allModerators = this.get('store').peekAll('moderator');
 
             if (allModerators.get('length') % 10 === 0) {
                 if (this.get('page') !== 1) {
@@ -102,7 +93,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
                     yield this.get('fetchData').perform(this.get('queryParams'));
                 }
             } else {
-                this.get('results.moderators').popObject(moderatorInstance);
+                this.get('results.moderators').removeObject(moderatorInstance);
             }
 
             yield this.get('fetchAdmin').perform();
@@ -115,14 +106,8 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         }
     }),
 
-    updateModerator: task(function* (id, permissionGroup) {
+    updateModerator: task(function* (moderatorInstance, permissionGroup) {
         try {
-            const moderatorInstance = yield this.get('store').findRecord('moderator', id, {
-                // must include provider because ember data doesn't like the url structure
-                adapterOptions: {
-                    provider: this.get('theme.provider.id'),
-                },
-            });
             moderatorInstance.set('permissionGroup', permissionGroup);
 
             yield moderatorInstance.save({ adapterOptions: { provider: this.get('theme.provider.id') } });
@@ -158,6 +143,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             }
 
             yield moderatorInstance.save();
+            yield this.get('fetchAdmin').perform();
 
             const allModerators = yield this.get('store').peekAll('moderator');
             if (allModerators.get('length') % 10 === 1) {
@@ -165,8 +151,6 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             } else {
                 this.get('results.moderators').pushObject(moderatorInstance);
             }
-
-            yield this.get('fetchAdmin').perform();
         } catch (e) {
             this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
         } finally {

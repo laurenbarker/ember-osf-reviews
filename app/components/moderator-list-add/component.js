@@ -44,10 +44,14 @@ export default Component.extend(Validations, {
     unregisteredUserName: '',
     unregisteredUserEmail: '',
     selectedUnregisteredUser: false,
-    roleLabel: 'Role',
     role: '',
 
     isFormValid: computed.alias('validations.isValid'),
+
+    roleLabel: computed('role', function() {
+        const roleOption = this.get('roleOptions').findBy('role', this.get('role'));
+        return roleOption ? roleOption.label : 'Role';
+    }),
 
     selectedUserId: computed('selectedUser', 'unregisteredUserEmail', function() {
         return this.get('selectedUser.id') || this.get('unregisteredUserEmail');
@@ -64,11 +68,6 @@ export default Component.extend(Validations, {
     actions: {
         roleChanged(role) {
             this.set('role', role);
-            for (const value of this.get('roleOptions')) {
-                if (value.role === role) {
-                    this.set('roleLabel', value.label);
-                }
-            }
         },
         cancel() {
             this.setProperties({
@@ -97,29 +96,19 @@ export default Component.extend(Validations, {
         yield timeout(DEBOUNCE_MS);
 
         try {
-            // Hack to disable search results for users who are already moderators
-            // ember-data doesn't like when you manipulate the output
-            // ember-power-select expects disabled=true on disabled results
-            const users = yield $.ajax({
-                type: 'GET',
-                url: `${config.OSF.apiUrl}/${config.OSF.apiNamespace}/users`,
-                headers: {
-                    ACCEPT: 'application/vnd.api+json; version=2.6',
+            const users = yield this.get('store').query('user', {
+                filter: {
+                    'full_name,given_name,middle_names,family_name': query,
                 },
-                data: {
-                    filter: {
-                        'full_name,given_name,middle_names,family_name': query,
-                    },
-                    page: {
-                        size: 15,
-                    },
+                page: {
+                    size: 15,
                 },
             });
 
-            const usersFullNames = users.data.map((user) => {
+            const usersFullNames = users.content.map((user) => {
                 const userData = {
-                    fullName: user.attributes.full_name,
-                    profileImage: user.links.profile_image,
+                    fullName: user.__data.fullName,
+                    profileImage: user.__data.links.profile_image,
                     id: user.id,
                 };
                 if (this.get('moderatorIds').indexOf(user.id) > -1) {

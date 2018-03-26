@@ -1,6 +1,7 @@
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { oneWay } from '@ember/object/computed';
 
 import { task } from 'ember-concurrency';
 
@@ -11,14 +12,9 @@ export default Component.extend({
 
     removeConfirmation: false,
     editConfirmation: false,
-    roleLabel: 'Role',
-    role: computed('moderator.permissionGroup', function() {
-        for (const value of this.get('roleOptions')) {
-            if (value.role === this.get('moderator.permissionGroup')) {
-                this.set('roleLabel', value.label);
-            }
-        }
-        return this.get('moderator.permissionGroup');
+    role: oneWay('moderator.permissionGroup'),
+    roleLabel: computed('role', function() {
+        return this.get('roleOptions').findBy('role', this.get('role')).label;
     }),
 
     disableRemove: computed('role', 'disableAdminDeletion', 'editingModerator', function() {
@@ -39,7 +35,7 @@ export default Component.extend({
                 editingModerator: true,
                 editConfirmation: true,
             });
-            this._setRole(role);
+            this.set('role', role);
         },
         removeInitiated() {
             this.setProperties({
@@ -48,7 +44,7 @@ export default Component.extend({
             });
         },
         cancel() {
-            this._setRole(this.get('moderator.permissionGroup'));
+            this.set('role', this.get('moderator.permissionGroup'));
             this.setProperties({
                 editingModerator: false,
                 removeConfirmation: false,
@@ -57,17 +53,8 @@ export default Component.extend({
         },
     },
 
-    _setRole(role) {
-        this.set('role', role);
-        for (const value of this.get('roleOptions')) {
-            if (value.role === role) {
-                this.set('roleLabel', value.label);
-            }
-        }
-    },
-
-    editModerator: task(function* (moderatorId, permissionGroup) {
-        const saved = yield this.get('updateModerator').perform(moderatorId, permissionGroup);
+    editModerator: task(function* (moderator, permissionGroup) {
+        const saved = yield this.get('updateModerator').perform(moderator, permissionGroup);
         if (saved) {
             this.set('editConfirmation', false);
         }

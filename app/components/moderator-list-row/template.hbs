@@ -37,7 +37,7 @@
                 <button class="btn btn-default" {{action 'cancel'}} disabled={{removeModerator.isRunning}}>
                     {{t 'global.cancel'}}
                 </button>
-                <button class="btn btn-danger m-l-xs" onclick={{perform deleteModerator moderator.id}} disabled={{deleteModerator.isRunning}}>
+                <button class="btn btn-danger m-l-xs" onclick={{perform deleteModerator moderator}} disabled={{deleteModerator.isRunning}}>
                     {{#if deleteModerator.isRunning}}
                         {{loading-btn-indicator}}
                     {{else}}
@@ -48,7 +48,7 @@
                 <button class="btn btn-default" {{action 'cancel'}} disabled={{editModerator.isRunning}}>
                     {{t 'global.cancel'}}
                 </button>
-                <button class="btn btn-success m-l-xs" onclick={{perform editModerator moderator.id role}} disabled={{editModerator.isRunning}}>
+                <button class="btn btn-success m-l-xs" onclick={{perform editModerator moderator role}} disabled={{editModerator.isRunning}}>
                     {{#if editModerator.isRunning}}
                         {{loading-btn-indicator}}
                     {{else}}
