@@ -5,8 +5,6 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { validator, buildValidations } from 'ember-cp-validations';
 
-import config from '../../config/environment';
-
 
 const DEBOUNCE_MS = 250;
 
