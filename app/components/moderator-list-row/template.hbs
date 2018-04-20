@@ -1,4 +1,4 @@
-<div class="moderators-row-container p-h-md p-v-sm">
+<div class="moderators-list-row-container p-h-md p-v-sm">
     <div class="moderator-name">
         {{#if fetchData.isRunning}}
             <div class="name--skeleton">
@@ -16,12 +16,12 @@
         {{/if}}
     </div>
     {{#if isAdmin}}
-        {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
+        {{#bs-dropdown classNames="role-dropdown" as |dd|}}
             {{#dd.button classNames="btn btn-default dropdown-button" disabled=disableRoleSelect}}
                 {{roleLabel}}
                 <span class="fa fa-caret-down p-l-xs"></span>
             {{/dd.button}}
-            {{#dd.menu classNames="dropdown-menu-right moderator-dropdown-menu" as |menu|}}
+            {{#dd.menu classNames="moderator-dropdown-menu" as |menu|}}
                 {{#each roleOptions as |roleOption|}}
                     {{#menu.item}}
                         <button class="btn" {{action 'roleChanged' roleOption.role}}>

@@ -1,4 +1,4 @@
-<div class="moderators-row-container p-h-md p-v-sm">
+<div class="moderators-add-row-container p-h-md p-v-sm">
     <div class="moderator-name">
         {{#if (not selectedUnregisteredUser)}}
             {{#power-select
@@ -8,19 +8,21 @@
                 placeholder='Search by name'
                 selected=selectedUser
                 onchange=(action (mut selectedUser)) as |user|}}
-                <img class="m-xs" src="{{user.profileImage}}" height=25 width=25 alt="{{user.fullName}} gravatar">
-                <span>{{user.fullName}}</span>
+                <div style="display: flex; align-items: center;">
+                    <img class="m-xs" src="{{user.profileImage}}" height=25 width=25 alt="{{user.fullName}} gravatar">
+                    <div>{{user.fullName}}</div>
+                </div>
             {{/power-select}}
         {{else}}
             <i>{{unregisteredUserName}}</i>
         {{/if}}
         {{#if showInviteForm}}
             <span class="p-l-xs">or</span>
-            {{#bs-dropdown classNames="pull-right invite-dropdown" closeOnMenuClick=false as |dd|}}
+            {{#bs-dropdown classNames="invite-dropdown" closeOnMenuClick=false as |dd|}}
                 {{#dd.toggle id="toggle-form" classNames="btn dropdown-link"}}
                     {{t 'components.moderatorListAdd.inviteText'}}
                 {{/dd.toggle}}
-                {{#dd.menu classNames="dropdown-menu-right unregistered-dropdown" tagName="div" as |menu|}}
+                {{#dd.menu classNames="unregistered-dropdown" tagName="div" as |menu|}}
                     {{#menu.item classNames="unregistered-form" tagName="form"}}
                         <div>
                             <label>{{t "components.unregisteredContributorForm.fullNameLabel"}}</label>
@@ -58,12 +60,12 @@
             {{/bs-dropdown}}
         {{/if}}
     </div>
-    {{#bs-dropdown classNames="pull-right role-dropdown" as |dd|}}
+    {{#bs-dropdown classNames="role-dropdown" as |dd|}}
         {{#dd.button classNames="btn btn-default dropdown-button"}}
             {{roleLabel}}
             <span class="fa fa-caret-down p-l-xs"></span>
         {{/dd.button}}
-        {{#dd.menu classNames="dropdown-menu-right moderator-dropdown-menu" as |menu|}}
+        {{#dd.menu classNames="moderator-dropdown-menu" as |menu|}}
             {{#each roleOptions as |roleOption|}}
                 {{#menu.item}}
                     <button class="btn" {{action 'roleChanged' roleOption.role}}>
