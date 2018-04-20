@@ -8,8 +8,9 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 const DEBOUNCE_MS = 250;
 
-/* Validations for adding unregistered contributor form.  fullName must be present
-and have three letters, and the username (email) must be present and of appropriate format.
+/* Validations for adding unregistered contributor form.
+* fullName must be present and have at least three characters but not more than 255
+* username (email) must be present and of appropriate format.
 */
 const Validations = buildValidations({
     fullName: {
@@ -18,6 +19,7 @@ const Validations = buildValidations({
             validator('presence', true),
             validator('length', {
                 min: 3,
+                max: 255,
             }),
         ],
     },
@@ -109,7 +111,7 @@ export default Component.extend(Validations, {
                     profileImage: user.__data.links.profile_image,
                     id: user.id,
                 };
-                if (this.get('moderatorIds').indexOf(user.id) > -1) {
+                if (this.get('moderatorIds').includes(user.id)) {
                     userData.disabled = true;
                 }
                 return userData;
