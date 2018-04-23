@@ -83,6 +83,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     deleteModerator: task(function* (moderatorInstance) {
         try {
             yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
+            moderatorInstance.unloadRecord(); // https://github.com/emberjs/data/issues/5014
 
             const allModerators = this.get('store').peekAll('moderator');
 
@@ -102,6 +103,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
             return false;
         } finally {
+            this.get('loadModerators').perform();
             this.set('editingModerator', false);
         }
     }),
