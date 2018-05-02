@@ -18,38 +18,6 @@ export default {
         submissions: 'Submissions',
         moderators: 'Moderators',
     },
-    documentType: {
-        default: {
-            plural: 'documents',
-            pluralCapitalized: 'Documents',
-            singular: 'document',
-            singularCapitalized: 'Document',
-        },
-        paper: {
-            plural: 'papers',
-            pluralCapitalized: 'Papers',
-            singular: 'paper',
-            singularCapitalized: 'Paper',
-        },
-        preprint: {
-            plural: 'preprints',
-            pluralCapitalized: 'Preprints',
-            singular: 'preprint',
-            singularCapitalized: 'Preprint',
-        },
-        none: {
-            plural: '',
-            pluralCapitalized: '',
-            singular: '',
-            singularCapitalized: '',
-        },
-        thesis: {
-            plural: 'theses',
-            pluralCapitalized: 'Theses',
-            singular: 'thesis',
-            singularCapitalized: 'Thesis',
-        },
-    },
     index: {
         feature: {
             title: 'Moderate your collection',
