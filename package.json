@@ -19,7 +19,7 @@
     "use-ember-osf-next-interfaces": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#$(date -u +%FT%TZ)"
   },
   "devDependencies": {
-    "@centerforopenscience/ember-osf": "0.16.0",
+    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#2018-05-02T13:56:01Z",
     "@centerforopenscience/eslint-config": "^2.0.0",
     "@cos-forks/ember-content-placeholders": "https://github.com/cos-forks/ember-content-placeholders#c85cdbeb4b9c206c3f76a92422db76815b2c95bc",
     "broccoli-asset-rev": "^2.4.5",
