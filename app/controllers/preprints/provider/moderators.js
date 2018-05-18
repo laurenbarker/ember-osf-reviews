@@ -72,7 +72,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     loadModerators: task(function* () {
         const moderators = yield this.get('store').query('moderator', {
             page: {
-                size: 100,
+                size: 100, // will need to be updated if a provider has > 100 moderators
             },
             provider: this.get('theme.provider.id'),
         });
@@ -169,6 +169,10 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
         const provider = this.get('theme.provider');
         const admins = yield this.get('store').query('moderator', {
             provider: provider.id,
+            // temporary, should be refactored when https://openscience.atlassian.net/browse/EMB-227 is complete
+            page: {
+                size: 100, // will need to be updated if a provider has > 100 admin moderators
+            },
             filter: {
                 permission_group: 'admin',
             },
