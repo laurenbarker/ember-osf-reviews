@@ -154,7 +154,11 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
                 this.get('results.moderators').pushObject(moderatorInstance);
             }
         } catch (e) {
-            this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
+            if (e.errors[0].detail.includes('Specified user is already a moderator')) {
+                this.get('toast').error(this.get('i18n').t('moderators.addExistingModeratorError'));
+            } else {
+                this.get('toast').error(this.get('i18n').t('moderators.addModeratorError'));
+            }
         } finally {
             this.get('loadModerators').perform();
             this.setProperties({
