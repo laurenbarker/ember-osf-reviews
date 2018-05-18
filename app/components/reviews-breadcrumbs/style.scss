@@ -14,3 +14,9 @@ a {
   width: 6px;
   margin: 0px 5px;
 }
+
+@media screen and (max-width: $screen-small-tablet) {
+  & {
+    font-size: 10px;
+  }
+}
