@@ -10,6 +10,8 @@ export default Component.extend({
     i18n: service(),
     store: service(),
 
+    classNames: ['moderator-list-row'],
+
     removeConfirmation: false,
     editConfirmation: false,
     role: oneWay('moderator.permissionGroup'),

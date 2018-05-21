@@ -38,7 +38,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             if (this.get('page') !== this.get('results.totalPages')) {
                 this.set('page', this.get('results.totalPages'));
             }
-            this.get('scroller').scrollVertical('.__moderator-list-row__a01f5', {});
+            this.get('scroller').scrollVertical('.moderator-list-row:last', {});
         },
     },
 
