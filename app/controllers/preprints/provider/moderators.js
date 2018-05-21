@@ -83,9 +83,14 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     }),
 
     deleteModerator: task(function* (moderatorInstance) {
+        const removingSelf = moderatorInstance.id === this.get('currentUser.user.id');
         try {
             yield moderatorInstance.destroyRecord({ adapterOptions: { provider: this.get('theme.provider.id') } });
             moderatorInstance.unloadRecord(); // https://github.com/emberjs/data/issues/5014
+
+            if (removingSelf) {
+                return;
+            }
 
             const allModerators = this.get('store').peekAll('moderator');
 
@@ -105,8 +110,13 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             this.get('toast').error(this.get('i18n').t('moderators.deleteModeratorError'));
             return false;
         } finally {
-            this.get('loadModerators').perform();
-            this.set('editingModerator', false);
+            if (removingSelf) {
+                yield this.get('store').findRecord('user', this.get('currentUser.user.id'));
+                this.transitionToRoute('/');
+            } else {
+                this.get('loadModerators').perform();
+                this.set('editingModerator', false);
+            }
         }
     }),
 
