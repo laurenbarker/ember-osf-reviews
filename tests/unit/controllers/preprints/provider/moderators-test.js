@@ -1,4 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
+import Service from '@ember/service';
 
 
 moduleFor('controller:preprints/provider/moderators', 'Unit | Controller | preprints/provider/moderators', {
@@ -8,7 +9,14 @@ moduleFor('controller:preprints/provider/moderators', 'Unit | Controller | prepr
         'service:currentUser',
         'service:metrics',
         'service:i18n',
+        'service:scroller',
     ],
+
+    beforeEach() {
+        this.register('service:scroller', Service.extend({
+            scrollVertical() {},
+        }));
+    },
 });
 
 test('Initial properties', function (assert) {
