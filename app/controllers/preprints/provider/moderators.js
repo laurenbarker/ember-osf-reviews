@@ -19,6 +19,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
     theme: service(),
     i18n: service(),
     currentUser: service(),
+    scroller: service(),
 
     disableAdminDeletion: false,
     editingModerator: false,
@@ -37,6 +38,7 @@ export default Controller.extend(Analytics, moderatorsQueryParams.Mixin, {
             if (this.get('page') !== this.get('results.totalPages')) {
                 this.set('page', this.get('results.totalPages'));
             }
+            this.get('scroller').scrollVertical('.__moderator-list-row__a01f5', {});
         },
     },
 

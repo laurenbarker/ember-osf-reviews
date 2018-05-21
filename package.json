@@ -59,6 +59,7 @@
     "ember-power-select": "^1.10.4",
     "ember-radio-button": "^1.1.1",
     "ember-resolver": "^4.0.0",
+    "ember-scroll-to": "^0.6.4",
     "ember-source": "2.16.2",
     "ember-toastr": "^1.7.0",
     "eslint": "^4.4.1",
